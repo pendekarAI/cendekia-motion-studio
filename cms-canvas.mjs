@@ -1,5 +1,5 @@
 // Cendekia Motion Studio — paket untuk Gemini Canvas. Dimuat oleh pemuat kecil di Canvas.
-window.CMS_VERSION = "1.3.0"; console.info("Cendekia Motion Studio " + window.CMS_VERSION);
+window.CMS_VERSION = "1.3.1"; console.info("Cendekia Motion Studio " + window.CMS_VERSION);
 window.__CMS_CANVAS = window.__CMS_CANVAS ?? true;
 { const l = document.createElement("link"); l.rel = "stylesheet"; l.href = "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Anton&family=Bebas+Neue&family=Poppins:wght@500;600;700;800&family=Montserrat:wght@600;700;800;900&family=Playfair+Display:wght@700;800&family=DM+Serif+Display&family=Space+Grotesk:wght@500;600;700&family=Caveat:wght@600;700&family=Righteous&family=JetBrains+Mono:wght@500;700&family=Oswald:wght@500;700&family=Archivo+Black&family=Fraunces:wght@600;800&family=Pacifico&family=Unbounded:wght@600;800&family=Cinzel:wght@600;800&family=Press+Start+2P&family=Permanent+Marker&family=Lora:wght@600;700&family=Sora:wght@500;600;700&display=swap"; document.head.appendChild(l);
   const st = document.createElement("style"); st.textContent = ":root{\n  --desk:#E6ECF1; --paper:#FFFFFF; --paper2:#F5F8FA; --ink:#0E2433; --ink2:#3B5368; --mute:#6B8296;\n  --line:#D3DDE5; --line2:#B9C8D4; --brand:#1E81B0; --deep:#105E82; --sky:#56B4E9; --signal:#F2A900;\n  --monitor:#0B1D29; --monitor2:#11283A; --danger:#C2412D; --ok:#1F9D6B; --focus:#1E81B0;\n  --r-panel:14px; --r-ctl:8px;\n  color-scheme:light;\n}\n:root[data-theme=\"dark\"]{\n  --desk:#0C171F; --paper:#122230; --paper2:#0F1D29; --ink:#E5EDF3; --ink2:#B4C5D3; --mute:#7F98AC;\n  --line:#21374A; --line2:#2E4A61; --brand:#3A9ED0; --deep:#56B4E9; --sky:#7CC6EE; --monitor:#050D13; --monitor2:#0B1A25;\n  color-scheme:dark;\n}\n*{box-sizing:border-box}\nhtml,body{margin:0;min-height:100%;background:var(--desk);color:var(--ink);font:14px/1.5 \"Plus Jakarta Sans\",system-ui,sans-serif;-webkit-font-smoothing:antialiased}\nbutton,input,select,textarea{font:inherit;color:inherit}\nbutton{cursor:pointer}\n[hidden]{display:none!important}\na{color:var(--brand)}\n:focus-visible{outline:2px solid var(--focus);outline-offset:2px}\n.mono{font-family:\"JetBrains Mono\",ui-monospace,monospace}\n.muted{color:var(--mute)}\n.small{font-size:12.5px}\n.grow{flex:1}\n.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}\n.stack{display:grid;gap:8px}\n.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}\n.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}\n.span{grid-column:1/-1}\n\n/* controls */\n.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--line2);background:var(--paper);color:var(--ink);border-radius:var(--r-ctl);padding:8px 14px;font-weight:650;font-size:13.5px;text-decoration:none;transition:background .12s,border-color .12s}\n.btn:hover{border-color:var(--brand)}\n.btn.main{background:var(--deep);border-color:var(--deep);color:#fff}\n.btn.main:hover{background:var(--brand);border-color:var(--brand)}\n.btn.ghost{background:transparent;border-color:transparent}\n.btn.ghost:hover{background:var(--paper2);border-color:var(--line)}\n.btn.sm{padding:5px 10px;font-size:12.5px}\n.btn.xs{padding:3px 8px;font-size:12px;border-radius:6px}\n.btn.wide{width:100%}\n.btn.warn{color:var(--danger)}\n.btn:disabled{opacity:.45;cursor:not-allowed}\nlabel.f{display:block;font-size:12.5px;font-weight:650;color:var(--ink2);margin:0 0 4px}\ninput[type=text],input[type=password],input[type=number],input[type=url],select,textarea{width:100%;background:var(--paper);border:1px solid var(--line2);border-radius:var(--r-ctl);padding:7px 10px;outline:none;font-size:13.5px}\ninput:focus,select:focus,textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(30,129,176,.15)}\ntextarea{resize:vertical;min-height:62px;line-height:1.45}\ninput[type=range]{width:100%;accent-color:var(--brand)}\ninput[type=color]{width:34px;height:30px;border:1px solid var(--line2);border-radius:6px;padding:1px;background:var(--paper)}\n.check{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--ink2);cursor:pointer}\n.check input{accent-color:var(--brand);width:16px;height:16px;margin-top:2px;flex:none}\n.hint{font-size:12px;color:var(--mute);margin:4px 0 0}\n.err{color:var(--danger)}\n.seg{display:inline-flex;border:1px solid var(--line2);border-radius:var(--r-ctl);overflow:hidden;background:var(--paper)}\n.seg button{border:0;background:none;padding:6px 11px;font-size:12.5px;font-weight:650;color:var(--ink2)}\n.seg button+button{border-left:1px solid var(--line)}\n.seg button.on{background:var(--ink);color:var(--paper)}\n\n/* top bar */\n.bar{height:54px;display:flex;align-items:center;gap:12px;padding:0 14px;background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}\n.mark{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.01em;white-space:nowrap}\n.mark svg{width:38px;height:22px}\n.bar .proj{min-width:0;flex:1;display:flex;align-items:center;gap:8px}\n.bar .proj input{max-width:280px;border-color:transparent;background:transparent;font-weight:650}\n.bar .proj input:hover{border-color:var(--line)}\n.pill{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:650;background:var(--paper2);border:1px solid var(--line);color:var(--ink2);white-space:nowrap}\n\n/* landing */\n#home{max-width:1180px;margin:0 auto;padding:36px 22px 56px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:42px;align-items:start}\n.home-l h1{font-size:clamp(34px,4.4vw,54px);line-height:1.02;letter-spacing:-.035em;font-weight:800;margin:6px 0 14px;max-width:14ch}\n.home-l .lede{font-size:16.5px;color:var(--ink2);max-width:56ch;margin:0 0 26px}\n.setup{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-panel)}\n.setup section{padding:18px 20px;border-top:1px solid var(--line)}\n.setup section:first-child{border-top:0}\n.setup h2{display:flex;align-items:baseline;gap:10px;font-size:15px;margin:0 0 12px;font-weight:750}\n.setup h2 .n{font:700 12px \"JetBrains Mono\",monospace;color:var(--paper);background:var(--ink);border-radius:6px;padding:1px 7px}\n.choose{display:grid;grid-template-columns:1fr 1fr;gap:10px}\n.choice{text-align:left;border:1.5px solid var(--line2);background:var(--paper);border-radius:12px;padding:12px 14px;display:grid;gap:2px}\n.choice b{font-size:14.5px}\n.choice span{font-size:12.5px;color:var(--mute)}\n.choice.on{border-color:var(--deep);box-shadow:inset 0 0 0 1px var(--deep);background:var(--paper2)}\n.drop{border:1.5px dashed var(--line2);border-radius:12px;padding:26px 16px;text-align:center;cursor:pointer;background:var(--paper2);transition:border-color .12s,background .12s}\n.drop:hover,.drop.over{border-color:var(--brand);background:var(--paper)}\n.drop b{display:block;font-size:16px;margin-bottom:2px}\n.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}\n.thumbs .t{position:relative;width:64px;height:64px;border-radius:8px;overflow:hidden;border:1px solid var(--line);background:var(--paper2)}\n.thumbs .t img,.thumbs .t video{width:100%;height:100%;object-fit:cover;display:block}\n.thumbs .t button{position:absolute;top:2px;right:2px;width:20px;height:20px;border-radius:50%;border:0;background:rgba(14,36,51,.8);color:#fff;font-size:11px;line-height:1;padding:0}\n.home-r{position:sticky;top:76px;display:grid;gap:16px}\n.demo{background:var(--monitor);border-radius:var(--r-panel);padding:18px;display:grid;place-items:center}\n.demo canvas{width:min(100%,300px);aspect-ratio:9/16;border-radius:10px;display:block}\n.demo-cap{font-size:12.5px;color:var(--mute);margin:-6px 4px 0}\n.drafts{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-panel);padding:14px 16px}\n.drafts h3{margin:0 0 8px;font-size:14px}\n.draft{display:flex;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}\n.draft:first-of-type{border-top:0}\n.draft img{width:36px;height:52px;object-fit:cover;border-radius:6px;background:var(--monitor)}\n.draft .meta{flex:1;min-width:0}\n.draft .meta b{display:block;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\n.keyline{display:flex;gap:8px;align-items:center;flex-wrap:wrap}\n.keyline input{flex:1;min-width:200px}\n.dot{width:8px;height:8px;border-radius:50%;background:var(--signal);flex:none}\n.dot.ok{background:var(--ok)}\n\n/* studio */\n#studio{display:grid;grid-template-columns:76px 352px minmax(0,1fr);height:calc(100vh - 54px)}\n.rail{background:var(--paper);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:8px 6px;gap:2px}\n.rail button{border:0;background:none;border-radius:10px;padding:8px 2px;display:grid;justify-items:center;gap:3px;font-size:11px;font-weight:650;color:var(--mute)}\n.rail button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}\n.rail button:hover{background:var(--paper2);color:var(--ink)}\n.rail button.on{background:var(--ink);color:var(--paper)}\n.drawer{background:var(--paper);border-right:1px solid var(--line);overflow:auto;min-height:0}\n.drawer .hd{position:sticky;top:0;z-index:2;background:var(--paper);padding:14px 16px 10px;border-bottom:1px solid var(--line)}\n.drawer .hd h2{margin:0;font-size:16px;font-weight:800;letter-spacing:-.01em}\n.drawer .hd p{margin:2px 0 0;font-size:12.5px;color:var(--mute)}\n.drawer .bd{padding:14px 16px 28px}\n.blk{padding:12px 0;border-top:1px solid var(--line)}\n.blk:first-child{border-top:0;padding-top:0}\n.blk h3{font-size:13px;font-weight:750;margin:0 0 8px}\n.work{display:flex;flex-direction:column;min-width:0;min-height:0}\n.monitor{flex:1;min-height:0;background:var(--monitor);position:relative;display:grid;place-items:center;overflow:hidden}\n#pv{display:block;touch-action:none;border-radius:4px;box-shadow:0 18px 50px rgba(0,0,0,.45);background:#000}\n.busy{position:absolute;left:14px;top:14px;display:flex;align-items:center;gap:8px;background:rgba(5,13,19,.82);color:#E5EDF3;border:1px solid #23394B;border-radius:99px;padding:5px 12px;font-size:12.5px}\n.spin{width:12px;height:12px;border-radius:50%;border:2px solid #2E4A61;border-top-color:var(--signal);animation:sp .8s linear infinite;flex:none}\n@keyframes sp{to{transform:rotate(360deg)}}\n.transport{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--monitor2);color:#E5EDF3;border-top:1px solid #1C3346}\n.transport .play{width:36px;height:36px;border-radius:50%;border:0;background:#E5EDF3;color:var(--monitor);display:grid;place-items:center;font-weight:900}\n.transport .tc{font:500 13px \"JetBrains Mono\",monospace;color:#9DB4C6}\n.transport .tc b{color:#fff;font-weight:700}\n.transport .btn{background:transparent;color:#C9D8E4;border-color:#2B4459}\n.transport .btn:hover{border-color:var(--sky);color:#fff}\n.tlbox{height:206px;flex:none;background:var(--paper);border-top:1px solid var(--line);display:grid;grid-template-columns:96px minmax(0,1fr)}\n.lanes{border-right:1px solid var(--line);font-size:11.5px;font-weight:650;color:var(--mute);padding-top:22px}\n.lanes div{height:34px;display:flex;align-items:center;padding-left:12px;border-top:1px solid var(--line)}\n.lanes .lrow{height:28px;white-space:nowrap}\n.lanes .lrow.top{background:color-mix(in srgb, var(--brand) 5%, transparent);color:var(--ink2)}\n.tlscroll{overflow-x:auto;overflow-y:hidden;position:relative}\n#tl{display:block;height:230px;touch-action:none;cursor:default}\n\n/* element list & inspector */\n.addgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}\n.addgrid button{border:1px solid var(--line);background:var(--paper2);border-radius:8px;padding:7px 4px;font-size:11.5px;font-weight:650;color:var(--ink2);display:grid;gap:2px;justify-items:center}\n.addgrid button i{font-style:normal;font-size:16px}\n.addgrid button:hover{border-color:var(--brand);color:var(--ink)}\n.el{display:flex;gap:8px;align-items:center;padding:7px 8px;border-radius:8px;cursor:pointer;border:1px solid transparent}\n.el:hover{background:var(--paper2)}\n.el.on{border-color:var(--brand);background:var(--paper2)}\n.el .sw{width:6px;align-self:stretch;border-radius:3px;flex:none}\n.el .tx{flex:1;min-width:0}\n.el .tx b{display:block;font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\n.el .tx span{font-size:11.5px;color:var(--mute)}\n.insp{border:1px solid var(--brand);border-radius:12px;padding:12px;margin:0 0 12px;background:var(--paper)}\n.insp .hdr{display:flex;align-items:center;gap:8px;margin-bottom:10px}\n.insp .hdr b{flex:1}\n.insp .fld{margin-bottom:8px}\n.steps{display:grid;gap:4px;margin-top:10px}\n.step{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--mute);padding:5px 2px}\n.step i{width:16px;height:16px;border-radius:50%;flex:none;border:2px solid var(--line2);font-style:normal;font-size:10px;font-weight:800;display:grid;place-items:center}\n.step.active{color:var(--ink)} .step.active i{border-color:var(--line2);border-top-color:var(--signal);animation:sp .8s linear infinite}\n.step.done{color:var(--ink2)} .step.done i{background:var(--ok);border-color:var(--ok);color:#fff}\n.step.skip i{background:var(--line);border-color:var(--line)}\n.step.err{color:var(--danger)} .step.err i{background:var(--danger);border-color:var(--danger);color:#fff}\n.step small{margin-left:auto;color:var(--mute)}\n.presets{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}\n.preset{border:1px solid var(--line);border-radius:10px;background:var(--paper);padding:0;overflow:hidden;text-align:left}\n.preset canvas{display:block;width:100%;aspect-ratio:16/10;background:var(--monitor)}\n.preset span{display:block;padding:6px 8px;font-size:12px;font-weight:650}\n.preset.on{border-color:var(--deep);box-shadow:inset 0 0 0 1.5px var(--deep)}\n.chips{display:flex;flex-wrap:wrap;gap:6px}\n.chip{border:1px solid var(--line2);background:var(--paper);border-radius:99px;padding:4px 11px;font-size:12.5px;font-weight:600;color:var(--ink2)}\n.chip.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}\n.asset{display:flex;gap:10px;padding:8px 0;border-top:1px solid var(--line);align-items:flex-start}\n.asset:first-child{border-top:0}\n.asset .th{width:54px;height:54px;border-radius:8px;overflow:hidden;background:var(--paper2);flex:none;border:1px solid var(--line)}\n.asset .th img,.asset .th video{width:100%;height:100%;object-fit:cover;display:block}\n.asset .tx{flex:1;min-width:0;font-size:12.5px}\n.asset .tx b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\n.asset.sel{background:var(--paper2);border-radius:8px}\n.realbox{border:1px solid var(--line);background:var(--paper2);border-radius:12px;padding:12px 14px}\n.realbox.off .g2,.realbox.off .hint{opacity:.45}\n.kv{display:grid;grid-template-columns:118px 1fr;gap:8px 10px;align-items:center}\n.kv>label{font-size:12.5px;color:var(--ink2);font-weight:600}\n\n/* modal & toast */\n.modal{position:fixed;inset:0;background:rgba(8,18,26,.55);display:grid;place-items:center;z-index:60;padding:16px}\n.dlg{width:min(560px,100%);max-height:calc(100vh - 32px);overflow:auto;background:var(--paper);border-radius:16px;padding:22px;box-shadow:0 30px 80px rgba(0,0,0,.35)}\n.dlg h3{margin:0 0 12px;font-size:18px;font-weight:800}\n.dlg ol{margin:0;padding-left:20px;line-height:1.7;color:var(--ink2)}\n.dlg .acts{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:16px}\n.meter{height:8px;border-radius:99px;background:var(--line);overflow:hidden}\n.meter i{display:block;height:100%;width:0;background:var(--signal);transition:width .2s}\n#toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,16px);opacity:0;background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:10px;font-size:13.5px;max-width:calc(100vw - 32px);z-index:70;pointer-events:none;transition:opacity .2s,transform .2s}\n#toast.show{opacity:1;transform:translate(-50%,0)}\n@media (prefers-reduced-motion:reduce){*{transition:none!important;animation-duration:.01ms!important}}\n@media (max-width:1020px){\n  #home{grid-template-columns:1fr}\n  .home-r{position:static;order:-1}\n  .demo canvas{width:min(100%,220px)}\n  #studio{grid-template-columns:1fr;height:auto}\n  .rail{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);order:2}\n  .rail button{min-width:68px}\n  .work{order:1}\n  .monitor{height:58vh;flex:none}\n  .drawer{order:3;border-right:0;max-height:none}\n  .tlbox{grid-template-columns:70px minmax(0,1fr)}\n}\n@media (max-width:560px){\n  .choose,.g2{grid-template-columns:1fr}\n  .bar{gap:4px;padding:0 10px}\n  .bar .proj,.mark span,#bHelp{display:none}\n  .bar .btn.sm{padding:5px 8px}\n  .home-l h1{font-size:34px}\n  .transport{flex-wrap:wrap;gap:8px}\n  .transport label{display:none!important}\n  .lanes div{font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-left:6px}\n  .kv{grid-template-columns:96px 1fr}\n}\nbody{overflow-x:hidden}\n:root[data-theme=\"dark\"] .btn.main{color:#06121C}\n:root[data-theme=\"dark\"] .btn.main:hover{color:#06121C}\n\n.cuttools{position:absolute;z-index:5;display:flex;align-items:center;gap:4px;background:var(--ink);color:var(--paper);border-radius:10px;padding:4px 4px 4px 10px;box-shadow:0 8px 24px rgba(0,0,0,.25);font-size:12px;font-weight:650;white-space:nowrap}\n.cuttools button{display:inline-flex;align-items:center;gap:5px;border:0;border-radius:7px;padding:5px 9px;background:rgba(255,255,255,.12);color:inherit;font-size:12px;font-weight:700}\n.cuttools button:hover{background:rgba(255,255,255,.22)}\n.cuttools button.cut{background:#C2412D;color:#fff}\n.cuttools button.cut:hover{background:#d4503b}\n.cuttools span{margin-right:4px;opacity:.85}\n.wchip{display:inline-flex;align-items:stretch;border:1px solid var(--line2);border-radius:99px;overflow:hidden;background:var(--paper)}\n.wchip button{border:0;background:none;padding:4px 4px 4px 10px;font-size:12.5px;font-weight:600;color:var(--ink2)}\n.wchip .sc{padding:4px 9px 4px 5px;color:#C2412D;display:inline-flex;align-items:center;border-left:1px solid var(--line)}\n.wchip .sc:hover{background:#C2412D;color:#fff}\n.wchip.on{background:var(--ink);border-color:var(--ink)}\n.wchip.on button{color:var(--paper)}\n#studio:not([hidden]) ~ #toast{bottom:auto;top:66px;left:calc(50% + 214px);transform:translate(-50%,-10px)}\n#studio:not([hidden]) ~ #toast.show{transform:translate(-50%,0)}\n@media (max-width:1020px){#studio:not([hidden]) ~ #toast{top:auto;bottom:20px;left:50%}}\n\n.transport .cutbtn{border-color:#C2412D;color:#FFB4A8;font-weight:750}\n.transport .cutbtn:hover{border-color:#ff7a66;color:#fff}\n.transport .cutbtn.armed{background:#C2412D;border-color:#C2412D;color:#fff}\n.lanes .lcut{gap:6px;color:var(--ink2)}\n.lanes .lcut svg{color:#C2412D;flex:none}\n/* galeri gaya visual */\n.stylepick{margin-top:14px}\n.sphead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:8px}\n.sphead .f{margin:0}\n.stylegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px}\n.stylegrid[data-shape=square]{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}\n.stylegrid[data-shape=wide]{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}\n.stile{position:relative;display:flex;flex-direction:column;gap:6px;padding:5px 5px 7px;border:1px solid var(--line);border-radius:12px;background:var(--paper2);cursor:pointer;text-align:center;transition:transform .15s,border-color .15s,box-shadow .15s}\n.stile:hover{transform:translateY(-2px);border-color:var(--line2)}\n.stile:focus-visible{outline:2px solid var(--focus);outline-offset:2px}\n.stile.on{border-color:var(--brand);box-shadow:0 0 0 2px var(--brand)}\n.stile .frame{display:block;aspect-ratio:var(--ar,9/16);border-radius:8px;overflow:hidden;background:var(--monitor)}\n.stile canvas{display:block;width:100%;height:100%}\n.stile .nm{font-size:12px;font-weight:650;line-height:1.2;color:var(--ink)}\n.stile.on .nm{color:var(--brand)}\n.stile .badge{position:absolute;top:10px;left:10px;z-index:1;font-style:normal;font-size:9.5px;font-weight:800;letter-spacing:.04em;padding:2px 6px;border-radius:6px;color:#fff;background:var(--deep);box-shadow:0 1px 3px rgba(0,0,0,.3)}\n.stile .badge.fit{background:var(--ok)}\n.autoart{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;height:100%;color:#fff;text-align:center;padding:8px;background:radial-gradient(120% 80% at 20% 10%,#7c5cff 0,transparent 60%),radial-gradient(120% 90% at 90% 90%,#00b4d8 0,transparent 60%),linear-gradient(160deg,#d946ef,#3b82f6)}\n.autoart b{font-size:13px}.autoart small{font-size:10px;opacity:.85;line-height:1.2}\n.styleinfo{margin:10px 0 0;font-size:13px;line-height:1.5;color:var(--ink)}\n.styleinfo .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}\n.styleinfo .tags span{font-size:11.5px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);background:var(--paper)}\n.styleinfo .tags .fit{border-color:var(--ok);color:var(--ok);font-weight:650}\n@media (max-width:560px){.stylegrid{grid-template-columns:repeat(3,1fr);gap:8px}.stylegrid[data-shape=wide]{grid-template-columns:repeat(2,1fr)}}\n.stile .badge.new{background:var(--signal);color:#1a1200}\n.dot.bad{background:var(--danger)}\n.okmsg{color:var(--ok);font-weight:650}\n.badmsg{color:var(--danger);font-weight:600}\n.badmsg a{color:inherit}\n.appver{margin-left:8px;font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;background:var(--paper2);border:1px solid var(--line);color:var(--ink2);white-space:nowrap}\n.locknote{margin:8px 0 0;padding:8px 10px;border-radius:8px;font-size:12px;line-height:1.5;color:var(--ink2);background:color-mix(in srgb, var(--signal) 12%, transparent);border:1px solid color-mix(in srgb, var(--signal) 35%, transparent)}\n.locknote b{color:var(--ink)}\n.musicbox{border:1px dashed var(--line,rgba(127,127,127,.35));border-radius:10px;padding:10px}\n.musicbox .mico{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:var(--brand);color:#fff;font-weight:800;flex:none}\n.musicbox .ell{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px}\n.posblk{border-top:1px solid var(--line,rgba(127,127,127,.25));padding-top:10px;margin-top:6px}\n.posblk label b{font-weight:700;margin-left:4px}\n#hMusicFile{margin-top:4px}\n"; document.head.appendChild(st);
@@ -200,7 +200,7 @@ function newProject(mode) {
     v: 2, mode, name: mode === 'product' ? 'Video produk' : 'Video baru', aspect: '9:16', duration: 0,
     words: [], keywords: [], language: '', els: [], assets: [], cuts: [], mutes: [],
     look: presetLook('cendekia'), niche: 'auto',
-    cap: { on: true, mode: 'pop', font: '', size: .068, pos: .74, maxWords: 3, upper: false, offset: 0 },
+    cap: { on: true, mode: 'pop', font: '', size: .068, pos: .74, x: .5, maxWords: 3, upper: false, offset: 0 },
     cam: { mode: 'smooth', fit: 'cover' },
     person: { behind: true, bg: 'none', rim: false, outline: false },
     audio: { mood: 'none', musicVol: .18, duck: true, sfx: true, sfxVol: .35, voiceVol: 1, voice: 'Kore', musicName: '', musicStart: 0, musicLoop: true, musicDur: 0 },
@@ -378,7 +378,10 @@ function capGroups(p) {
   capCache.set(p, { words: p.words, max, mode: p.cap.mode, groups: gs });
   return gs;
 }
+// kotak caption terakhir (0–1) untuk diseret di preview
+let CAPRECT = null;
 function drawCaptions(ctx, W, H, u, t, p, Lk) {
+  CAPRECT = null;
   if (!p.cap.on || !p.words.length) return;
   const tt = t - (p.cap.offset || 0), gs = capGroups(p);
   const g = gs.find(g => tt >= g.s && tt < g.e2); if (!g) return;
@@ -388,9 +391,12 @@ function drawCaptions(ctx, W, H, u, t, p, Lk) {
   const isKw = i => p.keywords.includes(i);
   const activeI = g.ix.find(i => tt >= p.words[i].s && tt < p.words[i].e + .05);
   ctx.save(); ctx.lineJoin = 'round'; ctx.textBaseline = 'alphabetic';
+  // posisi kiri-kanan caption (cap.x), dijaga tetap di dalam layar
+  const place = (bw, top, bh) => { const half = bw / 2, want = (isFinite(p.cap.x) ? p.cap.x : .5) * W, lo = half + W * .02, hi = W - half - W * .02, dx = lo < hi ? clamp(want, lo, hi) - W / 2 : 0; ctx.translate(dx, 0); CAPRECT = { x: (W / 2 + dx - half) / W, y: top / H, w: bw / W, h: bh / H }; };
   if (mode === 'single') {
     const i = activeI ?? g.ix[g.ix.length - 1], w = p.words[i], a2 = tt - w.s, s2 = size * 1.45;
     const L = layoutText(ctx, [{ t: wtxt(i), em: isKw(i) }], { fam, size: s2, maxW: W * .86, lines: 1 });
+    place(L.w, cy - L.size * .55, L.h);
     const k = .7 + .3 * EZ.back(a2 / .2); ctx.translate(W / 2, cy); ctx.scale(k, k); ctx.translate(-W / 2, -cy);
     drawText(ctx, L, { x: W / 2, y: cy - L.size * .55, align: 'center', color: '#fff', emColor: ac, kw: 'color', stroke: 'rgba(0,0,0,.85)', strokeW: L.size * .16, anim: { in: 'fade', split: 'none' } });
   } else if (mode === 'tiered') {
@@ -400,6 +406,7 @@ function drawCaptions(ctx, W, H, u, t, p, Lk) {
     const Ls = layoutText(ctx, shown.map(i => ({ t: wtxt(i), em: false })), { fam: Lk.fontB || fam, size: size * .72, maxW: W * .86, lines: 2, weight: 700 });
     const Lp = layoutText(ctx, [{ t: plain(wtxt(punch)).toUpperCase(), em: true }], { fam: Lk.fontD || fam, size: size * 1.75, maxW: W * .88, lines: 1 });
     const total = Ls.h + Lp.h * .95, top = cy - total / 2;
+    place(Math.max(Ls.w, Lp.w), top, total);
     if (shown.length) drawText(ctx, Ls, { x: W / 2, y: top, align: 'center', color: '#fff', stroke: 'rgba(0,0,0,.8)', strokeW: Ls.size * .15, anim: { in: 'fade', split: 'none' } });
     if (tt >= p.words[punch].s - .05) {
       const a2 = tt - p.words[punch].s, k = .5 + .5 * EZ.back(a2 / .25), cx = W / 2, cyy = top + Ls.h + Lp.size * .5;
@@ -412,6 +419,7 @@ function drawCaptions(ctx, W, H, u, t, p, Lk) {
     const toks = g.ix.map(i => ({ t: wtxt(i), em: false, i }));
     const L = layoutText(ctx, toks, { fam, size: mode === 'calm' ? size * .78 : size, maxW: W * .86, lines: mode === 'calm' ? 3 : 2, weight: mode === 'calm' ? BODY_W(fam) + 100 : undefined });
     const top = cy - L.h / 2;
+    place(L.w + (mode === 'calm' ? L.size * .9 : 0), top - (mode === 'calm' ? L.size * .27 : 0), L.h + (mode === 'calm' ? L.size * .5 : 0));
     let k = 1; if (mode === 'pop') k = .82 + .18 * EZ.back(age / .22);
     ctx.globalAlpha = clamp(age / .1, 0, 1) * clamp((g.e2 - tt) / .12, 0, 1);
     if (mode === 'calm') { const pad = L.size * .45; ctx.fillStyle = 'rgba(0,0,0,.58)'; rrect(ctx, W / 2 - L.w / 2 - pad, top - pad * .6, L.w + pad * 2, L.h + pad * 1.1, L.size * .3); ctx.fill(); }
@@ -1720,6 +1728,64 @@ function alignScript(script, tr, buf) {
   return { words, cut, buf: cut ? sliceBuf(buf, off, end) : buf, removed: (j0 > 0 ? j0 : 0) + (m - 1 - j1) };
 }
 
+// ================= SINKRON KATA ↔ SUARA =================
+// Waktu kata dari AI sering bergeser makin jauh di video panjang. Di sini waktu kata dicocokkan ulang
+// dengan bagian yang benar-benar bersuara (deteksi suara + Dynamic Time Warping), lalu dikoreksi.
+const SYNC_FPS = 25;
+function voiceAct(buf) {
+  const sr = buf.sampleRate, hop = Math.max(1, Math.round(sr / SYNC_FPS)), n = Math.floor(buf.length / hop), ch = [];
+  for (let c = 0; c < Math.min(2, buf.numberOfChannels); c++) ch.push(buf.getChannelData(c));
+  const le = new Float32Array(n);
+  for (let i = 0; i < n; i++) { let s = 0; const a = i * hop; for (const d of ch) for (let j = a; j < a + hop; j += 2) s += d[j] * d[j]; le[i] = Math.log10(Math.sqrt(s / (hop / 2 * ch.length)) + 1e-5); }
+  const srt = Float32Array.from(le).sort(), nf = srt[Math.floor(n * .12)], sp = srt[Math.floor(n * .92)], rg = Math.max(.3, sp - nf);
+  const V = new Float32Array(n); for (let i = 0; i < n; i++) V[i] = clamp((le[i] - nf - rg * .28) / (rg * .3), 0, 1);
+  return V;
+}
+function wordAct(words, n) { const A = new Float32Array(n); for (const w of words) { const a = Math.max(0, Math.floor(w.s * SYNC_FPS)), b = Math.min(n, Math.ceil(w.e * SYNC_FPS)); for (let i = a; i < b; i++) A[i] = 1; } return A; }
+// hasil: { words, warp(t), err0, err1, shift } atau null bila tidak ada perbaikan berarti
+function syncWords(words, buf, maxShift = 6) {
+  if (!words?.length || !buf || buf.duration < 2) return null;
+  const V = voiceAct(buf), n = V.length; if (n < 20) return null;
+  const A = wordAct(words, n), B = Math.round(maxShift * SYNC_FPS), Wd = 2 * B + 1, pen = .35;
+  const D = new Float32Array(n * Wd).fill(Infinity), Pt = new Uint8Array(n * Wd);
+  const at = (i, k) => i * Wd + k;
+  for (let i = 0; i < n; i++) for (let k = 0; k < Wd; k++) {
+    const j = i + k - B; if (j < 0 || j >= n) continue;
+    const c = Math.abs(A[i] - V[j]); let best = i === 0 ? c + Math.abs(k - B) * .02 : Infinity, from = 0;
+    if (i > 0) { const d = D[at(i - 1, k)]; if (d + c < best) { best = d + c; from = 1; } }               // diagonal
+    if (i > 0 && k + 1 < Wd) { const d = D[at(i - 1, k + 1)] + c + pen; if (d < best) { best = d; from = 2; } } // kata maju, suara tetap
+    if (k > 0) { const d = D[at(i, k - 1)] + c + pen; if (d < best) { best = d; from = 3; } }               // suara maju, kata tetap
+    D[at(i, k)] = best; Pt[at(i, k)] = from;
+  }
+  let k = 0, bk = Infinity; for (let q = 0; q < Wd; q++) if (D[at(n - 1, q)] < bk) { bk = D[at(n - 1, q)]; k = q; }
+  if (!isFinite(bk)) return null;
+  const map = new Float32Array(n).fill(-1);
+  for (let i = n - 1; i >= 0;) { const j = i + k - B; map[i] = map[i] < 0 ? j : Math.min(map[i], j); const f = Pt[at(i, k)]; if (f === 1) i--; else if (f === 2) { i--; k++; } else if (f === 3) k--; else break; }
+  for (let i = 1; i < n; i++) if (map[i] < 0) map[i] = map[i - 1]; for (let i = n - 2; i >= 0; i--) if (map[i] < 0) map[i] = map[i + 1];
+  // geseran dihaluskan supaya kata tidak melompat-lompat
+  const off = new Float32Array(n), R0 = Math.round(SYNC_FPS * .6); for (let i = 0; i < n; i++) off[i] = map[i] - i;
+  const sm = new Float32Array(n); { let s = 0, c = 0; for (let i = 0; i < n + R0; i++) { if (i < n) { s += off[i]; c++; } if (i - 2 * R0 - 1 >= 0) { s -= off[i - 2 * R0 - 1]; c--; } const m = i - R0; if (m >= 0 && m < n) sm[m] = s / c; } }
+  const warp = t => { const x = t * SYNC_FPS, i = clamp(Math.floor(x), 0, n - 1), i2 = Math.min(n - 1, i + 1), f = x - Math.floor(x); return Math.max(0, t + (sm[i] * (1 - f) + sm[i2] * f) / SYNC_FPS); };
+  const out = []; let last = 0;
+  for (const w of words) { let s = Math.max(last, warp(w.s)), e = Math.max(s + .08, warp(w.e)); s = +Math.min(s, buf.duration).toFixed(2); e = +Math.min(Math.max(e, s + .06), buf.duration + .3).toFixed(2); out.push({ ...w, s, e }); last = s + .02; }
+  const miss = ws => { const a = wordAct(ws, n); let m = 0; for (let i = 0; i < n; i++) m += Math.abs(a[i] - V[i]); return m / n; };
+  const err0 = miss(words), err1 = miss(out), shift = Math.max(...out.map((w, i) => Math.abs(w.s - words[i].s)));
+  if (!(err1 < err0 - .01) && shift > .15) return null;
+  return { words: out, warp, err0, err1, shift, endShift: out[out.length - 1].s - words[words.length - 1].s };
+}
+// titik potong di bagian paling sunyi dekat target, supaya kata tidak terpotong
+function splitAtSilence(buf, target = 28, slack = 7) {
+  const sr = buf.sampleRate, d = buf.getChannelData(0), hop = Math.round(sr * .05), n = Math.floor(d.length / hop), e = new Float32Array(n);
+  for (let i = 0; i < n; i++) { let s = 0; for (let j = i * hop; j < (i + 1) * hop; j++) s += d[j] * d[j]; e[i] = s; }
+  const pts = [0]; let pos = 0;
+  while (buf.duration - pos > target + slack) {
+    const a = Math.floor((pos + target - slack) / .05), b = Math.min(n - 6, Math.floor((pos + target + slack) / .05)); let bi = a, bv = Infinity;
+    for (let i = a; i <= b; i++) { const v = e[i] + e[i + 1] + e[i + 2] + e[i + 3] + e[i + 4] + e[i + 5]; if (v < bv) { bv = v; bi = i + 3; } }
+    pos = bi * .05; pts.push(pos);
+  }
+  pts.push(buf.duration); return pts;
+}
+
 // ================= KLIEN GEMINI =================
 const API = 'https://generativelanguage.googleapis.com/v1beta';
 class AIError extends Error { constructor(m, code) { super(m); this.code = code; } }
@@ -1964,9 +2030,21 @@ const TONE = { santai: 'santai dan akrab, seperti teman merekomendasikan', seman
 
 // ================= LANGKAH AI =================
 async function aiTranscribe(buf, maxSec = 420) {
-  const b = await resample(buf, 16000, maxSec), wav = bufToWav(b, 16000);
-  const res = await gemini([{ inlineData: { mimeType: 'audio/wav', data: b64(wav) } }, { text: `Transkripsikan semua ucapan dalam audio ini kata demi kata, dalam bahasa aslinya (jangan diterjemahkan). Untuk setiap kata beri waktu mulai (s) dan selesai (e) dalam detik sejak awal audio, presisi 0,01 dtk. Sertakan tanda baca yang menempel pada kata. Jangan menambah kata yang tidak diucapkan. Durasi audio ${b.duration.toFixed(1)} dtk. Isi language dengan kode bahasa (mis. "id").` }], { schema: S_WORDS, temp: 0 });
-  return { words: cleanWords(res.words, Math.min(P.duration || b.duration, b.duration + .5)), language: res.language || '' };
+  const b = await resample(buf, 16000, maxSec);
+  // video panjang ditranskrip per potongan ±28 dtk (dipotong di jeda): waktu kata dari AI jauh lebih akurat
+  const pts = splitAtSilence(b, 28, 7), parts = []; for (let i = 0; i < pts.length - 1; i++) parts.push([pts[i], pts[i + 1]]);
+  const res = new Array(parts.length); let lang = '', next = 0;
+  const worker = async () => { while (next < parts.length) { const k = next++, [a, z] = parts[k]; const sub = parts.length > 1 ? sliceBuf(b, a, z) : b; const r = await transcribeChunk(sub); if (!lang && r.language) lang = r.language; res[k] = cleanWords(r.words, sub.duration + .3).map(w => ({ ...w, s: +(w.s + a).toFixed(2), e: +(w.e + a).toFixed(2) })); } };
+  await Promise.all([worker(), worker()]);
+  let words = cleanWords(res.flat(), Math.min(P.duration || b.duration, b.duration + .5));
+  // koreksi akhir: cocokkan waktu kata dengan bagian yang benar-benar bersuara
+  if (P.mode === 'talk') try { const sy = syncWords(words, b, 4); if (sy) { words = sy.words; console.info(`Sinkron kata: geser maks ${sy.shift.toFixed(2)} dtk`); } } catch (e) { console.warn('sinkron kata', e); }
+  P.syncV = 1;
+  return { words, language: lang };
+}
+async function transcribeChunk(b) {
+  const wav = bufToWav(b, 16000);
+  return await gemini([{ inlineData: { mimeType: 'audio/wav', data: b64(wav) } }, { text: `Transkripsikan semua ucapan dalam audio ini kata demi kata, dalam bahasa aslinya (jangan diterjemahkan). Untuk setiap kata beri waktu mulai (s) dan selesai (e) dalam detik sejak awal audio ini, presisi 0,01 dtk. Waktu harus tepat saat kata itu terdengar, bukan perkiraan merata. Sertakan tanda baca yang menempel pada kata. Jangan menambah kata yang tidak diucapkan. Kata yang terpotong di awal atau akhir audio tetap ditulis. Durasi audio ${b.duration.toFixed(2)} dtk. Isi language dengan kode bahasa (mis. "id").` }], { schema: S_WORDS, temp: 0 });
 }
 function b64(ab) { const u8 = new Uint8Array(ab); let s = ''; for (let i = 0; i < u8.length; i += 0x8000) s += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000)); return btoa(s); }
 function cleanWords(arr, dur) {
@@ -2648,6 +2726,18 @@ function homeSettings(p) {
   if (p.mode === 'product') { p.cam.mode = 'off'; p.look.tone = p.look.tone === 'dark' ? 'dark' : p.look.tone; }
 }
 async function attachHomeMusic() { if ($('#hMusic').value !== 'upload' || !HOME.music) return; try { await setCustomMusic(HOME.music, HOME.music.name.replace(/\.[^.]+$/, '')); } catch (e) { toast(e.message, 5000); } }
+// cocokkan ulang waktu kata (caption) dengan suara; elemen yang menempel pada ucapan ikut digeser
+function resyncWords(auto = false) {
+  const buf = voiceOut(true); if (!buf || !P.words.length) { if (!auto) toast('Belum ada suara atau transkrip.'); return false; }
+  let sy = null; try { sy = syncWords(P.words, buf, 6); } catch (e) { console.warn('sinkron', e); }
+  P.syncV = 1;
+  if (!sy || sy.shift < .12) { if (!auto) toast('Caption sudah sinkron dengan suara.', 2600); return false; }
+  P.words = sy.words;
+  for (const e of P.els) { if (e.type === 'cta') continue; e.start = +sy.warp(e.start).toFixed(2); e.end = +Math.min(P.duration, Math.max(e.start + .3, sy.warp(e.end))).toFixed(2); }
+  changed(true);
+  toast(`Caption disinkronkan ulang dengan suara (koreksi terbesar ${sy.shift.toFixed(1)} dtk).`, 5000);
+  return true;
+}
 function resetRuntime() {
   pause(); stopAudio(); delete loopB.custom; delete loopP.custom; R.musicBlob = null; clearTimeout(saveT); clearTimeout(histT);
   for (const [, m] of R.media) { m.video?.pause(); URL.revokeObjectURL(m.url); }
@@ -2834,6 +2924,8 @@ async function openDraft(id) {
   if (P.layoutV !== 2) layoutAll(); // draf lama: rapikan posisi elemen
   enterStudio(); ensureLoop(P.audio.mood); commit(true); if (segWanted()) segInit();
   if (P.mode === 'talk' && !P.faceS && !R.light) setTimeout(refineLayout, 1200);
+  // draf lama: caption mungkin bergeser dari suara, cocokkan ulang sekali
+  if (!P.syncV && P.mode === 'talk' && P.words.length) Promise.resolve(R.voiceP).catch(() => {}).then(() => setTimeout(() => resyncWords(true), 300));
   toast('Draf dibuka.');
 }
 async function renderDrafts() {
@@ -3003,7 +3095,7 @@ function enterStudio() {
   $$('#rail button').forEach(b => b.onclick = () => openPanel(b.dataset.p));
   R.panel = 'ai'; openPanel('ai'); requestAnimationFrame(() => { sizePreview(); seek(0); });
 }
-function openPanel(k) { R.panel = k; $$('#rail button').forEach(b => b.classList.toggle('on', b.dataset.p === k)); renderPanel(); $('#drawer').scrollTop = 0; }
+function openPanel(k) { R.panel = k; if (k !== 'text') R.capSel = false; $$('#rail button').forEach(b => b.classList.toggle('on', b.dataset.p === k)); renderPanel(); $('#drawer').scrollTop = 0; }
 function refreshAll() { $('#projName').value = P.name; sizePreview(); renderPanel(); drawTimeline(); }
 // ---------- helper form ----------
 const getPath = (o, k) => k.split('.').reduce((a, x) => a?.[x], o);
@@ -3219,7 +3311,7 @@ function wireEl(b) {
     } catch (e) { toast(e.message, 7000); $$('[data-act=genimg]', box).forEach(x => x.disabled = false); btn.textContent = 'Coba lagi'; }
   });
 }
-function selectEl(id) { R.sel = id; const el = P.els.find(e => e.id === id); if (el && !R.playing && (now() < el.start || now() > el.end)) seek(el.start + Math.min(.6, (el.end - el.start) / 2)); if (R.panel !== 'el') openPanel('el'); else renderPanel(); drawTimeline(); }
+function selectEl(id) { R.sel = id; R.capSel = false; const el = P.els.find(e => e.id === id); if (el && !R.playing && (now() < el.start || now() > el.end)) seek(el.start + Math.min(.6, (el.end - el.start) / 2)); if (R.panel !== 'el') openPanel('el'); else renderPanel(); drawTimeline(); }
 function deleteSel() { if (!R.sel) return; P.els = P.els.filter(e => e.id !== R.sel); R.sel = null; changed(true); toast('Elemen dihapus. Ctrl+Z untuk membatalkan.', 2200); }
 function addEl(type) {
   const t = clamp(now(), 0, Math.max(0, P.duration - .5)), d = P.duration;
@@ -3239,11 +3331,15 @@ function panelText() {
       <label>Gaya</label>${sel('cap.mode', OPT.capMode)}
       <label>Huruf</label>${sel('cap.font', fonts)}
       <label>Ukuran</label>${rng2('cap.size', .04, .11, .001)}
-      <label>Posisi</label>${rng2('cap.pos', .45, .93, .005)}
+      <label>Posisi atas-bawah</label>${rng2('cap.pos', .06, .95, .005)}
+      <label>Posisi kiri-kanan</label>${rng2('cap.x', .1, .9, .005)}
       <label>Kata per tampilan</label>${rng2('cap.maxWords', 1, 6, 1)}
       <label>Geser sinkron</label>${rng2('cap.offset', -1, 1, .05)}
     </div>
     <div style="margin-top:8px">${chk('cap.upper', 'Huruf kapital')}</div>
+    <p class="hint">Caption juga bisa diklik lalu diseret langsung di preview.</p>
+    <button class="btn wide sm" type="button" id="capSync" ${!P.words.length || !voiceOut(true) ? 'disabled' : ''}>Sinkronkan ulang caption dengan suara</button>
+    <p class="hint" style="margin-top:4px">Pakai bila caption makin lama makin terlambat/terlalu cepat dibanding suara. Waktu tiap kata dicocokkan ulang dengan bagian yang bersuara.</p>
   </div>
   <div class="blk"><h3>Kata di video</h3>
     ${words.length ? `<p class="hint" style="margin-top:0">Klik kata untuk menandai sorotan caption. Klik ikon gunting untuk memotong kata itu dari video dan suara.</p><div class="chips" id="kwWords">${words.map((w, i) => `<span class="wchip ${P.keywords.includes(i) ? 'on' : ''}"><button type="button" data-wi="${i}">${esc(w.w)}</button><button type="button" class="sc" data-cutw="${i}" title="Potong kata ini" aria-label="Potong kata ${esc(w.w)}">${SCISSORS}</button></span>`).join('')}</div>${P.words.length > 700 ? '<p class="hint">Menampilkan 700 kata pertama.</p>' : ''}` : '<p class="hint" style="margin-top:0">Belum ada transkrip.</p>'}
@@ -3268,6 +3364,7 @@ function panelText() {
   </div>`;
 }
 function wireText(b) {
+  const cs = $('#capSync', b); if (cs) cs.onclick = () => resyncWords(false);
   $$('[data-wi]', b).forEach(x => x.onclick = () => { const i = +x.dataset.wi; P.keywords = P.keywords.includes(i) ? P.keywords.filter(k => k !== i) : [...P.keywords, i]; x.parentElement.classList.toggle('on'); changed(); });
   $$('[data-cutw]', b).forEach(x => x.onclick = () => { pause(); const i = +x.dataset.cutw, w = P.words[i]; cutWord(i); toast(`Kata "${w.w}" dipotong. Ctrl+Z untuk membatalkan.`, 2800); });
   $('#trApply', b).onclick = () => {
@@ -3609,8 +3706,8 @@ function draw() {
 // ---------- pilih & seret elemen langsung di preview ----------
 // kotak putus-putus di elemen terpilih (hanya di preview, tidak ikut ke video hasil)
 function drawSelBox(t) {
-  const el = P.els.find(e => e.id === R.sel); if (!el || !canPos(el) || t < el.start || t >= el.end) return;
-  const r = RECTS.get(el.id); if (!r) return; const W = pv.width, H = pv.height, d = Math.max(1, W / 360);
+  const el = R.capSel ? null : P.els.find(e => e.id === R.sel), r = R.capSel ? CAPRECT : el && canPos(el) && t >= el.start && t < el.end ? RECTS.get(el.id) : null;
+  if (!r) return; const W = pv.width, H = pv.height, d = Math.max(1, W / 360);
   pctx.save(); pctx.setTransform(1, 0, 0, 1, 0, 0); pctx.lineWidth = 1.5 * d; pctx.setLineDash([5 * d, 4 * d]);
   pctx.strokeStyle = 'rgba(0,0,0,.6)'; pctx.strokeRect(r.x * W - 3 * d + d, r.y * H - 3 * d + d, r.w * W + 6 * d, r.h * H + 6 * d);
   pctx.strokeStyle = '#7CF0C5'; pctx.strokeRect(r.x * W - 3 * d, r.y * H - 3 * d, r.w * W + 6 * d, r.h * H + 6 * d);
@@ -3627,21 +3724,31 @@ function pvHit(x, y) {
   const pad = .012;
   return act.find(e => { const r = RECTS.get(e.id); return x >= r.x - pad && x <= r.x + r.w + pad && y >= r.y - pad && y <= r.y + r.h + pad; });
 }
+const capHit = (x, y) => { const r = CAPRECT, pad = .015; return !!r && x >= r.x - pad && x <= r.x + r.w + pad && y >= r.y - pad && y <= r.y + r.h + pad; };
 pv.addEventListener('pointerdown', e => {
   if (!P.duration || e.button) return; const [x, y] = pvPoint(e), el = pvHit(x, y);
-  if (!el) { if (R.sel && R.panel === 'el') { R.sel = null; renderPanel(); drawTimeline(); requestDraw(); } return; }
+  // caption: klik untuk memilih, seret untuk memindah
+  if (!el && capHit(x, y)) {
+    if (R.playing) pause();
+    if (!R.capSel || R.panel !== 'text') { R.capSel = true; R.sel = null; if (R.panel !== 'text') openPanel('text'); else renderPanel(); drawTimeline(); }
+    PD = { cap: true, x0: x, y0: y, ex: isFinite(P.cap.x) ? P.cap.x : .5, ey: P.cap.pos, moved: false }; pv.setPointerCapture(e.pointerId); requestDraw(); return;
+  }
+  R.capSel = false;
+  if (!el) { if (R.sel && R.panel === 'el') { R.sel = null; renderPanel(); drawTimeline(); } requestDraw(); return; }
   if (R.playing) pause();
   if (R.sel !== el.id) { R.sel = el.id; if (R.panel !== 'el') openPanel('el'); else renderPanel(); drawTimeline(); }
   const [ex, ey] = elXY(el); PD = { el, x0: x, y0: y, ex, ey, moved: false }; pv.setPointerCapture(e.pointerId); requestDraw();
 });
 pv.addEventListener('pointermove', e => {
   const [x, y] = pvPoint(e);
-  if (!PD) { pv.style.cursor = pvHit(x, y) ? 'move' : 'default'; return; }
+  if (!PD) { pv.style.cursor = pvHit(x, y) || capHit(x, y) ? 'move' : 'default'; return; }
   const dx = x - PD.x0, dy = y - PD.y0; if (!PD.moved && Math.hypot(dx, dy) < .006) return;
   PD.moved = true; let nx = clamp(PD.ex + dx, 0, 1), ny = clamp(PD.ey + dy, 0, 1);
   PD.snapX = Math.abs(nx - .5) < .015; PD.snapY = Math.abs(ny - .5) < .012; if (PD.snapX) nx = .5; if (PD.snapY) ny = .5;
+  if (PD.cap) { P.cap.x = +clamp(nx, .1, .9).toFixed(3); P.cap.pos = +clamp(ny, .06, .95).toFixed(3); syncCapSliders(); requestDraw(); return; }
   PD.el.x = +nx.toFixed(3); PD.el.y = +ny.toFixed(3); PD.el.manual = true; requestDraw();
 });
+function syncCapSliders() { const a = document.querySelector('[data-k="cap.pos"]'), b = document.querySelector('[data-k="cap.x"]'); if (a) a.value = P.cap.pos; if (b) b.value = P.cap.x ?? .5; }
 const pvUp = () => { if (!PD) return; const moved = PD.moved; PD = null; if (moved) { changed(true); } requestDraw(); };
 pv.addEventListener('pointerup', pvUp); pv.addEventListener('pointercancel', pvUp);
 
@@ -3926,5 +4033,5 @@ $('#rClose').addEventListener('click', () => { if (rAbort) return rAbort.abort()
   });
   addEventListener('beforeunload', () => { if (R.id && !$('#studio').hidden) saveDraft(); });
   renderDrafts(); runDemo();
-  window.__cms = { get P() { return P; }, R, tidyEls, guardEls, normEl, enrichEls, applyPlan, drawFrame, renderVideo, startTalk, startProduct, openDraft, now, seek, play, pause, selectEl, addEl, SEG, RECTS, faceZones, layoutAll, layoutEls, buildMix, loopB, BEH, maskHead, calibrateFace };
+  window.__cms = { get P() { return P; }, get CAPRECT() { return CAPRECT; }, R, tidyEls, guardEls, normEl, enrichEls, applyPlan, drawFrame, renderVideo, startTalk, startProduct, openDraft, now, seek, play, pause, selectEl, addEl, SEG, RECTS, faceZones, layoutAll, layoutEls, buildMix, loopB, BEH, maskHead, calibrateFace, syncWords, splitAtSilence, resyncWords };
 })();
