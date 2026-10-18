@@ -1,10 +1,10 @@
 // Cendekia Motion Studio — paket untuk Gemini Canvas. Dimuat oleh pemuat kecil di Canvas.
-window.CMS_VERSION = "1.0.3"; console.info("Cendekia Motion Studio " + window.CMS_VERSION);
+window.CMS_VERSION = "1.1.0"; console.info("Cendekia Motion Studio " + window.CMS_VERSION);
 window.__CMS_CANVAS = window.__CMS_CANVAS ?? true;
 { const l = document.createElement("link"); l.rel = "stylesheet"; l.href = "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Anton&family=Bebas+Neue&family=Poppins:wght@500;600;700;800&family=Montserrat:wght@600;700;800;900&family=Playfair+Display:wght@700;800&family=DM+Serif+Display&family=Space+Grotesk:wght@500;600;700&family=Caveat:wght@600;700&family=Righteous&family=JetBrains+Mono:wght@500;700&family=Oswald:wght@500;700&family=Archivo+Black&family=Fraunces:wght@600;800&family=Pacifico&family=Unbounded:wght@600;800&family=Cinzel:wght@600;800&family=Press+Start+2P&family=Permanent+Marker&family=Lora:wght@600;700&family=Sora:wght@500;600;700&display=swap"; document.head.appendChild(l);
   const st = document.createElement("style"); st.textContent = ":root{\n  --desk:#E6ECF1; --paper:#FFFFFF; --paper2:#F5F8FA; --ink:#0E2433; --ink2:#3B5368; --mute:#6B8296;\n  --line:#D3DDE5; --line2:#B9C8D4; --brand:#1E81B0; --deep:#105E82; --sky:#56B4E9; --signal:#F2A900;\n  --monitor:#0B1D29; --monitor2:#11283A; --danger:#C2412D; --ok:#1F9D6B; --focus:#1E81B0;\n  --r-panel:14px; --r-ctl:8px;\n  color-scheme:light;\n}\n:root[data-theme=\"dark\"]{\n  --desk:#0C171F; --paper:#122230; --paper2:#0F1D29; --ink:#E5EDF3; --ink2:#B4C5D3; --mute:#7F98AC;\n  --line:#21374A; --line2:#2E4A61; --brand:#3A9ED0; --deep:#56B4E9; --sky:#7CC6EE; --monitor:#050D13; --monitor2:#0B1A25;\n  color-scheme:dark;\n}\n*{box-sizing:border-box}\nhtml,body{margin:0;min-height:100%;background:var(--desk);color:var(--ink);font:14px/1.5 \"Plus Jakarta Sans\",system-ui,sans-serif;-webkit-font-smoothing:antialiased}\nbutton,input,select,textarea{font:inherit;color:inherit}\nbutton{cursor:pointer}\n[hidden]{display:none!important}\na{color:var(--brand)}\n:focus-visible{outline:2px solid var(--focus);outline-offset:2px}\n.mono{font-family:\"JetBrains Mono\",ui-monospace,monospace}\n.muted{color:var(--mute)}\n.small{font-size:12.5px}\n.grow{flex:1}\n.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}\n.stack{display:grid;gap:8px}\n.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}\n.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}\n.span{grid-column:1/-1}\n\n/* controls */\n.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--line2);background:var(--paper);color:var(--ink);border-radius:var(--r-ctl);padding:8px 14px;font-weight:650;font-size:13.5px;text-decoration:none;transition:background .12s,border-color .12s}\n.btn:hover{border-color:var(--brand)}\n.btn.main{background:var(--deep);border-color:var(--deep);color:#fff}\n.btn.main:hover{background:var(--brand);border-color:var(--brand)}\n.btn.ghost{background:transparent;border-color:transparent}\n.btn.ghost:hover{background:var(--paper2);border-color:var(--line)}\n.btn.sm{padding:5px 10px;font-size:12.5px}\n.btn.xs{padding:3px 8px;font-size:12px;border-radius:6px}\n.btn.wide{width:100%}\n.btn.warn{color:var(--danger)}\n.btn:disabled{opacity:.45;cursor:not-allowed}\nlabel.f{display:block;font-size:12.5px;font-weight:650;color:var(--ink2);margin:0 0 4px}\ninput[type=text],input[type=password],input[type=number],input[type=url],select,textarea{width:100%;background:var(--paper);border:1px solid var(--line2);border-radius:var(--r-ctl);padding:7px 10px;outline:none;font-size:13.5px}\ninput:focus,select:focus,textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(30,129,176,.15)}\ntextarea{resize:vertical;min-height:62px;line-height:1.45}\ninput[type=range]{width:100%;accent-color:var(--brand)}\ninput[type=color]{width:34px;height:30px;border:1px solid var(--line2);border-radius:6px;padding:1px;background:var(--paper)}\n.check{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--ink2);cursor:pointer}\n.check input{accent-color:var(--brand);width:16px;height:16px;margin-top:2px;flex:none}\n.hint{font-size:12px;color:var(--mute);margin:4px 0 0}\n.err{color:var(--danger)}\n.seg{display:inline-flex;border:1px solid var(--line2);border-radius:var(--r-ctl);overflow:hidden;background:var(--paper)}\n.seg button{border:0;background:none;padding:6px 11px;font-size:12.5px;font-weight:650;color:var(--ink2)}\n.seg button+button{border-left:1px solid var(--line)}\n.seg button.on{background:var(--ink);color:var(--paper)}\n\n/* top bar */\n.bar{height:54px;display:flex;align-items:center;gap:12px;padding:0 14px;background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}\n.mark{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.01em;white-space:nowrap}\n.mark svg{width:38px;height:22px}\n.bar .proj{min-width:0;flex:1;display:flex;align-items:center;gap:8px}\n.bar .proj input{max-width:280px;border-color:transparent;background:transparent;font-weight:650}\n.bar .proj input:hover{border-color:var(--line)}\n.pill{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:650;background:var(--paper2);border:1px solid var(--line);color:var(--ink2);white-space:nowrap}\n\n/* landing */\n#home{max-width:1180px;margin:0 auto;padding:36px 22px 56px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:42px;align-items:start}\n.home-l h1{font-size:clamp(34px,4.4vw,54px);line-height:1.02;letter-spacing:-.035em;font-weight:800;margin:6px 0 14px;max-width:14ch}\n.home-l .lede{font-size:16.5px;color:var(--ink2);max-width:56ch;margin:0 0 26px}\n.setup{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-panel)}\n.setup section{padding:18px 20px;border-top:1px solid var(--line)}\n.setup section:first-child{border-top:0}\n.setup h2{display:flex;align-items:baseline;gap:10px;font-size:15px;margin:0 0 12px;font-weight:750}\n.setup h2 .n{font:700 12px \"JetBrains Mono\",monospace;color:var(--paper);background:var(--ink);border-radius:6px;padding:1px 7px}\n.choose{display:grid;grid-template-columns:1fr 1fr;gap:10px}\n.choice{text-align:left;border:1.5px solid var(--line2);background:var(--paper);border-radius:12px;padding:12px 14px;display:grid;gap:2px}\n.choice b{font-size:14.5px}\n.choice span{font-size:12.5px;color:var(--mute)}\n.choice.on{border-color:var(--deep);box-shadow:inset 0 0 0 1px var(--deep);background:var(--paper2)}\n.drop{border:1.5px dashed var(--line2);border-radius:12px;padding:26px 16px;text-align:center;cursor:pointer;background:var(--paper2);transition:border-color .12s,background .12s}\n.drop:hover,.drop.over{border-color:var(--brand);background:var(--paper)}\n.drop b{display:block;font-size:16px;margin-bottom:2px}\n.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}\n.thumbs .t{position:relative;width:64px;height:64px;border-radius:8px;overflow:hidden;border:1px solid var(--line);background:var(--paper2)}\n.thumbs .t img,.thumbs .t video{width:100%;height:100%;object-fit:cover;display:block}\n.thumbs .t button{position:absolute;top:2px;right:2px;width:20px;height:20px;border-radius:50%;border:0;background:rgba(14,36,51,.8);color:#fff;font-size:11px;line-height:1;padding:0}\n.home-r{position:sticky;top:76px;display:grid;gap:16px}\n.demo{background:var(--monitor);border-radius:var(--r-panel);padding:18px;display:grid;place-items:center}\n.demo canvas{width:min(100%,300px);aspect-ratio:9/16;border-radius:10px;display:block}\n.demo-cap{font-size:12.5px;color:var(--mute);margin:-6px 4px 0}\n.drafts{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-panel);padding:14px 16px}\n.drafts h3{margin:0 0 8px;font-size:14px}\n.draft{display:flex;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}\n.draft:first-of-type{border-top:0}\n.draft img{width:36px;height:52px;object-fit:cover;border-radius:6px;background:var(--monitor)}\n.draft .meta{flex:1;min-width:0}\n.draft .meta b{display:block;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\n.keyline{display:flex;gap:8px;align-items:center;flex-wrap:wrap}\n.keyline input{flex:1;min-width:200px}\n.dot{width:8px;height:8px;border-radius:50%;background:var(--signal);flex:none}\n.dot.ok{background:var(--ok)}\n\n/* studio */\n#studio{display:grid;grid-template-columns:76px 352px minmax(0,1fr);height:calc(100vh - 54px)}\n.rail{background:var(--paper);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:8px 6px;gap:2px}\n.rail button{border:0;background:none;border-radius:10px;padding:8px 2px;display:grid;justify-items:center;gap:3px;font-size:11px;font-weight:650;color:var(--mute)}\n.rail button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}\n.rail button:hover{background:var(--paper2);color:var(--ink)}\n.rail button.on{background:var(--ink);color:var(--paper)}\n.drawer{background:var(--paper);border-right:1px solid var(--line);overflow:auto;min-height:0}\n.drawer .hd{position:sticky;top:0;z-index:2;background:var(--paper);padding:14px 16px 10px;border-bottom:1px solid var(--line)}\n.drawer .hd h2{margin:0;font-size:16px;font-weight:800;letter-spacing:-.01em}\n.drawer .hd p{margin:2px 0 0;font-size:12.5px;color:var(--mute)}\n.drawer .bd{padding:14px 16px 28px}\n.blk{padding:12px 0;border-top:1px solid var(--line)}\n.blk:first-child{border-top:0;padding-top:0}\n.blk h3{font-size:13px;font-weight:750;margin:0 0 8px}\n.work{display:flex;flex-direction:column;min-width:0;min-height:0}\n.monitor{flex:1;min-height:0;background:var(--monitor);position:relative;display:grid;place-items:center;overflow:hidden}\n#pv{display:block;border-radius:4px;box-shadow:0 18px 50px rgba(0,0,0,.45);background:#000}\n.busy{position:absolute;left:14px;top:14px;display:flex;align-items:center;gap:8px;background:rgba(5,13,19,.82);color:#E5EDF3;border:1px solid #23394B;border-radius:99px;padding:5px 12px;font-size:12.5px}\n.spin{width:12px;height:12px;border-radius:50%;border:2px solid #2E4A61;border-top-color:var(--signal);animation:sp .8s linear infinite;flex:none}\n@keyframes sp{to{transform:rotate(360deg)}}\n.transport{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--monitor2);color:#E5EDF3;border-top:1px solid #1C3346}\n.transport .play{width:36px;height:36px;border-radius:50%;border:0;background:#E5EDF3;color:var(--monitor);display:grid;place-items:center;font-weight:900}\n.transport .tc{font:500 13px \"JetBrains Mono\",monospace;color:#9DB4C6}\n.transport .tc b{color:#fff;font-weight:700}\n.transport .btn{background:transparent;color:#C9D8E4;border-color:#2B4459}\n.transport .btn:hover{border-color:var(--sky);color:#fff}\n.tlbox{height:206px;flex:none;background:var(--paper);border-top:1px solid var(--line);display:grid;grid-template-columns:96px minmax(0,1fr)}\n.lanes{border-right:1px solid var(--line);font-size:11.5px;font-weight:650;color:var(--mute);padding-top:22px}\n.lanes div{height:34px;display:flex;align-items:center;padding-left:12px;border-top:1px solid var(--line)}\n.tlscroll{overflow-x:auto;overflow-y:hidden;position:relative}\n#tl{display:block;height:206px;touch-action:none;cursor:default}\n\n/* element list & inspector */\n.addgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}\n.addgrid button{border:1px solid var(--line);background:var(--paper2);border-radius:8px;padding:7px 4px;font-size:11.5px;font-weight:650;color:var(--ink2);display:grid;gap:2px;justify-items:center}\n.addgrid button i{font-style:normal;font-size:16px}\n.addgrid button:hover{border-color:var(--brand);color:var(--ink)}\n.el{display:flex;gap:8px;align-items:center;padding:7px 8px;border-radius:8px;cursor:pointer;border:1px solid transparent}\n.el:hover{background:var(--paper2)}\n.el.on{border-color:var(--brand);background:var(--paper2)}\n.el .sw{width:6px;align-self:stretch;border-radius:3px;flex:none}\n.el .tx{flex:1;min-width:0}\n.el .tx b{display:block;font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\n.el .tx span{font-size:11.5px;color:var(--mute)}\n.insp{border:1px solid var(--brand);border-radius:12px;padding:12px;margin:0 0 12px;background:var(--paper)}\n.insp .hdr{display:flex;align-items:center;gap:8px;margin-bottom:10px}\n.insp .hdr b{flex:1}\n.insp .fld{margin-bottom:8px}\n.steps{display:grid;gap:4px;margin-top:10px}\n.step{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--mute);padding:5px 2px}\n.step i{width:16px;height:16px;border-radius:50%;flex:none;border:2px solid var(--line2);font-style:normal;font-size:10px;font-weight:800;display:grid;place-items:center}\n.step.active{color:var(--ink)} .step.active i{border-color:var(--line2);border-top-color:var(--signal);animation:sp .8s linear infinite}\n.step.done{color:var(--ink2)} .step.done i{background:var(--ok);border-color:var(--ok);color:#fff}\n.step.skip i{background:var(--line);border-color:var(--line)}\n.step.err{color:var(--danger)} .step.err i{background:var(--danger);border-color:var(--danger);color:#fff}\n.step small{margin-left:auto;color:var(--mute)}\n.presets{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}\n.preset{border:1px solid var(--line);border-radius:10px;background:var(--paper);padding:0;overflow:hidden;text-align:left}\n.preset canvas{display:block;width:100%;aspect-ratio:16/10;background:var(--monitor)}\n.preset span{display:block;padding:6px 8px;font-size:12px;font-weight:650}\n.preset.on{border-color:var(--deep);box-shadow:inset 0 0 0 1.5px var(--deep)}\n.chips{display:flex;flex-wrap:wrap;gap:6px}\n.chip{border:1px solid var(--line2);background:var(--paper);border-radius:99px;padding:4px 11px;font-size:12.5px;font-weight:600;color:var(--ink2)}\n.chip.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}\n.asset{display:flex;gap:10px;padding:8px 0;border-top:1px solid var(--line);align-items:flex-start}\n.asset:first-child{border-top:0}\n.asset .th{width:54px;height:54px;border-radius:8px;overflow:hidden;background:var(--paper2);flex:none;border:1px solid var(--line)}\n.asset .th img,.asset .th video{width:100%;height:100%;object-fit:cover;display:block}\n.asset .tx{flex:1;min-width:0;font-size:12.5px}\n.asset .tx b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\n.asset.sel{background:var(--paper2);border-radius:8px}\n.realbox{border:1px solid var(--line);background:var(--paper2);border-radius:12px;padding:12px 14px}\n.realbox.off .g2,.realbox.off .hint{opacity:.45}\n.kv{display:grid;grid-template-columns:118px 1fr;gap:8px 10px;align-items:center}\n.kv>label{font-size:12.5px;color:var(--ink2);font-weight:600}\n\n/* modal & toast */\n.modal{position:fixed;inset:0;background:rgba(8,18,26,.55);display:grid;place-items:center;z-index:60;padding:16px}\n.dlg{width:min(560px,100%);max-height:calc(100vh - 32px);overflow:auto;background:var(--paper);border-radius:16px;padding:22px;box-shadow:0 30px 80px rgba(0,0,0,.35)}\n.dlg h3{margin:0 0 12px;font-size:18px;font-weight:800}\n.dlg ol{margin:0;padding-left:20px;line-height:1.7;color:var(--ink2)}\n.dlg .acts{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:16px}\n.meter{height:8px;border-radius:99px;background:var(--line);overflow:hidden}\n.meter i{display:block;height:100%;width:0;background:var(--signal);transition:width .2s}\n#toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,16px);opacity:0;background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:10px;font-size:13.5px;max-width:calc(100vw - 32px);z-index:70;pointer-events:none;transition:opacity .2s,transform .2s}\n#toast.show{opacity:1;transform:translate(-50%,0)}\n@media (prefers-reduced-motion:reduce){*{transition:none!important;animation-duration:.01ms!important}}\n@media (max-width:1020px){\n  #home{grid-template-columns:1fr}\n  .home-r{position:static;order:-1}\n  .demo canvas{width:min(100%,220px)}\n  #studio{grid-template-columns:1fr;height:auto}\n  .rail{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);order:2}\n  .rail button{min-width:68px}\n  .work{order:1}\n  .monitor{height:58vh;flex:none}\n  .drawer{order:3;border-right:0;max-height:none}\n  .tlbox{grid-template-columns:70px minmax(0,1fr)}\n}\n@media (max-width:560px){\n  .choose,.g2{grid-template-columns:1fr}\n  .bar{gap:4px;padding:0 10px}\n  .bar .proj,.mark span,#bHelp{display:none}\n  .bar .btn.sm{padding:5px 8px}\n  .home-l h1{font-size:34px}\n  .transport{flex-wrap:wrap;gap:8px}\n  .transport label{display:none!important}\n  .lanes div{font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-left:6px}\n  .kv{grid-template-columns:96px 1fr}\n}\nbody{overflow-x:hidden}\n:root[data-theme=\"dark\"] .btn.main{color:#06121C}\n:root[data-theme=\"dark\"] .btn.main:hover{color:#06121C}\n\n.cuttools{position:absolute;z-index:5;display:flex;align-items:center;gap:4px;background:var(--ink);color:var(--paper);border-radius:10px;padding:4px 4px 4px 10px;box-shadow:0 8px 24px rgba(0,0,0,.25);font-size:12px;font-weight:650;white-space:nowrap}\n.cuttools button{display:inline-flex;align-items:center;gap:5px;border:0;border-radius:7px;padding:5px 9px;background:rgba(255,255,255,.12);color:inherit;font-size:12px;font-weight:700}\n.cuttools button:hover{background:rgba(255,255,255,.22)}\n.cuttools button.cut{background:#C2412D;color:#fff}\n.cuttools button.cut:hover{background:#d4503b}\n.cuttools span{margin-right:4px;opacity:.85}\n.wchip{display:inline-flex;align-items:stretch;border:1px solid var(--line2);border-radius:99px;overflow:hidden;background:var(--paper)}\n.wchip button{border:0;background:none;padding:4px 4px 4px 10px;font-size:12.5px;font-weight:600;color:var(--ink2)}\n.wchip .sc{padding:4px 9px 4px 5px;color:#C2412D;display:inline-flex;align-items:center;border-left:1px solid var(--line)}\n.wchip .sc:hover{background:#C2412D;color:#fff}\n.wchip.on{background:var(--ink);border-color:var(--ink)}\n.wchip.on button{color:var(--paper)}\n#studio:not([hidden]) ~ #toast{bottom:auto;top:66px;left:calc(50% + 214px);transform:translate(-50%,-10px)}\n#studio:not([hidden]) ~ #toast.show{transform:translate(-50%,0)}\n@media (max-width:1020px){#studio:not([hidden]) ~ #toast{top:auto;bottom:20px;left:50%}}\n\n.transport .cutbtn{border-color:#C2412D;color:#FFB4A8;font-weight:750}\n.transport .cutbtn:hover{border-color:#ff7a66;color:#fff}\n.transport .cutbtn.armed{background:#C2412D;border-color:#C2412D;color:#fff}\n.lanes .lcut{gap:6px;color:var(--ink2)}\n.lanes .lcut svg{color:#C2412D;flex:none}\n/* galeri gaya visual */\n.stylepick{margin-top:14px}\n.sphead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:8px}\n.sphead .f{margin:0}\n.stylegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px}\n.stylegrid[data-shape=square]{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}\n.stylegrid[data-shape=wide]{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}\n.stile{position:relative;display:flex;flex-direction:column;gap:6px;padding:5px 5px 7px;border:1px solid var(--line);border-radius:12px;background:var(--paper2);cursor:pointer;text-align:center;transition:transform .15s,border-color .15s,box-shadow .15s}\n.stile:hover{transform:translateY(-2px);border-color:var(--line2)}\n.stile:focus-visible{outline:2px solid var(--focus);outline-offset:2px}\n.stile.on{border-color:var(--brand);box-shadow:0 0 0 2px var(--brand)}\n.stile .frame{display:block;aspect-ratio:var(--ar,9/16);border-radius:8px;overflow:hidden;background:var(--monitor)}\n.stile canvas{display:block;width:100%;height:100%}\n.stile .nm{font-size:12px;font-weight:650;line-height:1.2;color:var(--ink)}\n.stile.on .nm{color:var(--brand)}\n.stile .badge{position:absolute;top:10px;left:10px;z-index:1;font-style:normal;font-size:9.5px;font-weight:800;letter-spacing:.04em;padding:2px 6px;border-radius:6px;color:#fff;background:var(--deep);box-shadow:0 1px 3px rgba(0,0,0,.3)}\n.stile .badge.fit{background:var(--ok)}\n.autoart{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;height:100%;color:#fff;text-align:center;padding:8px;background:radial-gradient(120% 80% at 20% 10%,#7c5cff 0,transparent 60%),radial-gradient(120% 90% at 90% 90%,#00b4d8 0,transparent 60%),linear-gradient(160deg,#d946ef,#3b82f6)}\n.autoart b{font-size:13px}.autoart small{font-size:10px;opacity:.85;line-height:1.2}\n.styleinfo{margin:10px 0 0;font-size:13px;line-height:1.5;color:var(--ink)}\n.styleinfo .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}\n.styleinfo .tags span{font-size:11.5px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);background:var(--paper)}\n.styleinfo .tags .fit{border-color:var(--ok);color:var(--ok);font-weight:650}\n@media (max-width:560px){.stylegrid{grid-template-columns:repeat(3,1fr);gap:8px}.stylegrid[data-shape=wide]{grid-template-columns:repeat(2,1fr)}}\n.stile .badge.new{background:var(--signal);color:#1a1200}\n.dot.bad{background:var(--danger)}\n.okmsg{color:var(--ok);font-weight:650}\n.badmsg{color:var(--danger);font-weight:600}\n.badmsg a{color:inherit}\n.appver{margin-left:8px;font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;background:var(--paper2);border:1px solid var(--line);color:var(--ink2);white-space:nowrap}\n"; document.head.appendChild(st);
   document.title = "Cendekia Motion Studio"; document.documentElement.lang = "id";
-  document.body.insertAdjacentHTML("beforeend", "<header class=\"bar\">\n  <div class=\"mark\">\n    <svg viewBox=\"0 0 110 60\" aria-hidden=\"true\"><circle cx=\"22\" cy=\"38\" r=\"16\" fill=\"#105E82\"/><circle cx=\"62\" cy=\"24\" r=\"10\" fill=\"#1E81B0\"/><circle cx=\"92\" cy=\"12\" r=\"6\" fill=\"#56B4E9\"/></svg>\n    <span>Cendekia Motion Studio</span><small id=\"appVer\" class=\"appver\" hidden></small>\n  </div>\n  <div class=\"proj\" id=\"projBar\" hidden>\n    <input type=\"text\" id=\"projName\" aria-label=\"Nama proyek\" maxlength=\"80\">\n    <span class=\"pill\" id=\"modePill\"></span>\n  </div>\n  <span class=\"grow\" id=\"barGrow\"></span>\n  <button class=\"btn ghost sm\" id=\"bUndo\" type=\"button\" title=\"Urungkan (Ctrl+Z)\" hidden>\u21b6</button>\n  <button class=\"btn ghost sm\" id=\"bRedo\" type=\"button\" title=\"Ulangi (Ctrl+Shift+Z)\" hidden>\u21b7</button>\n  <button class=\"btn ghost sm\" id=\"bTheme\" type=\"button\" title=\"Tema terang/gelap\" aria-label=\"Ganti tema\"><svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"8\"/><path d=\"M12 4a8 8 0 000 16z\" fill=\"currentColor\"/></svg></button>\n  <button class=\"btn ghost sm\" id=\"bHelp\" type=\"button\">Panduan</button>\n  <button class=\"btn sm\" id=\"bHome\" type=\"button\" hidden>Proyek baru</button>\n  <button class=\"btn main sm\" id=\"bRender\" type=\"button\" hidden>Render video</button>\n</header>\n\n<!-- ================= LANDING ================= -->\n<main id=\"home\">\n  <div class=\"home-l\">\n    <h1>Dari rekaman mentah ke video motion, di satu meja.</h1>\n    <p class=\"lede\">Unggah video Anda berbicara, atau foto produk saja. AI menyusun caption per kata, kartu penjelasan, angka, b-roll, transisi, musik, dan narator. Semua bisa disunting lalu dirender jadi MP4 di perangkat Anda.</p>\n\n    <div class=\"setup\">\n      <section>\n        <h2><span class=\"n\">1</span>Bahan videonya</h2>\n        <div class=\"choose\" role=\"radiogroup\" aria-label=\"Jenis video\">\n          <button type=\"button\" class=\"choice on\" data-mode=\"talk\" role=\"radio\" aria-checked=\"true\"><b>Video saya berbicara</b><span>Talking head, kelas, review, podcast, tutorial</span></button>\n          <button type=\"button\" class=\"choice\" data-mode=\"product\" role=\"radio\" aria-checked=\"false\"><b>Foto/video produk</b><span>Tanpa orang. AI menulis naskah dan membacakannya</span></button>\n        </div>\n\n        <div id=\"setProd\" hidden style=\"margin-top:14px\">\n          <div class=\"g2\">\n            <div><label class=\"f\" for=\"pBrand\">Merek</label><input type=\"text\" id=\"pBrand\" placeholder=\"mis. Kopi Lereng\"></div>\n            <div><label class=\"f\" for=\"pName\">Produk / judul</label><input type=\"text\" id=\"pName\" placeholder=\"mis. Cold brew literan\"></div>\n            <div class=\"span\"><label class=\"f\" for=\"pBenefits\">Keunggulan & info penting</label><textarea id=\"pBenefits\" placeholder=\"Satu poin per baris. mis.&#10;Tanpa gula tambahan&#10;Tahan 7 hari di kulkas&#10;Biji arabika Gayo\"></textarea></div>\n            <div><label class=\"f\" for=\"pPrice\">Harga / promo</label><input type=\"text\" id=\"pPrice\" placeholder=\"mis. Rp 85.000, beli 2 gratis 1\"></div>\n            <div><label class=\"f\" for=\"pCta\">Ajakan di akhir</label><input type=\"text\" id=\"pCta\" placeholder=\"mis. Pesan lewat WhatsApp\"></div>\n            <div><label class=\"f\" for=\"pLink\">Link / kontak</label><input type=\"text\" id=\"pLink\" placeholder=\"mis. kopilereng.id\"></div>\n            <div><label class=\"f\" for=\"pDur\">Durasi</label><select id=\"pDur\"><option value=\"15\">\u00b115 detik</option><option value=\"30\" selected>\u00b130 detik</option><option value=\"45\">\u00b145 detik</option><option value=\"60\">\u00b160 detik</option></select></div>\n            <div><label class=\"f\" for=\"pTone\">Gaya bicara</label><select id=\"pTone\"><option value=\"santai\">Santai & akrab</option><option value=\"semangat\">Semangat, jualan</option><option value=\"profesional\">Profesional</option><option value=\"hangat\">Hangat, bercerita</option></select></div>\n            <div><label class=\"f\" for=\"pVoice\">Suara narator</label><select id=\"pVoice\"></select></div>\n          </div>\n        </div>\n\n        <div style=\"margin-top:14px\">\n          <label class=\"f\" id=\"assetsLbl\">B-roll (opsional): foto/video pendukung</label>\n          <div class=\"drop\" id=\"assetsDrop\" tabindex=\"0\" role=\"button\"><b>Tambah foto atau video</b><span class=\"small muted\">klik atau tarik ke sini \u00b7 bisa lebih dari satu</span></div>\n          <div class=\"thumbs\" id=\"homeAssets\"></div>\n        </div>\n        <div id=\"briefWrap\" style=\"margin-top:12px\"><label class=\"f\" for=\"hBrief\">Arahan untuk AI (opsional)</label>\n          <textarea id=\"hBrief\" placeholder=\"Audiens, pesan utama, ajakan di akhir. mis. Untuk staf HR. Ajak daftar kelas di cendekiadigital.com\"></textarea></div>\n      </section>\n\n      <section>\n        <h2><span class=\"n\">2</span>Tampilan & suara</h2>\n        <div class=\"g2\">\n          <div><label class=\"f\" for=\"hAspect\">Format</label><select id=\"hAspect\"><option value=\"source\">Ikuti video asli</option><option value=\"9:16\" selected>9:16 Reels, Shorts, TikTok</option><option value=\"4:5\">4:5 Feed Instagram</option><option value=\"1:1\">1:1 Kotak</option><option value=\"16:9\">16:9 YouTube</option></select></div>\n          <div><label class=\"f\" for=\"hNiche\">Bidang konten</label><select id=\"hNiche\"></select></div>\n          <div><label class=\"f\" for=\"hMusic\">Musik latar</label><select id=\"hMusic\"></select></div>\n          <div><label class=\"f\" for=\"hCamera\">Gerak kamera</label><select id=\"hCamera\"><option value=\"smooth\">Zoom halus</option><option value=\"punch\">Zoom potong (jump-cut)</option><option value=\"angle\">Ganti angle otomatis</option><option value=\"off\">Diam</option></select></div>\n        </div>\n        <div class=\"stylepick\">\n          <div class=\"sphead\"><span class=\"f\" id=\"styleLbl\">Gaya visual</span><span class=\"small muted\">Arahkan kursor ke kartu untuk melihat animasinya</span></div>\n          <select id=\"hPreset\" hidden aria-hidden=\"true\" tabindex=\"-1\"></select>\n          <div class=\"stylegrid\" id=\"styleGrid\" role=\"radiogroup\" aria-labelledby=\"styleLbl\"></div>\n          <p class=\"styleinfo\" id=\"styleInfo\" aria-live=\"polite\"></p>\n        </div>\n        <div class=\"realbox\" style=\"margin-top:12px\">\n          <label class=\"check\"><input type=\"checkbox\" id=\"hReal\" checked> <span><b>Tambah visual realistis buatan AI</b><br>Gemini membuat foto atau klip video yang terlihat nyata untuk b-roll, di momen yang paling butuh gambar.</span></label>\n          <div class=\"g2\" id=\"hRealOpts\" style=\"margin-top:10px\">\n            <div><label class=\"f\" for=\"hRealKind\">Jenis visual</label><select id=\"hRealKind\"><option value=\"image\">Foto realistis (Imagen)</option><option value=\"video\">Klip video realistis (Veo)</option></select></div>\n            <div><label class=\"f\" for=\"hRealCount\">Jumlah maksimal</label><select id=\"hRealCount\"><option value=\"1\">1</option><option value=\"2\" selected>2</option><option value=\"3\">3</option><option value=\"4\">4</option><option value=\"5\">5</option><option value=\"6\">6</option></select></div>\n          </div>\n          <p class=\"hint\" id=\"hRealNote\"></p>\n        </div>\n      </section>\n\n      <section>\n        <h2><span class=\"n\">3</span>Mulai</h2>\n        <div class=\"keyline\">\n          <span class=\"dot\" id=\"hKeyDot\"></span>\n          <input type=\"password\" id=\"hKey\" placeholder=\"Gemini API key (AIza\u2026)\" autocomplete=\"off\" aria-label=\"Gemini API key\">\n          <button class=\"btn sm\" type=\"button\" id=\"hKeySave\">Simpan key</button>\n        </div>\n        <p class=\"hint\" id=\"hKeyTxt\">Buat key gratis di <a href=\"https://aistudio.google.com/apikey\" target=\"_blank\" rel=\"noopener\">aistudio.google.com/apikey</a>. Key hanya disimpan di browser ini; pemakaian AI tercatat di akun Google Anda.</p>\n        <label class=\"check\" style=\"margin:12px 0\"><input type=\"checkbox\" id=\"hNoAI\"> <span>Tanpa AI: saya susun elemen sendiri (caption bisa dari teks yang saya ketik)</span></label>\n        <div id=\"startTalk\">\n          <div class=\"drop\" id=\"videoDrop\" tabindex=\"0\" role=\"button\"><b>Pilih video Anda berbicara</b><span class=\"small muted\">MP4, MOV, atau WEBM \u00b7 ideal di bawah 3 menit</span></div>\n        </div>\n        <div id=\"startProd\" hidden>\n          <button class=\"btn main wide\" type=\"button\" id=\"hGoProd\">Buat video produk</button>\n          <p class=\"hint\">Minimal 1 foto produk disarankan. Tanpa foto, AI membuat gambar sesuai pengaturan di langkah 2.</p>\n        </div>\n      </section>\n    </div>\n  </div>\n\n  <aside class=\"home-r\">\n    <div class=\"demo\"><canvas id=\"demo\" width=\"360\" height=\"640\" aria-label=\"Contoh animasi hasil aplikasi\"></canvas></div>\n    <p class=\"demo-cap\">Contoh di atas digambar langsung oleh mesin aplikasi ini, sama seperti saat Anda merender.</p>\n    <div class=\"drafts\" id=\"draftBox\" hidden>\n      <h3>Lanjutkan draf</h3>\n      <div id=\"draftList\"></div>\n    </div>\n  </aside>\n</main>\n\n<!-- ================= STUDIO ================= -->\n<div id=\"studio\" hidden>\n  <nav class=\"rail\" id=\"rail\" aria-label=\"Panel\"></nav>\n  <section class=\"drawer\" id=\"drawer\">\n    <div class=\"hd\"><h2 id=\"dTitle\"></h2><p id=\"dSub\"></p></div>\n    <div class=\"bd\" id=\"dBody\"></div>\n  </section>\n  <section class=\"work\">\n    <div class=\"monitor\" id=\"monitor\">\n      <canvas id=\"pv\" width=\"360\" height=\"640\"></canvas>\n      <div class=\"busy\" id=\"busy\" hidden><div class=\"spin\"></div><span id=\"busyTxt\">AI bekerja\u2026</span></div>\n    </div>\n    <div class=\"transport\">\n      <button class=\"play\" id=\"bPlay\" type=\"button\" title=\"Putar/jeda (Spasi)\" aria-label=\"Putar\">\u25b6</button>\n      <span class=\"tc\" id=\"tc\"><b>00:00.0</b> / 00:00.0</span>\n      <span class=\"grow\"></span>\n      <button class=\"btn xs cutbtn\" id=\"bCut\" type=\"button\" title=\"Potong kata/suara (Delete)\"><svg viewBox=\"0 0 24 24\" width=\"15\" height=\"15\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"6\" cy=\"6\" r=\"3\"/><circle cx=\"6\" cy=\"18\" r=\"3\"/><path d=\"M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12\"/></svg><span id=\"bCutTxt\">Potong</span></button>\n      <button class=\"btn xs\" id=\"bBack\" type=\"button\">Ke awal</button>\n      <button class=\"btn xs\" id=\"bAdd\" type=\"button\">Tambah elemen di sini</button>\n      <label class=\"small\" style=\"display:flex;align-items:center;gap:6px;color:#9DB4C6\">Perbesar timeline <input type=\"range\" id=\"tlZoom\" min=\"1\" max=\"8\" step=\"0.5\" value=\"1\" style=\"width:90px\"></label>\n    </div>\n    <div class=\"tlbox\">\n      <div class=\"lanes\"><div>Adegan</div><div>Teks & kartu</div><div>Kamera & efek</div><div class=\"lcut\" title=\"Klik kata di jalur ini, lalu Potong\">Kata <svg viewBox=\"0 0 24 24\" width=\"12\" height=\"12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"6\" cy=\"6\" r=\"3\"/><circle cx=\"6\" cy=\"18\" r=\"3\"/><path d=\"M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12\"/></svg></div><div class=\"lcut\" title=\"Seret di jalur ini untuk memilih suara, lalu Potong\">Suara <svg viewBox=\"0 0 24 24\" width=\"12\" height=\"12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"6\" cy=\"6\" r=\"3\"/><circle cx=\"6\" cy=\"18\" r=\"3\"/><path d=\"M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12\"/></svg></div></div>\n      <div class=\"tlscroll\" id=\"tlScroll\"><canvas id=\"tl\" height=\"206\"></canvas></div>\n    </div>\n  </section>\n</div>\n\n<!-- ================= MODALS ================= -->\n<div class=\"modal\" id=\"helpModal\" hidden role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"helpTitle\">\n  <div class=\"dlg\">\n    <h3 id=\"helpTitle\">Cara pakai</h3>\n    <ol>\n      <li>Pilih bahan: video Anda berbicara, atau foto/video produk (AI menulis naskah dan membacakannya).</li>\n      <li>Atur bidang konten, gaya, musik, dan format. Semuanya bisa diubah lagi di studio.</li>\n      <li>Tempel Gemini API key, lalu mulai. AI bekerja 30\u201390 detik.</li>\n      <li>Di studio: putar preview, geser atau perpanjang elemen langsung di timeline, sunting isinya di panel Elemen.</li>\n      <li>Minta revisi lewat panel Arahan AI, untuk seluruh video atau rentang detik tertentu, boleh dengan screenshot.</li>\n      <li>Klik <b>Render video</b>, tunggu, lalu unduh.</li>\n    </ol>\n    <p class=\"hint\">Pintasan: Spasi putar/jeda \u00b7 Ctrl+Z urungkan \u00b7 Ctrl+Shift+Z ulangi \u00b7 Delete hapus elemen terpilih. Render paling cepat di Chrome atau Edge di laptop.</p>\n    <div class=\"acts\"><button class=\"btn main\" type=\"button\" data-close>Mengerti</button></div>\n  </div>\n</div>\n\n<div class=\"modal\" id=\"renderModal\" hidden role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"renderTitle\">\n  <div class=\"dlg\">\n    <h3 id=\"renderTitle\">Render video</h3>\n    <div id=\"rOpts\">\n      <div class=\"g2\">\n        <div><label class=\"f\" for=\"rRes\">Resolusi</label><select id=\"rRes\"><option value=\"1080\">1080p, tajam</option><option value=\"720\">720p, lebih cepat</option></select></div>\n        <div><label class=\"f\" for=\"rFps\">Frame rate</label><select id=\"rFps\"><option value=\"30\">30 fps</option><option value=\"25\">25 fps</option><option value=\"60\">60 fps</option></select></div>\n      </div>\n      <p class=\"hint\" id=\"rNote\">Render berjalan di perangkat ini. Biarkan tab tetap terbuka sampai selesai.</p>\n      <div id=\"rMobile\" class=\"hint\" hidden>Di HP: jangan pindah aplikasi atau mengunci layar, colokkan charger, dan pilih 720p. Video di atas 60 detik lebih nyaman dirender di laptop.</div>\n    </div>\n    <div id=\"rProg\" hidden><div class=\"meter\"><i id=\"rBar\"></i></div><p class=\"hint\" id=\"rTxt\">Menyiapkan\u2026</p></div>\n    <div id=\"rDone\" hidden><video id=\"rVid\" controls playsinline style=\"width:100%;max-height:52vh;border-radius:10px;background:#000\"></video><p class=\"hint\" id=\"rInfo\"></p></div>\n    <div class=\"acts\">\n      <button class=\"btn\" type=\"button\" id=\"rClose\">Tutup</button>\n      <a class=\"btn main\" id=\"rDl\" hidden download>Unduh video</a>\n      <button class=\"btn main\" type=\"button\" id=\"rStart\">Mulai render</button>\n    </div>\n  </div>\n</div>\n\n<div class=\"modal\" id=\"promptModal\" hidden role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"promptTitle\">\n  <div class=\"dlg\">\n    <h3 id=\"promptTitle\">Prompt editing per adegan</h3>\n    <p class=\"hint\" style=\"margin-top:0\">Untuk aplikasi pembuat video AI yang menerima prompt per klip (maks. 10 detik). Disusun dari rencana motion proyek ini.</p>\n    <textarea id=\"promptTxt\" rows=\"14\" readonly style=\"font-size:12.5px\"></textarea>\n    <div class=\"acts\"><button class=\"btn\" type=\"button\" data-close>Tutup</button><button class=\"btn main\" type=\"button\" id=\"promptCopy\">Salin semua</button></div>\n  </div>\n</div>\n\n<div id=\"toast\" role=\"status\" aria-live=\"polite\"></div>\n<video id=\"vid\" playsinline preload=\"auto\" hidden></video>\n<input type=\"file\" id=\"fVideo\" accept=\"video/*,.mov,.mp4,.webm,.m4v\" hidden>\n<input type=\"file\" id=\"fAssets\" accept=\"image/*,video/*\" multiple hidden>\n<input type=\"file\" id=\"fRef\" accept=\"image/*,video/*\" multiple hidden>\n<input type=\"file\" id=\"fShot\" accept=\"image/*\" multiple hidden>\n<input type=\"file\" id=\"fVO\" accept=\"audio/*,.mp3,.wav,.m4a\" hidden>\n<input type=\"file\" id=\"fJson\" accept=\".json,application/json\" hidden>\n"); }
+  document.body.insertAdjacentHTML("beforeend", "<header class=\"bar\">\n  <div class=\"mark\">\n    <svg viewBox=\"0 0 110 60\" aria-hidden=\"true\"><circle cx=\"22\" cy=\"38\" r=\"16\" fill=\"#105E82\"/><circle cx=\"62\" cy=\"24\" r=\"10\" fill=\"#1E81B0\"/><circle cx=\"92\" cy=\"12\" r=\"6\" fill=\"#56B4E9\"/></svg>\n    <span>Cendekia Motion Studio</span><small id=\"appVer\" class=\"appver\" hidden></small>\n  </div>\n  <div class=\"proj\" id=\"projBar\" hidden>\n    <input type=\"text\" id=\"projName\" aria-label=\"Nama proyek\" maxlength=\"80\">\n    <span class=\"pill\" id=\"modePill\"></span>\n  </div>\n  <span class=\"grow\" id=\"barGrow\"></span>\n  <button class=\"btn ghost sm\" id=\"bUndo\" type=\"button\" title=\"Urungkan (Ctrl+Z)\" hidden>\u21b6</button>\n  <button class=\"btn ghost sm\" id=\"bRedo\" type=\"button\" title=\"Ulangi (Ctrl+Shift+Z)\" hidden>\u21b7</button>\n  <button class=\"btn ghost sm\" id=\"bTheme\" type=\"button\" title=\"Tema terang/gelap\" aria-label=\"Ganti tema\"><svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"8\"/><path d=\"M12 4a8 8 0 000 16z\" fill=\"currentColor\"/></svg></button>\n  <button class=\"btn ghost sm\" id=\"bHelp\" type=\"button\">Panduan</button>\n  <button class=\"btn sm\" id=\"bHome\" type=\"button\" hidden>Proyek baru</button>\n  <button class=\"btn main sm\" id=\"bRender\" type=\"button\" hidden>Render video</button>\n</header>\n\n<!-- ================= LANDING ================= -->\n<main id=\"home\">\n  <div class=\"home-l\">\n    <h1>Dari rekaman mentah ke video motion, di satu meja.</h1>\n    <p class=\"lede\">Unggah video Anda berbicara, atau foto produk saja. AI menyusun caption per kata, kartu penjelasan, angka, b-roll, transisi, musik, dan narator. Semua bisa disunting lalu dirender jadi MP4 di perangkat Anda.</p>\n\n    <div class=\"setup\">\n      <section>\n        <h2><span class=\"n\">1</span>Bahan videonya</h2>\n        <div class=\"choose\" role=\"radiogroup\" aria-label=\"Jenis video\">\n          <button type=\"button\" class=\"choice on\" data-mode=\"talk\" role=\"radio\" aria-checked=\"true\"><b>Video saya berbicara</b><span>Talking head, kelas, review, podcast, tutorial</span></button>\n          <button type=\"button\" class=\"choice\" data-mode=\"product\" role=\"radio\" aria-checked=\"false\"><b>Foto/video produk</b><span>Tanpa orang. AI menulis naskah dan membacakannya</span></button>\n        </div>\n\n        <div id=\"setProd\" hidden style=\"margin-top:14px\">\n          <div class=\"g2\">\n            <div><label class=\"f\" for=\"pBrand\">Merek</label><input type=\"text\" id=\"pBrand\" placeholder=\"mis. Kopi Lereng\"></div>\n            <div><label class=\"f\" for=\"pName\">Produk / judul</label><input type=\"text\" id=\"pName\" placeholder=\"mis. Cold brew literan\"></div>\n            <div class=\"span\"><label class=\"f\" for=\"pBenefits\">Keunggulan & info penting</label><textarea id=\"pBenefits\" placeholder=\"Satu poin per baris. mis.&#10;Tanpa gula tambahan&#10;Tahan 7 hari di kulkas&#10;Biji arabika Gayo\"></textarea></div>\n            <div><label class=\"f\" for=\"pPrice\">Harga / promo</label><input type=\"text\" id=\"pPrice\" placeholder=\"mis. Rp 85.000, beli 2 gratis 1\"></div>\n            <div><label class=\"f\" for=\"pCta\">Ajakan di akhir</label><input type=\"text\" id=\"pCta\" placeholder=\"mis. Pesan lewat WhatsApp\"></div>\n            <div><label class=\"f\" for=\"pLink\">Link / kontak</label><input type=\"text\" id=\"pLink\" placeholder=\"mis. kopilereng.id\"></div>\n            <div><label class=\"f\" for=\"pDur\">Durasi</label><select id=\"pDur\"><option value=\"15\">\u00b115 detik</option><option value=\"30\" selected>\u00b130 detik</option><option value=\"45\">\u00b145 detik</option><option value=\"60\">\u00b160 detik</option></select></div>\n            <div><label class=\"f\" for=\"pTone\">Gaya bicara</label><select id=\"pTone\"><option value=\"santai\">Santai & akrab</option><option value=\"semangat\">Semangat, jualan</option><option value=\"profesional\">Profesional</option><option value=\"hangat\">Hangat, bercerita</option></select></div>\n            <div><label class=\"f\" for=\"pVoice\">Suara narator</label><select id=\"pVoice\"></select></div>\n          </div>\n        </div>\n\n        <div style=\"margin-top:14px\">\n          <label class=\"f\" id=\"assetsLbl\">B-roll (opsional): foto/video pendukung</label>\n          <div class=\"drop\" id=\"assetsDrop\" tabindex=\"0\" role=\"button\"><b>Tambah foto atau video</b><span class=\"small muted\">klik atau tarik ke sini \u00b7 bisa lebih dari satu</span></div>\n          <div class=\"thumbs\" id=\"homeAssets\"></div>\n        </div>\n        <div id=\"briefWrap\" style=\"margin-top:12px\"><label class=\"f\" for=\"hBrief\">Arahan untuk AI (opsional)</label>\n          <textarea id=\"hBrief\" placeholder=\"Audiens, pesan utama, ajakan di akhir. mis. Untuk staf HR. Ajak daftar kelas di cendekiadigital.com\"></textarea></div>\n      </section>\n\n      <section>\n        <h2><span class=\"n\">2</span>Tampilan & suara</h2>\n        <div class=\"g2\">\n          <div><label class=\"f\" for=\"hAspect\">Format</label><select id=\"hAspect\"><option value=\"source\">Ikuti video asli</option><option value=\"9:16\" selected>9:16 Reels, Shorts, TikTok</option><option value=\"4:5\">4:5 Feed Instagram</option><option value=\"1:1\">1:1 Kotak</option><option value=\"16:9\">16:9 YouTube</option></select></div>\n          <div><label class=\"f\" for=\"hNiche\">Bidang konten</label><select id=\"hNiche\"></select></div>\n          <div><label class=\"f\" for=\"hMusic\">Musik latar</label><select id=\"hMusic\"></select></div>\n          <div><label class=\"f\" for=\"hDensity\">Kepadatan motion</label><select id=\"hDensity\"><option value=\"ramai\" selected>Ramai, gaya Reels/TikTok</option><option value=\"seimbang\">Seimbang</option><option value=\"tenang\">Tenang (sedikit elemen)</option></select></div>\n          <div><label class=\"f\" for=\"hCamera\">Gerak kamera</label><select id=\"hCamera\"><option value=\"smooth\">Zoom halus</option><option value=\"punch\">Zoom potong (jump-cut)</option><option value=\"angle\">Ganti angle otomatis</option><option value=\"off\">Diam</option></select></div>\n        </div>\n        <div class=\"stylepick\">\n          <div class=\"sphead\"><span class=\"f\" id=\"styleLbl\">Gaya visual</span><span class=\"small muted\">Arahkan kursor ke kartu untuk melihat animasinya</span></div>\n          <select id=\"hPreset\" hidden aria-hidden=\"true\" tabindex=\"-1\"></select>\n          <div class=\"stylegrid\" id=\"styleGrid\" role=\"radiogroup\" aria-labelledby=\"styleLbl\"></div>\n          <p class=\"styleinfo\" id=\"styleInfo\" aria-live=\"polite\"></p>\n        </div>\n        <div class=\"realbox\" style=\"margin-top:12px\">\n          <label class=\"check\"><input type=\"checkbox\" id=\"hReal\" checked> <span><b>Tambah visual realistis buatan AI</b><br>Gemini membuat foto atau klip video yang terlihat nyata untuk b-roll, di momen yang paling butuh gambar.</span></label>\n          <div class=\"g2\" id=\"hRealOpts\" style=\"margin-top:10px\">\n            <div><label class=\"f\" for=\"hRealKind\">Jenis visual</label><select id=\"hRealKind\"><option value=\"image\">Foto realistis (Imagen)</option><option value=\"video\">Klip video realistis (Veo)</option></select></div>\n            <div><label class=\"f\" for=\"hRealCount\">Jumlah maksimal</label><select id=\"hRealCount\"><option value=\"1\">1</option><option value=\"2\" selected>2</option><option value=\"3\">3</option><option value=\"4\">4</option><option value=\"5\">5</option><option value=\"6\">6</option></select></div>\n          </div>\n          <p class=\"hint\" id=\"hRealNote\"></p>\n        </div>\n      </section>\n\n      <section>\n        <h2><span class=\"n\">3</span>Mulai</h2>\n        <div class=\"keyline\">\n          <span class=\"dot\" id=\"hKeyDot\"></span>\n          <input type=\"password\" id=\"hKey\" placeholder=\"Gemini API key (AIza\u2026)\" autocomplete=\"off\" aria-label=\"Gemini API key\">\n          <button class=\"btn sm\" type=\"button\" id=\"hKeySave\">Simpan key</button>\n        </div>\n        <p class=\"hint\" id=\"hKeyTxt\">Buat key gratis di <a href=\"https://aistudio.google.com/apikey\" target=\"_blank\" rel=\"noopener\">aistudio.google.com/apikey</a>. Key hanya disimpan di browser ini; pemakaian AI tercatat di akun Google Anda.</p>\n        <label class=\"check\" style=\"margin:12px 0\"><input type=\"checkbox\" id=\"hNoAI\"> <span>Tanpa AI: saya susun elemen sendiri (caption bisa dari teks yang saya ketik)</span></label>\n        <div id=\"startTalk\">\n          <div class=\"drop\" id=\"videoDrop\" tabindex=\"0\" role=\"button\"><b>Pilih video Anda berbicara</b><span class=\"small muted\">MP4, MOV, atau WEBM \u00b7 ideal di bawah 3 menit</span></div>\n        </div>\n        <div id=\"startProd\" hidden>\n          <button class=\"btn main wide\" type=\"button\" id=\"hGoProd\">Buat video produk</button>\n          <p class=\"hint\">Minimal 1 foto produk disarankan. Tanpa foto, AI membuat gambar sesuai pengaturan di langkah 2.</p>\n        </div>\n      </section>\n    </div>\n  </div>\n\n  <aside class=\"home-r\">\n    <div class=\"demo\"><canvas id=\"demo\" width=\"360\" height=\"640\" aria-label=\"Contoh animasi hasil aplikasi\"></canvas></div>\n    <p class=\"demo-cap\">Contoh di atas digambar langsung oleh mesin aplikasi ini, sama seperti saat Anda merender.</p>\n    <div class=\"drafts\" id=\"draftBox\" hidden>\n      <h3>Lanjutkan draf</h3>\n      <div id=\"draftList\"></div>\n    </div>\n  </aside>\n</main>\n\n<!-- ================= STUDIO ================= -->\n<div id=\"studio\" hidden>\n  <nav class=\"rail\" id=\"rail\" aria-label=\"Panel\"></nav>\n  <section class=\"drawer\" id=\"drawer\">\n    <div class=\"hd\"><h2 id=\"dTitle\"></h2><p id=\"dSub\"></p></div>\n    <div class=\"bd\" id=\"dBody\"></div>\n  </section>\n  <section class=\"work\">\n    <div class=\"monitor\" id=\"monitor\">\n      <canvas id=\"pv\" width=\"360\" height=\"640\"></canvas>\n      <div class=\"busy\" id=\"busy\" hidden><div class=\"spin\"></div><span id=\"busyTxt\">AI bekerja\u2026</span></div>\n    </div>\n    <div class=\"transport\">\n      <button class=\"play\" id=\"bPlay\" type=\"button\" title=\"Putar/jeda (Spasi)\" aria-label=\"Putar\">\u25b6</button>\n      <span class=\"tc\" id=\"tc\"><b>00:00.0</b> / 00:00.0</span>\n      <span class=\"grow\"></span>\n      <button class=\"btn xs cutbtn\" id=\"bCut\" type=\"button\" title=\"Potong kata/suara (Delete)\"><svg viewBox=\"0 0 24 24\" width=\"15\" height=\"15\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"6\" cy=\"6\" r=\"3\"/><circle cx=\"6\" cy=\"18\" r=\"3\"/><path d=\"M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12\"/></svg><span id=\"bCutTxt\">Potong</span></button>\n      <button class=\"btn xs\" id=\"bBack\" type=\"button\">Ke awal</button>\n      <button class=\"btn xs\" id=\"bAdd\" type=\"button\">Tambah elemen di sini</button>\n      <label class=\"small\" style=\"display:flex;align-items:center;gap:6px;color:#9DB4C6\">Perbesar timeline <input type=\"range\" id=\"tlZoom\" min=\"1\" max=\"8\" step=\"0.5\" value=\"1\" style=\"width:90px\"></label>\n    </div>\n    <div class=\"tlbox\">\n      <div class=\"lanes\"><div>Adegan</div><div>Teks & kartu</div><div>Efek & ornamen</div><div class=\"lcut\" title=\"Klik kata di jalur ini, lalu Potong\">Kata <svg viewBox=\"0 0 24 24\" width=\"12\" height=\"12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"6\" cy=\"6\" r=\"3\"/><circle cx=\"6\" cy=\"18\" r=\"3\"/><path d=\"M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12\"/></svg></div><div class=\"lcut\" title=\"Seret di jalur ini untuk memilih suara, lalu Potong\">Suara <svg viewBox=\"0 0 24 24\" width=\"12\" height=\"12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"6\" cy=\"6\" r=\"3\"/><circle cx=\"6\" cy=\"18\" r=\"3\"/><path d=\"M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12\"/></svg></div></div>\n      <div class=\"tlscroll\" id=\"tlScroll\"><canvas id=\"tl\" height=\"206\"></canvas></div>\n    </div>\n  </section>\n</div>\n\n<!-- ================= MODALS ================= -->\n<div class=\"modal\" id=\"helpModal\" hidden role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"helpTitle\">\n  <div class=\"dlg\">\n    <h3 id=\"helpTitle\">Cara pakai</h3>\n    <ol>\n      <li>Pilih bahan: video Anda berbicara, atau foto/video produk (AI menulis naskah dan membacakannya).</li>\n      <li>Atur bidang konten, gaya, musik, dan format. Semuanya bisa diubah lagi di studio.</li>\n      <li>Tempel Gemini API key, lalu mulai. AI bekerja 30\u201390 detik.</li>\n      <li>Di studio: putar preview, geser atau perpanjang elemen langsung di timeline, sunting isinya di panel Elemen.</li>\n      <li>Minta revisi lewat panel Arahan AI, untuk seluruh video atau rentang detik tertentu, boleh dengan screenshot.</li>\n      <li>Klik <b>Render video</b>, tunggu, lalu unduh.</li>\n    </ol>\n    <p class=\"hint\">Pintasan: Spasi putar/jeda \u00b7 Ctrl+Z urungkan \u00b7 Ctrl+Shift+Z ulangi \u00b7 Delete hapus elemen terpilih. Render paling cepat di Chrome atau Edge di laptop.</p>\n    <div class=\"acts\"><button class=\"btn main\" type=\"button\" data-close>Mengerti</button></div>\n  </div>\n</div>\n\n<div class=\"modal\" id=\"renderModal\" hidden role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"renderTitle\">\n  <div class=\"dlg\">\n    <h3 id=\"renderTitle\">Render video</h3>\n    <div id=\"rOpts\">\n      <div class=\"g2\">\n        <div><label class=\"f\" for=\"rRes\">Resolusi</label><select id=\"rRes\"><option value=\"1080\">1080p, tajam</option><option value=\"720\">720p, lebih cepat</option></select></div>\n        <div><label class=\"f\" for=\"rFps\">Frame rate</label><select id=\"rFps\"><option value=\"30\">30 fps</option><option value=\"25\">25 fps</option><option value=\"60\">60 fps</option></select></div>\n      </div>\n      <p class=\"hint\" id=\"rNote\">Render berjalan di perangkat ini. Biarkan tab tetap terbuka sampai selesai.</p>\n      <div id=\"rMobile\" class=\"hint\" hidden>Di HP: jangan pindah aplikasi atau mengunci layar, colokkan charger, dan pilih 720p. Video di atas 60 detik lebih nyaman dirender di laptop.</div>\n    </div>\n    <div id=\"rProg\" hidden><div class=\"meter\"><i id=\"rBar\"></i></div><p class=\"hint\" id=\"rTxt\">Menyiapkan\u2026</p></div>\n    <div id=\"rDone\" hidden><video id=\"rVid\" controls playsinline style=\"width:100%;max-height:52vh;border-radius:10px;background:#000\"></video><p class=\"hint\" id=\"rInfo\"></p></div>\n    <div class=\"acts\">\n      <button class=\"btn\" type=\"button\" id=\"rClose\">Tutup</button>\n      <a class=\"btn main\" id=\"rDl\" hidden download>Unduh video</a>\n      <button class=\"btn main\" type=\"button\" id=\"rStart\">Mulai render</button>\n    </div>\n  </div>\n</div>\n\n<div class=\"modal\" id=\"promptModal\" hidden role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"promptTitle\">\n  <div class=\"dlg\">\n    <h3 id=\"promptTitle\">Prompt editing per adegan</h3>\n    <p class=\"hint\" style=\"margin-top:0\">Untuk aplikasi pembuat video AI yang menerima prompt per klip (maks. 10 detik). Disusun dari rencana motion proyek ini.</p>\n    <textarea id=\"promptTxt\" rows=\"14\" readonly style=\"font-size:12.5px\"></textarea>\n    <div class=\"acts\"><button class=\"btn\" type=\"button\" data-close>Tutup</button><button class=\"btn main\" type=\"button\" id=\"promptCopy\">Salin semua</button></div>\n  </div>\n</div>\n\n<div id=\"toast\" role=\"status\" aria-live=\"polite\"></div>\n<video id=\"vid\" playsinline preload=\"auto\" hidden></video>\n<input type=\"file\" id=\"fVideo\" accept=\"video/*,.mov,.mp4,.webm,.m4v\" hidden>\n<input type=\"file\" id=\"fAssets\" accept=\"image/*,video/*\" multiple hidden>\n<input type=\"file\" id=\"fRef\" accept=\"image/*,video/*\" multiple hidden>\n<input type=\"file\" id=\"fShot\" accept=\"image/*\" multiple hidden>\n<input type=\"file\" id=\"fVO\" accept=\"audio/*,.mp3,.wav,.m4a\" hidden>\n<input type=\"file\" id=\"fJson\" accept=\".json,application/json\" hidden>\n"); }
 /* Cendekia Motion Studio v2 — © 2026 Cendekia Digital Global.
    Ditulis independen. Pustaka pihak ketiga dimuat dari CDN saat diperlukan:
    Mediabunny (MPL-2.0) untuk baca/tulis video, MediaPipe Tasks Vision (Apache-2.0) untuk pemisah orang. */
@@ -82,7 +82,12 @@ const OPT = {
   pos: [['top', 'Atas'], ['center', 'Tengah'], ['bottom', 'Bawah']],
   layout: [['full', 'Layar penuh'], ['pip', 'Jendela kecil'], ['split', 'Layar terbagi'], ['phone', 'Mockup HP'], ['float', 'Kartu mengambang'], ['spotlight', 'Sorotan produk']],
   diagram: [['steps', 'Langkah berurutan'], ['compare', 'Perbandingan'], ['bars', 'Grafik batang'], ['flow', 'Alur panah'], ['cycle', 'Siklus'], ['ring', 'Cincin persentase']],
-  fx: [['flash', 'Kilat putih'], ['shake', 'Guncang'], ['glitch', 'Glitch'], ['leak', 'Cahaya bocor'], ['pulse', 'Denyut zoom']],
+  fx: [['flash', 'Kilat putih'], ['shake', 'Guncang'], ['glitch', 'Glitch'], ['leak', 'Cahaya bocor'], ['pulse', 'Denyut zoom'], ['whip', 'Whip cepat'], ['zoomblur', 'Zoom blur']],
+  doodle: [['question', 'Tanda tanya'], ['exclaim', 'Tanda seru'], ['sparkle', 'Garis penekanan'], ['shock', 'Garis kejut'], ['swirl', 'Uap / aroma'], ['scribble', 'Coretan kusut'], ['arrow', 'Panah melengkung'], ['circle', 'Lingkaran'], ['underline', 'Garis bawah'], ['heart', 'Hati'], ['star', 'Bintang'], ['lines', 'Garis cepat']],
+  particles: [['confetti', 'Konfeti'], ['sparkle', 'Kilau'], ['stars', 'Bintang'], ['hearts', 'Hati'], ['bokeh', 'Bokeh'], ['snow', 'Salju']],
+  tcolor: [['green', 'Hijau'], ['red', 'Merah'], ['yellow', 'Kuning'], ['dark', 'Hitam'], ['white', 'Putih'], ['blue', 'Biru'], ['accent', 'Warna aksen']],
+  dcolor: [['white', 'Putih'], ['yellow', 'Kuning'], ['red', 'Merah'], ['dark', 'Hitam'], ['accent', 'Warna aksen']],
+  density: [['tenang', 'Tenang (sedikit elemen)'], ['seimbang', 'Seimbang'], ['ramai', 'Ramai, gaya Reels/TikTok']],
   zoom: [['auto', 'Ikut setelan'], ['smooth', 'Halus'], ['punch', 'Potong'], ['out', 'Mundur']],
   mood: [['corporate', 'Upbeat profesional'], ['lofi', 'Lo-fi santai'], ['hype', 'Energik'], ['cinematic', 'Sinematik'], ['happy', 'Ceria'], ['tech', 'Teknologi'], ['none', 'Tanpa musik']]
 };
@@ -168,8 +173,18 @@ const TYPES = {
   diagram: { label: 'Animasi penjelasan', icon: '◔', lane: 0, color: '#6D597A', f: ['kind', 'text', 'ditems', 'trans'] },
   cta:     { label: 'Ajakan (CTA)', icon: '➜', lane: 0, color: '#D1495B', f: ['text', 'sub'] },
   zoom:    { label: 'Zoom kamera', icon: '⊕', lane: 2, color: '#7A8B99', f: ['zkind', 'amount'] },
-  fx:      { label: 'Efek', icon: '✦', lane: 2, color: '#B5838D', f: ['fxkind'] }
+  fx:      { label: 'Efek', icon: '✦', lane: 2, color: '#B5838D', f: ['fxkind'] },
+  hook:    { label: 'Hook bertumpuk', icon: 'H', lane: 1, color: '#FF7A45', f: ['text', 'sub', 'pos', 'behind'] },
+  doodle:  { label: 'Doodle tangan', icon: '✎', lane: 2, color: '#9AA5B1', f: ['dkind', 'xy', 'size', 'rot', 'dcolor'] },
+  bubble:  { label: 'Balon ucapan', icon: '💬', lane: 2, color: '#E9C46A', f: ['text', 'xy', 'size'] },
+  burst:   { label: 'Ledakan komik', icon: '💥', lane: 2, color: '#F4D35E', f: ['text', 'xy', 'size', 'tcolor'] },
+  tag:     { label: 'Label miring', icon: '🏷', lane: 2, color: '#52B788', f: ['text', 'xy', 'tcolor', 'emoji', 'rot', 'size'] },
+  badges:  { label: 'Ikon keunggulan', icon: '◉', lane: 2, color: '#48CAE4', f: ['bitems', 'pos'] },
+  particles: { label: 'Partikel', icon: '🎉', lane: 2, color: '#F72585', f: ['pkind', 'behind'] },
+  backdrop: { label: 'Latar desain', icon: '▦', lane: 2, color: '#7B61FF', f: ['bgkind'] }
 };
+// ornamen yang boleh bertumpuk dengan elemen lain
+const DECOR = new Set(['doodle', 'bubble', 'burst', 'tag', 'badges', 'particles', 'backdrop', 'sticker']);
 const isFull = el => el.type === 'chapter' || el.type === 'diagram' || el.type === 'cta' || (el.type === 'media' && el.layout !== 'pip');
 const laneOf = el => (el.type === 'media' && el.layout === 'pip') ? 1 : TYPES[el.type]?.lane ?? 1;
 
@@ -185,7 +200,7 @@ function newProject(mode) {
     audio: { mood: 'corporate', musicVol: .16, duck: true, sfx: true, sfxVol: .5, voiceVol: 1, voice: 'Kore' },
     extras: { progress: true, brand: '' },
     brief: '', product: { brand: '', name: '', benefits: '', price: '', cta: '', link: '', dur: 30, tone: 'santai' },
-    face: { x: .5, y: .33 }, sceneNote: '', realism: { on: true, kind: 'image', count: 2 }, script: '', hasVoice: false, auto: { look: false, music: false }
+    face: { x: .5, y: .33 }, sceneNote: '', realism: { on: true, kind: 'image', count: 2 }, density: 'ramai', script: '', hasVoice: false, auto: { look: false, music: false }
   };
 }
 // visual realistis AI: opsi nyala/mati
@@ -663,6 +678,13 @@ function drawOverlay(ctx, W, H, t, el, Lk, env) {
       ctx.shadowColor = 'rgba(0,0,0,.35)'; ctx.shadowBlur = u * .03; ctx.font = `${Math.round(s)}px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(el.emoji || '✨', 0, 0);
       break;
     }
+    case 'hook': drawHook(ctx, W, H, t, el, Lk, env); break;
+    case 'doodle': drawDoodleEl(ctx, W, H, t, el, Lk); break;
+    case 'bubble': drawBubble(ctx, W, H, t, el, Lk, env); break;
+    case 'burst': drawBurst(ctx, W, H, t, el, Lk); break;
+    case 'tag': drawTag(ctx, W, H, t, el, Lk); break;
+    case 'badges': drawBadges(ctx, W, H, t, el, Lk); break;
+    case 'particles': drawParticles(ctx, W, H, t, el, Lk); break;
     case 'media': { // jendela kecil
       const f = env.frame(el.asset, t - el.start); const aw = f ? f.w : 16, ah = f ? f.h : 9;
       let w = W * .44, h = w * ah / aw; if (h > H * .32) { h = H * .32; w = h * aw / ah; }
@@ -839,6 +861,231 @@ function composite(ctx, sc, kind, p, dir, W, H) {
   ctx.restore();
 }
 
+// ================= ORNAMEN GRAFIS (doodle, hook, balon, ledakan, label, ikon, partikel) =================
+// Semua digambar langsung dengan canvas, jadi orisinal dan ringan.
+const EMOJI_FONT = '"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';
+const TAG_COLORS = { accent: null, red: '#D62839', green: '#2F6B3A', yellow: '#FFD23F', dark: '#16161A', white: '#FFFFFF', blue: '#1E6FD9' };
+const tagColor = (c, Lk) => TAG_COLORS[c] || (c && /^#[0-9a-f]{6}$/i.test(c) ? c : null) || Lk.accent;
+
+// ---------- doodle: garis tangan dalam koordinat satuan (-1..1) ----------
+function smoothPts(pts, n = 6) { // Catmull-Rom supaya garis terlihat luwes
+  if (pts.length < 3) return pts; const out = [];
+  for (let i = 0; i < pts.length - 1; i++) {
+    const p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2;
+    for (let k = 0; k < n; k++) { const t = k / n, t2 = t * t, t3 = t2 * t;
+      out.push([.5 * (2 * p1[0] + (-p0[0] + p2[0]) * t + (2 * p0[0] - 5 * p1[0] + 4 * p2[0] - p3[0]) * t2 + (-p0[0] + 3 * p1[0] - 3 * p2[0] + p3[0]) * t3),
+                .5 * (2 * p1[1] + (-p0[1] + p2[1]) * t + (2 * p0[1] - 5 * p1[1] + 4 * p2[1] - p3[1]) * t2 + (-p0[1] + 3 * p1[1] - 3 * p2[1] + p3[1]) * t3)]); }
+  }
+  out.push(pts[pts.length - 1]); return out;
+}
+const param = (f, n = 48, a = 0, b = 1) => Array.from({ length: n + 1 }, (_, i) => f(a + (b - a) * i / n));
+const dot = (x, y, r = .07) => ({ dot: [x, y, r] });
+const DOODLES = {
+  question: () => [smoothPts([[-.38, -.42], [-.3, -.7], [-.05, -.85], [.22, -.8], [.38, -.6], [.33, -.36], [.12, -.18], [.02, .02], [.02, .3]]), dot(.02, .62)],
+  exclaim: () => [[[0, -.85], [.02, -.2], [0, .3]], dot(0, .62)],
+  sparkle: () => [[[-.55, -.15], [-.95, -.5]], [[0, -.35], [.02, -.9]], [[.55, -.15], [.95, -.5]]],
+  shock: () => Array.from({ length: 8 }, (_, i) => { const a = i / 8 * Math.PI * 2 + .2; return [[Math.cos(a) * .55, Math.sin(a) * .55], [Math.cos(a) * .95, Math.sin(a) * .95]]; }),
+  swirl: () => [-1, 0, 1].map(i => param(k => [i * .38 + .13 * Math.sin(k * 11 + i), .85 - k * 1.7], 40)),
+  scribble: () => [param(a => [.62 * Math.cos(a) + .22 * Math.cos(6.3 * a), .3 * Math.sin(a) + .16 * Math.sin(4.7 * a) - .1], 120, 0, Math.PI * 4.2)],
+  arrow: () => [smoothPts([[-.85, .65], [-.45, .1], [.05, -.25], [.6, -.4]]), [[.32, -.62], [.62, -.4], [.36, -.14]]],
+  circle: () => [param(a => [.95 * Math.cos(a) * (1 + .04 * Math.sin(a * 3)), .62 * Math.sin(a)], 64, -.4, Math.PI * 2 + .35)],
+  underline: () => [param(k => [-.95 + 1.9 * k, .05 * Math.sin(k * 9)], 30), param(k => [-.8 + 1.6 * k, .2 + .04 * Math.sin(k * 7 + 1)], 30)],
+  heart: () => [param(a => [.06 * 16 * Math.pow(Math.sin(a), 3), -.06 * (13 * Math.cos(a) - 5 * Math.cos(2 * a) - 2 * Math.cos(3 * a) - Math.cos(4 * a)) - .05], 64, 0, Math.PI * 2)],
+  star: () => [Array.from({ length: 11 }, (_, i) => { const a = -Math.PI / 2 + i * Math.PI / 5, r = i % 2 ? .4 : .95; return [Math.cos(a) * r, Math.sin(a) * r]; })],
+  lines: () => [[[-.9, -.45], [.9, -.45]], [[-.6, 0], [.75, 0]], [[-.9, .45], [.5, .45]]]
+};
+const DOODLE_CACHE = {};
+function doodleShape(kind) { return DOODLE_CACHE[kind] || (DOODLE_CACHE[kind] = (DOODLES[kind] || DOODLES.sparkle)()); }
+// gambar doodle: prog 0..1 = seberapa jauh garis sudah tergambar; t untuk efek "garis bergetar"
+function drawDoodle(ctx, kind, cx, cy, size, rot, prog, t, color, u, seed = 1) {
+  const shape = doodleShape(kind), strokes = shape.filter(s => Array.isArray(s)), dots = shape.filter(s => s.dot);
+  const len = s => { let L = 0; for (let i = 1; i < s.length; i++) L += Math.hypot(s[i][0] - s[i - 1][0], s[i][1] - s[i - 1][1]); return L; };
+  const total = strokes.reduce((a, s) => a + len(s), 0) || 1; let budget = total * clamp(prog, 0, 1);
+  const r = rng(seed + Math.floor(t * 8) * 7919), jit = .022;
+  ctx.save(); ctx.translate(cx, cy); ctx.rotate(rot || 0);
+  ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = Math.max(2, u * .011 * Math.sqrt(size / (u * .12)));
+  ctx.shadowColor = 'rgba(0,0,0,.35)'; ctx.shadowBlur = u * .012;
+  for (const s of strokes) {
+    if (budget <= 0) break; ctx.beginPath();
+    for (let i = 0; i < s.length; i++) {
+      const p = s[i], q = [p[0] + (r() - .5) * jit, p[1] + (r() - .5) * jit];
+      if (i === 0) { ctx.moveTo(q[0] * size, q[1] * size); continue; }
+      const seg = Math.hypot(p[0] - s[i - 1][0], p[1] - s[i - 1][1]);
+      if (seg > budget) { const k = budget / seg, a = s[i - 1]; ctx.lineTo(lerp(a[0], p[0], k) * size, lerp(a[1], p[1], k) * size); budget = 0; break; }
+      ctx.lineTo(q[0] * size, q[1] * size); budget -= seg;
+    }
+    ctx.stroke();
+  }
+  if (prog >= .85) for (const d of dots) { const [x, y, rr] = d.dot; ctx.beginPath(); ctx.arc(x * size, y * size, rr * size * ease((prog - .85) / .15), 0, 7); ctx.fill(); }
+  ctx.restore();
+}
+
+// ---------- garis bergelombang untuk kotak ala gambar tangan ----------
+function wobblyRect(ctx, x, y, w, h, r, t, seed, amp) {
+  const g = rng(seed + Math.floor(t * 8) * 131), pts = [], n = 10;
+  const push = (px, py) => pts.push([px + (g() - .5) * amp, py + (g() - .5) * amp]);
+  for (let i = 0; i < n; i++) push(x + r + (w - 2 * r) * i / n, y);
+  for (let i = 0; i < n; i++) push(x + w, y + r + (h - 2 * r) * i / n);
+  for (let i = 0; i < n; i++) push(x + w - r - (w - 2 * r) * i / n, y + h);
+  for (let i = 0; i < n; i++) push(x, y + h - r - (h - 2 * r) * i / n);
+  ctx.beginPath(); ctx.moveTo(pts[0][0], pts[0][1]); for (let i = 1; i <= pts.length; i++) { const a = pts[i - 1], b = pts[i % pts.length]; ctx.quadraticCurveTo(a[0], a[1], (a[0] + b[0]) / 2, (a[1] + b[1]) / 2); } ctx.closePath();
+}
+
+// ---------- hook bertumpuk ----------
+function drawHook(ctx, W, H, t, el, Lk, env) {
+  const u = Math.min(W, H), age = t - el.start, left = el.end - t, land = W > H * 1.1;
+  const toks = tokenize(el.text, true); if (!toks.length) return;
+  let size = u * (land ? .12 : .155); ctx.font = font(Lk.fontD, size);
+  // satu sampai dua kata per baris, seperti poster
+  const maxW = W * (land ? .6 : .86); let lines = [];
+  const build = () => { lines = []; let cur = [], cw = 0; for (const tk of toks) { const w = ctx.measureText(tk.t).width, add = cur.length ? size * .26 + w : w; if (cur.length && (cw + add > maxW || cur.length >= 2 || tk.t.length > 7)) { lines.push(cur); cur = []; cw = 0; } cur.push({ ...tk, w }); cw += cur.length > 1 ? size * .26 + w : w; } if (cur.length) lines.push(cur); };
+  for (let i = 0; i < 6; i++) { build(); if (lines.length <= 5 && lines.every(l => l.reduce((a, x) => a + x.w, 0) + (l.length - 1) * size * .26 <= maxW)) break; size *= .9; ctx.font = font(Lk.fontD, size); }
+  const lh = size * 1.02, blockH = lines.length * lh, cy = el.pos === 'top' ? H * .27 : el.pos === 'bottom' ? H * .6 : H * .44, top = cy - blockH / 2;
+  const out = ease(left / .3), anyEm = toks.some(x => x.em);
+  ctx.save(); ctx.globalAlpha = out; ctx.textBaseline = 'alphabetic'; ctx.lineJoin = 'round';
+  if (!env.behind) { const g = ctx.createRadialGradient(W / 2, cy, 0, W / 2, cy, u * .75); g.addColorStop(0, 'rgba(0,0,0,.4)'); g.addColorStop(1, 'rgba(0,0,0,0)'); ctx.fillStyle = g; ctx.fillRect(0, cy - u * .8, W, u * 1.6); }
+  lines.forEach((ln, i) => {
+    const r = clamp((age - i * .13) / .32, 0, 1); if (r <= 0) return;
+    const k = 1 + (1 - EZ.back(r)) * .9, lw = ln.reduce((a, x) => a + x.w, 0) + (ln.length - 1) * size * .26, y = top + i * lh + size * .86;
+    ctx.save(); ctx.translate(W / 2, y - size * .35); ctx.scale(k, k); ctx.globalAlpha = out * clamp(r * 1.6, 0, 1);
+    let x = -lw / 2;
+    for (const tk of ln) {
+      const em = tk.em || (!anyEm && i === lines.length - 1 && lines.length > 1);
+      ctx.font = font(Lk.fontD, size);
+      ctx.shadowColor = 'rgba(0,0,0,.45)'; ctx.shadowBlur = size * .18; ctx.shadowOffsetY = size * .04;
+      ctx.lineWidth = size * .07; ctx.strokeStyle = 'rgba(0,0,0,.28)'; ctx.strokeText(tk.t, x, size * .35);
+      ctx.shadowColor = 'transparent'; ctx.fillStyle = em ? (Lk.accent2 && lum(Lk.accent2) > .3 ? Lk.accent2 : Lk.accent) : '#FFFFFF'; ctx.fillText(tk.t, x, size * .35);
+      x += tk.w + size * .26;
+    }
+    ctx.restore();
+  });
+  // ornamen otomatis
+  if (!env.behind) {
+    const q = /\?/.test(el.text), kind = q ? 'question' : 'sparkle', p = clamp((age - .25) / .5, 0, 1), col = '#FFFFFF';
+    if (p > 0) {
+      drawDoodle(ctx, kind, W * .15, top - u * .03, u * .12, -.2, p, t, col, u, hash(el.id));
+      drawDoodle(ctx, q ? 'question' : 'shock', W * .87, top + blockH * .2, u * .085, .25, p, t, col, u, hash(el.id) + 3);
+    }
+    if (el.sub) {
+      const s = u * .043, r = EZ.back((age - .55) / .35); if (r > 0) {
+        const lines2 = wrapPlain(ctx, plain(el.sub).toUpperCase(), W * .7, Lk.fontB, s, 800, 2); ctx.font = font(Lk.fontB, s, 800);
+        const tw = Math.max(...lines2.map(l => ctx.measureText(l).width)), bw = tw + s * 1.4, bh = lines2.length * s * 1.2 + s * .8, bx = W / 2 - bw / 2, by = top + blockH + u * .03;
+        ctx.save(); ctx.translate(W / 2, by + bh / 2); ctx.rotate(-.05); ctx.scale(r, r); ctx.translate(-W / 2, -(by + bh / 2));
+        ctx.shadowColor = 'rgba(0,0,0,.3)'; ctx.shadowBlur = u * .02; ctx.fillStyle = Lk.accent2 || '#FFD23F'; rrect(ctx, bx, by, bw, bh, s * .25); ctx.fill(); ctx.shadowColor = 'transparent';
+        lines2.forEach((l, i) => textLine(ctx, l, W / 2, by + s * .4 + (i + 1) * s * 1.2 - s * .2, { fam: Lk.fontB, size: s, weight: 800, align: 'center', color: onDark(Lk.accent2 || '#FFD23F') }));
+        ctx.restore();
+      }
+    }
+  }
+  ctx.restore();
+}
+
+// ---------- balon ucapan ----------
+function drawBubble(ctx, W, H, t, el, Lk, env) {
+  const u = Math.min(W, H), age = t - el.start, left = el.end - t, k = EZ.back(age / .35) * ease(left / .25); if (k <= 0) return;
+  const s = u * .058 * (el.size || 1), fam = 'Caveat', lines = wrapPlain(ctx, plain(el.text), W * .42, fam, s, 700, 3);
+  ctx.font = font(fam, s, 700); const tw = Math.max(1, ...lines.map(l => ctx.measureText(l).width));
+  const bw = tw + s * 1.3, bh = lines.length * s * 1.05 + s * .8, cx = clamp((el.x ?? .27) * W, bw / 2 + W * .03, W - bw / 2 - W * .03), cy = clamp((el.y ?? .2) * H, bh / 2 + H * .04, H * .8);
+  const fx = (env.face?.x ?? .5) * W, fy = (env.face?.y ?? .35) * H, ang = Math.atan2(fy - cy, fx - cx);
+  ctx.save(); ctx.translate(cx, cy); ctx.scale(k, k); ctx.rotate(Math.sin(age * 2) * .015); ctx.translate(-cx, -cy);
+  const x = cx - bw / 2, y = cy - bh / 2, lw = Math.max(2, u * .006);
+  // ekor balon mengarah ke wajah
+  const ex = cx + Math.cos(ang) * (bw * .5 + u * .05), ey = cy + Math.sin(ang) * (bh * .5 + u * .05), bx = cx + Math.cos(ang) * bw * .32, by = cy + Math.sin(ang) * bh * .32, px = -Math.sin(ang) * s * .45, py = Math.cos(ang) * s * .45;
+  ctx.shadowColor = 'rgba(0,0,0,.28)'; ctx.shadowBlur = u * .02;
+  ctx.fillStyle = '#FFFFFF'; ctx.beginPath(); ctx.moveTo(bx + px, by + py); ctx.lineTo(ex, ey); ctx.lineTo(bx - px, by - py); ctx.closePath(); ctx.fill();
+  wobblyRect(ctx, x, y, bw, bh, Math.min(bh / 2, s * .9), t, hash(el.id), u * .004); ctx.fill(); ctx.shadowColor = 'transparent';
+  ctx.strokeStyle = '#1A1A1A'; ctx.lineWidth = lw; ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(bx + px, by + py); ctx.lineTo(ex, ey); ctx.lineTo(bx - px, by - py); ctx.stroke();
+  ctx.fillStyle = '#FFFFFF'; ctx.beginPath(); ctx.arc(bx, by, s * .5, 0, 7); ctx.fill();
+  lines.forEach((l, i) => textLine(ctx, l, cx, y + s * .4 + (i + 1) * s * 1.05 - s * .12, { fam, size: s, weight: 700, align: 'center', color: '#1A1A1A' }));
+  ctx.restore();
+}
+
+// ---------- ledakan komik ----------
+function drawBurst(ctx, W, H, t, el, Lk) {
+  const u = Math.min(W, H), age = t - el.start, left = el.end - t, k = EZ.back(age / .28) * ease(left / .2); if (k <= 0) return;
+  const R = u * .2 * (el.size || 1), cx = (el.x ?? .72) * W, cy = (el.y ?? .45) * H, sh = age < .35 ? Math.sin(age * 90) * u * .006 : 0, fill = tagColor(el.color || 'yellow', Lk);
+  ctx.save(); ctx.translate(cx + sh, cy); ctx.rotate(-.12 + Math.sin(age * 4) * .03); ctx.scale(k, k);
+  ctx.strokeStyle = '#111'; ctx.lineCap = 'round'; ctx.lineWidth = u * .008;
+  for (let i = 0; i < 10; i++) { const a = i / 10 * Math.PI * 2 + .3, r1 = R * 1.12, r2 = R * (1.3 + .1 * Math.sin(i * 2.7)); ctx.beginPath(); ctx.moveTo(Math.cos(a) * r1, Math.sin(a) * r1 * .8); ctx.lineTo(Math.cos(a) * r2, Math.sin(a) * r2 * .8); ctx.stroke(); }
+  const n = 14, g = rng(hash(el.id)); ctx.beginPath();
+  for (let i = 0; i <= n * 2; i++) { const a = i / (n * 2) * Math.PI * 2, r = (i % 2 ? .68 : 1) * R * (1 + (g() - .5) * .18); const px = Math.cos(a) * r * 1.15, py = Math.sin(a) * r * .82; i ? ctx.lineTo(px, py) : ctx.moveTo(px, py); }
+  ctx.closePath(); ctx.shadowColor = 'rgba(0,0,0,.35)'; ctx.shadowBlur = u * .025; ctx.fillStyle = fill; ctx.fill(); ctx.shadowColor = 'transparent'; ctx.lineWidth = u * .01; ctx.stroke();
+  const txt = plain(el.text || 'WOW!').toUpperCase(); let s = R * .55; ctx.font = font('Anton', s); while (ctx.measureText(txt).width > R * 1.75 && s > 8) { s *= .92; ctx.font = font('Anton', s); }
+  ctx.textAlign = 'center'; ctx.lineJoin = 'round'; ctx.lineWidth = s * .12; ctx.strokeStyle = '#FFFFFF'; ctx.strokeText(txt, 0, s * .36); ctx.fillStyle = '#111'; ctx.fillText(txt, 0, s * .36);
+  ctx.restore();
+}
+
+// ---------- label miring / pil berikon ----------
+function drawTag(ctx, W, H, t, el, Lk) {
+  const u = Math.min(W, H), age = t - el.start, left = el.end - t, r = clamp(age / .3, 0, 1), out = ease(left / .25); if (r <= 0 || out <= 0) return;
+  const pill = !!el.emoji, bg = tagColor(el.color || (pill ? 'dark' : 'green'), Lk), fg = onDark(bg), s = u * (pill ? .04 : .05) * (el.size || 1);
+  const txt = plain(el.text).toUpperCase(), lines = wrapPlain(ctx, txt, W * (pill ? .6 : .4), Lk.fontB, s, 900, pill ? 1 : 2);
+  ctx.font = font(Lk.fontB, s, 900); const tw = Math.max(1, ...lines.map(l => ctx.measureText(l).width)), ic = pill ? s * 1.5 : 0;
+  const bw = tw + s * 1.2 + (ic ? ic + s * .5 : 0), bh = Math.max(lines.length * s * 1.12 + s * .7, ic + s * .5), cx = clamp((el.x ?? .76) * W, bw / 2 + W * .03, W - bw / 2 - W * .03), cy = (el.y ?? .62) * H;
+  const rot = el.rot != null ? el.rot * Math.PI / 180 : (pill ? 0 : (cx > W / 2 ? -.1 : .1)), k = 1 + (1 - EZ.back(r)) * .55;
+  ctx.save(); ctx.globalAlpha = out; ctx.translate(cx, cy); ctx.rotate(rot); ctx.scale(k, k);
+  ctx.shadowColor = 'rgba(0,0,0,.35)'; ctx.shadowBlur = u * .025; ctx.shadowOffsetY = u * .006; ctx.fillStyle = bg;
+  if (pill) rrect(ctx, -bw / 2, -bh / 2, bw, bh, bh / 2); else rrect(ctx, -bw / 2, -bh / 2, bw, bh, s * .18); ctx.fill(); ctx.shadowColor = 'transparent';
+  if (pill) { ctx.fillStyle = hexA(fg === '#FFFFFF' ? '#FFFFFF' : '#000000', .14); rrect(ctx, -bw / 2 + s * .35, -ic / 2, ic, ic, ic * .3); ctx.fill(); ctx.font = `${Math.round(ic * .7)}px ${EMOJI_FONT}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(el.emoji, -bw / 2 + s * .35 + ic / 2, s * .04); ctx.textBaseline = 'alphabetic'; }
+  const tx = pill ? -bw / 2 + s * .85 + ic : 0;
+  lines.forEach((l, i) => textLine(ctx, l, tx, -bh / 2 + s * .35 + (i + 1) * s * 1.12 - s * .2, { fam: Lk.fontB, size: s, weight: 900, align: pill ? 'left' : 'center', color: fg }));
+  ctx.restore();
+}
+
+// ---------- deretan ikon keunggulan ----------
+function drawBadges(ctx, W, H, t, el, Lk) {
+  const u = Math.min(W, H), age = t - el.start, left = el.end - t, out = ease(left / .3), items = (el.items || []).filter(i => i.label || i.icon).slice(0, 4); if (!items.length) return;
+  const n = items.length, d = Math.min(u * .19, W * .8 / n), gap = (W * .92 - n * d) / Math.max(1, n - 1), y = el.pos === 'top' ? H * .14 : el.pos === 'center' ? H * .45 : H * .875;
+  const x0 = n === 1 ? W / 2 - d / 2 : W * .04;
+  items.forEach((it, i) => {
+    const r = EZ.back((age - i * .14) / .35); if (r <= 0) return;
+    const cx = x0 + i * (d + (n === 1 ? 0 : gap)) + d / 2;
+    ctx.save(); ctx.globalAlpha = out * clamp(r, 0, 1); ctx.translate(cx, y); ctx.scale(r, r);
+    ctx.shadowColor = 'rgba(0,0,0,.3)'; ctx.shadowBlur = u * .02; ctx.fillStyle = 'rgba(255,255,255,.2)'; ctx.beginPath(); ctx.arc(0, 0, d / 2, 0, 7); ctx.fill(); ctx.shadowColor = 'transparent';
+    ctx.strokeStyle = 'rgba(255,255,255,.85)'; ctx.lineWidth = Math.max(1.5, u * .004); ctx.stroke();
+    ctx.font = `${Math.round(d * .42)}px ${EMOJI_FONT}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(it.icon || '✓', 0, -d * .08); ctx.textBaseline = 'alphabetic';
+    if (it.label) { const ls = Math.min(u * .028, d * .15); const L = wrapPlain(ctx, plain(it.label), d * .9, Lk.fontB, ls, 750, 2); L.forEach((l, j) => textLine(ctx, l, 0, d * .26 + j * ls * 1.1, { fam: Lk.fontB, size: ls, weight: 750, align: 'center', color: '#fff', stroke: 'rgba(0,0,0,.55)', strokeW: ls * .22 })); }
+    ctx.restore();
+  });
+}
+
+// ---------- partikel ----------
+const CONFETTI = ['#FF5D73', '#FFD23F', '#3DDC97', '#4CC9F0', '#C77DFF', '#FF8A3D'];
+function drawParticles(ctx, W, H, t, el, Lk) {
+  const u = Math.min(W, H), age = t - el.start, v = Math.min(ease(age / .4), ease((el.end - t) / .5)); if (v <= 0) return;
+  const kind = el.kind || 'confetti', N = kind === 'bokeh' ? 18 : kind === 'confetti' ? 46 : 30, seed = hash(el.id);
+  ctx.save(); ctx.globalAlpha = v;
+  for (let i = 0; i < N; i++) {
+    const g = rng(seed + i * 977), x0 = g(), y0 = g(), sp = .18 + g() * .3, ph = g() * 6.28, sz = .4 + g() * .8, col = CONFETTI[i % CONFETTI.length];
+    if (kind === 'confetti') {
+      const y = ((y0 * 1.2 - .2) + age * sp * 1.4) % 1.25 - .1, x = x0 + Math.sin(age * 2 + ph) * .03, rot = age * (2 + g() * 4) + ph, w = u * .018 * sz, h = u * .009 * sz;
+      ctx.save(); ctx.translate(x * W, y * H); ctx.rotate(rot); ctx.scale(1, Math.cos(age * 6 + ph)); ctx.fillStyle = col; ctx.fillRect(-w / 2, -h / 2, w, h); ctx.restore();
+    } else if (kind === 'sparkle' || kind === 'stars') {
+      const tw = .5 + .5 * Math.sin(age * 5 + ph), x = x0 * W, y = (y0 * .8 + .05) * H, r = u * .022 * sz * tw;
+      ctx.fillStyle = kind === 'stars' ? (Lk.accent2 || '#FFD23F') : '#FFFFFF'; ctx.globalAlpha = v * tw; ctx.beginPath();
+      for (let k = 0; k < 8; k++) { const a = k * Math.PI / 4, rr = k % 2 ? r * .28 : r; ctx.lineTo(x + Math.cos(a) * rr, y + Math.sin(a) * rr); } ctx.closePath(); ctx.fill(); ctx.globalAlpha = v;
+    } else if (kind === 'hearts') {
+      const y = 1.05 - ((y0 + age * sp * .8) % 1.15), x = x0 + Math.sin(age * 1.5 + ph) * .04; ctx.font = `${Math.round(u * .05 * sz)}px ${EMOJI_FONT}`; ctx.globalAlpha = v * clamp(y * 2, 0, 1); ctx.fillText(['❤️', '💖', '💕'][i % 3], x * W, y * H); ctx.globalAlpha = v;
+    } else if (kind === 'snow') {
+      const y = ((y0 + age * sp * .5) % 1.1) - .05, x = x0 + Math.sin(age + ph) * .02; ctx.fillStyle = 'rgba(255,255,255,.85)'; ctx.beginPath(); ctx.arc(x * W, y * H, u * .008 * sz, 0, 7); ctx.fill();
+    } else { // bokeh
+      const x = (x0 + Math.sin(age * .3 + ph) * .03) * W, y = (y0 + Math.cos(age * .25 + ph) * .03) * H, r = u * (.03 + .07 * sz), gr = ctx.createRadialGradient(x, y, 0, x, y, r);
+      gr.addColorStop(0, hexA(i % 2 ? Lk.accent : (Lk.accent2 || '#FFD23F'), .35)); gr.addColorStop(1, hexA(Lk.accent, 0)); ctx.fillStyle = gr; ctx.fillRect(x - r, y - r, r * 2, r * 2);
+    }
+  }
+  ctx.restore();
+}
+
+// ---------- doodle sebagai elemen ----------
+function drawDoodleEl(ctx, W, H, t, el, Lk) {
+  const u = Math.min(W, H), age = t - el.start, left = el.end - t, out = ease(left / .25); if (out <= 0) return;
+  const prog = clamp(age / .5, 0, 1), col = el.color && el.color !== 'white' ? tagColor(el.color, Lk) : '#FFFFFF';
+  ctx.save(); ctx.globalAlpha = out;
+  drawDoodle(ctx, el.kind || 'sparkle', (el.x ?? .2) * W, (el.y ?? .25) * H, u * .14 * (el.size || 1), (el.rot || 0) * Math.PI / 180, prog, t, col, u, hash(el.id));
+  ctx.restore();
+}
+
 // ================= KAMERA =================
 const angleCache = new WeakMap();
 function angleCuts(p) {
@@ -933,16 +1180,20 @@ function drawFrame(ctx, W, H, t, env, p = P) {
   const hasVideo = p.mode === 'talk' && env.src;
   const mask = hasVideo ? env.mask : null;
   let g = null;
-  const cutNeeded = !!mask && (p.person.bg !== 'none' || p.person.rim || p.person.outline || active.some(e => e.behind && (e.type === 'title' || e.type === 'chapter')));
+  const BEHIND_T = ['title', 'chapter', 'hook', 'particles'], backdrop = active.find(e => e.type === 'backdrop');
+  const cutNeeded = !!mask && (p.person.bg !== 'none' || p.person.rim || p.person.outline || !!backdrop || active.some(e => e.behind && BEHIND_T.includes(e.type)));
   if (hasVideo) {
     const cam = camAt(t, p);
     g = drawVideo(ctx, W, H, env.src, p, cam, { blur: cutNeeded && p.person.bg === 'blur' });
     if (cutNeeded && p.person.bg === 'dim') { ctx.fillStyle = 'rgba(0,0,0,.45)'; ctx.fillRect(0, 0, W, H); }
     if (cutNeeded && p.person.bg === 'tint') { ctx.fillStyle = hexA(Lk.accent, .38); ctx.fillRect(0, 0, W, H); }
+    if (backdrop && mask) { // latar desain: ganti latar belakang, orang tetap di depan
+      const v = vis(backdrop, t, .4, .4); ctx.save(); ctx.globalAlpha = mask ? v : v * .45; drawBg(ctx, W, H, t, Lk, backdrop.kind || Lk.sceneBg, hash(backdrop.id) % 99); ctx.restore();
+    }
   } else drawBg(ctx, W, H, t, Lk, Lk.sceneBg, 7);
   const envX = { ...env, behind: false, video: hasVideo ? (c, x, y, w, h) => { c.save(); c.beginPath(); c.rect(x, y, w, h); c.clip(); const s = Math.max(w / env.src.w, h / env.src.h), dw = env.src.w * s, dh = env.src.h * s; c.drawImage(env.src.img, x + (w - dw) * (p.face?.x ?? .5), y + (h - dh) * .3, dw, dh); c.restore(); } : null };
   // teks di belakang orang
-  const behind = cutNeeded ? active.filter(e => e.behind && (e.type === 'title' || e.type === 'chapter')) : [];
+  const behind = cutNeeded ? active.filter(e => e.behind && BEHIND_T.includes(e.type)) : [];
   for (const el of behind) {
     if (el.type === 'chapter') {
       const v = vis(el, t); ctx.fillStyle = `rgba(0,0,0,${.45 * v})`; ctx.fillRect(0, 0, W, H);
@@ -963,7 +1214,11 @@ function drawFrame(ctx, W, H, t, env, p = P) {
   }
   // overlay di atas adegan (disembunyikan saat CTA tampil)
   const ctaOn = active.some(e => e.type === 'cta' && t - e.start > .3);
-  for (const el of active) if (!ctaOn && el.type !== 'sticker' || el.type === 'sticker') if ((!isFull(el) && TYPES[el.type]?.lane === 1 && !behind.includes(el)) || (el.type === 'media' && el.layout === 'pip')) drawOverlay(ctx, W, H, t, el, Lk, envX);
+  const envO = { ...envX, face: p.face };
+  for (const el of active) if (!ctaOn && el.type !== 'sticker' || el.type === 'sticker') if ((!isFull(el) && TYPES[el.type]?.lane === 1 && !behind.includes(el)) || (el.type === 'media' && el.layout === 'pip')) drawOverlay(ctx, W, H, t, el, Lk, envO);
+  // ornamen di atas teks: partikel dulu, lalu label/balon/ledakan/ikon, doodle paling atas
+  const ORN = ['particles', 'badges', 'tag', 'bubble', 'burst', 'doodle'];
+  for (const k of ORN) for (const el of active) if (el.type === k && !behind.includes(el) && (!ctaOn || k === 'particles')) drawOverlay(ctx, W, H, t, el, Lk, envO);
   // caption
   if (!active.some(e => e.type === 'cta')) drawCaptions(ctx, W, H, u, t, p, Lk);
   // efek
@@ -971,6 +1226,14 @@ function drawFrame(ctx, W, H, t, env, p = P) {
     const a = t - el.start, d = Math.max(.1, el.end - el.start);
     if (el.kind === 'flash') { ctx.fillStyle = `rgba(255,255,255,${.9 * Math.max(0, 1 - a / Math.min(.35, d))})`; ctx.fillRect(0, 0, W, H); }
     else if (el.kind === 'leak') { ctx.save(); ctx.globalCompositeOperation = 'screen'; const x = W * (-.3 + 1.6 * a / d), gr = ctx.createRadialGradient(x, H * .3, 0, x, H * .3, u * .9); gr.addColorStop(0, 'rgba(255,170,90,.75)'); gr.addColorStop(.5, 'rgba(255,90,60,.25)'); gr.addColorStop(1, 'rgba(255,90,60,0)'); ctx.fillStyle = gr; ctx.fillRect(0, 0, W, H); ctx.restore(); }
+    else if (el.kind === 'whip' && a < d) { // sapuan cepat dengan jejak gerak
+      const k = Math.sin(Math.PI * clamp(a / d, 0, 1)), dx = W * .028 * k; ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0);
+      for (let i = 1; i <= 3; i++) { ctx.globalAlpha = .16 * k / i; ctx.drawImage(ctx.canvas, dx * i, 0); ctx.drawImage(ctx.canvas, -dx * i * .5, 0); } ctx.restore();
+    }
+    else if (el.kind === 'zoomblur' && a < d) {
+      const k = Math.sin(Math.PI * clamp(a / d, 0, 1)); ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0);
+      for (let i = 1; i <= 4; i++) { ctx.globalAlpha = .16 * k / Math.sqrt(i); const s = 1 + .025 * i * k; ctx.drawImage(ctx.canvas, (W - W * s) / 2, (H - H * s) / 2, W * s, H * s); } ctx.restore();
+    }
     else if (el.kind === 'glitch' && Math.floor(a * 20) % 3 !== 2) { const r = rng(Math.floor(a * 30) + 3); ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); for (let i = 0; i < 7; i++) { const y = r() * H, h = H * (.01 + r() * .05), dx = (r() - .5) * W * .08; ctx.drawImage(ctx.canvas, 0, y, W, h, dx, y, W, h); } ctx.globalCompositeOperation = 'screen'; ctx.globalAlpha = .35; ctx.fillStyle = r() > .5 ? '#ff0040' : '#00e5ff'; ctx.fillRect(0, r() * H, W, H * .02); ctx.restore(); }
   }
   ctx.setTransform(1, 0, 0, 1, 0, 0);
@@ -1032,7 +1295,7 @@ class VReader {
 // ================= PEMISAH ORANG (MediaPipe) =================
 const MP_VER = '0.10.14', MP_MODEL = 'https://storage.googleapis.com/mediapipe-models/image_segmenter/selfie_segmenter/float16/latest/selfie_segmenter.tflite';
 const SEG = { state: 'idle', seg: null, p: null, ts: 0, inC: null, maskC: null, last: null };
-function segWanted(p = P) { return p.mode === 'talk' && !R.light && (p.person.bg !== 'none' || p.person.rim || p.person.outline || p.els.some(e => e.behind && (e.type === 'title' || e.type === 'chapter'))); }
+function segWanted(p = P) { return p.mode === 'talk' && !R.light && (p.person.bg !== 'none' || p.person.rim || p.person.outline || p.els.some(e => (e.behind && ['title', 'chapter', 'hook', 'particles'].includes(e.type)) || e.type === 'backdrop')); }
 function segInit() {
   if (SEG.state === 'ready') return Promise.resolve(true); if (SEG.state === 'fail') return Promise.resolve(false); if (SEG.p) return SEG.p;
   SEG.state = 'loading';
@@ -1171,8 +1434,8 @@ function scheduleMusic(ctx, dest, at, off, dur, p = P) {
   s.connect(fade).connect(duck).connect(dest); s.start(at, off % buf.duration); s.stop(at + left);
   return [s];
 }
-const SFX_AUTO = { title: 'whoosh', card: 'whoosh', list: 'click', stat: 'ding', chips: 'pop', quote: 'whoosh', lower: 'whoosh', callout: 'pop', notif: 'ding', sticker: 'pop', media: 'whoosh', chapter: 'boom', diagram: 'whoosh', cta: 'riser', fx: 'boom' };
-function sfxKind(el) { if (!el.sfx || el.sfx === 'auto') { if (el.type === 'fx') return el.kind === 'flash' ? 'boom' : el.kind === 'glitch' ? 'click' : 'none'; if (el.type === 'media' && el.layout === 'pip') return 'pop'; return SFX_AUTO[el.type] || 'none'; } return el.sfx; }
+const SFX_AUTO = { title: 'whoosh', card: 'whoosh', list: 'click', stat: 'ding', chips: 'pop', quote: 'whoosh', lower: 'whoosh', callout: 'pop', notif: 'ding', sticker: 'pop', media: 'whoosh', chapter: 'boom', diagram: 'whoosh', cta: 'riser', fx: 'boom', hook: 'boom', doodle: 'none', bubble: 'pop', burst: 'boom', tag: 'pop', badges: 'pop', particles: 'ding', backdrop: 'whoosh' };
+function sfxKind(el) { if (!el.sfx || el.sfx === 'auto') { if (el.type === 'fx') return el.kind === 'flash' ? 'boom' : el.kind === 'glitch' ? 'click' : el.kind === 'whip' || el.kind === 'zoomblur' ? 'whoosh' : 'none'; if (el.type === 'media' && el.layout === 'pip') return 'pop'; return SFX_AUTO[el.type] || 'none'; } return el.sfx; }
 function sfx(ctx, dest, w, kind) {
   const N = [];
   if (kind === 'pop') { const o = ctx.createOscillator(), g = ctx.createGain(); o.frequency.setValueAtTime(900, w); o.frequency.exponentialRampToValueAtTime(380, w + .12); g.gain.setValueAtTime(.0001, w); g.gain.exponentialRampToValueAtTime(.6, w + .01); g.gain.exponentialRampToValueAtTime(.0001, w + .2); o.connect(g).connect(dest); o.start(w); o.stop(w + .22); N.push(o); }
@@ -1529,7 +1792,7 @@ const S_ITEM = { type: 'OBJECT', properties: { label: { type: 'STRING' }, value:
 const S_EL = { type: 'OBJECT', properties: {
   type: { type: 'STRING', enum: Object.keys(TYPES) }, start: { type: 'NUMBER' }, end: { type: 'NUMBER' }, text: { type: 'STRING' }, sub: { type: 'STRING' }, value: { type: 'STRING' },
   items: { type: 'ARRAY', items: S_ITEM }, asset: { type: 'STRING' }, layout: { type: 'STRING' }, kind: { type: 'STRING' }, pos: { type: 'STRING' }, trans: { type: 'STRING' }, sfx: { type: 'STRING' },
-  behind: { type: 'BOOLEAN' }, emoji: { type: 'STRING' }, x: { type: 'NUMBER' }, y: { type: 'NUMBER' }, amount: { type: 'NUMBER' }, imagePrompt: { type: 'STRING' } }, required: ['type', 'start', 'end'] };
+  behind: { type: 'BOOLEAN' }, emoji: { type: 'STRING' }, x: { type: 'NUMBER' }, y: { type: 'NUMBER' }, amount: { type: 'NUMBER' }, color: { type: 'STRING' }, size: { type: 'NUMBER' }, rot: { type: 'NUMBER' }, imagePrompt: { type: 'STRING' } }, required: ['type', 'start', 'end'] };
 const S_PLAN = { type: 'OBJECT', properties: { title: { type: 'STRING' }, mood: { type: 'STRING' }, preset: { type: 'STRING' }, captionMode: { type: 'STRING' }, keywords: { type: 'ARRAY', items: { type: 'INTEGER' } }, els: { type: 'ARRAY', items: S_EL } }, required: ['els'] };
 const S_SCRIPT = { type: 'OBJECT', properties: { title: { type: 'STRING' }, script: { type: 'STRING' } }, required: ['script'] };
 const S_STYLE = { type: 'OBJECT', properties: {
@@ -1557,12 +1820,20 @@ const CATALOG = `Katalog elemen dan field yang dipakai:
 - diagram: animasi penjelasan layar penuh. kind: steps | compare | bars | flow | cycle | ring. text = judul, items = {label, value, icon(emoji)}. compare: items[0] = {label: judul kolom kiri, value: judul kolom kanan}, butir berikutnya label = sisi kiri, value = sisi kanan. bars: value berupa angka. ring: satu item, value persen.
 - cta: ajakan di akhir, end = durasi. text = ajakan, sub = aksi atau alamat.
 - zoom: punch-in kamera pada penekanan. amount 1.08–1.25, durasi 1–2,5 dtk.
-- fx: aksen sangat singkat, kind: flash | shake | glitch | leak | pulse (0,3–0,8 dtk).`;
+- fx: aksen sangat singkat, kind: flash | shake | glitch | leak | pulse | whip | zoomblur (0,3–0,8 dtk). whip dan zoomblur cocok di pergantian bagian atau sebelum adegan layar penuh.
+- hook: pembuka bertumpuk ala poster, 2–5 kata kapital besar (text), boleh sub = label miring pendek. behind=true agar di belakang tubuh. Otomatis diberi doodle.
+- doodle: coretan tangan putih yang tergambar sendiri. kind: question | exclaim | sparkle | shock | swirl | scribble | arrow | circle | underline | heart | star | lines. x,y = posisi (0–1), size 0.6–1.6, rot = derajat (arrow: arah panah; 0 = ke kanan atas). Pakai untuk: question saat pertanyaan/bingung, scribble di atas kepala saat kesal, swirl untuk uap/aroma makanan-minuman, arrow menunjuk produk/teks, circle mengelilingi sesuatu, sparkle/shock saat kaget atau penekanan.
+- bubble: balon ucapan tulisan tangan untuk isi hati/pertanyaan dalam batin. text ≤8 kata, x,y = posisi balon (ekor otomatis ke wajah).
+- burst: ledakan komik untuk kata bunyi/seru ("KRIUK!", "WOW!", "BOOM!", "MANTAP!"). text 1–2 kata, x,y, color: yellow | red | white.
+- tag: label kotak miring untuk menamai masalah/sifat ("KURANG NIKMAT.", "ASAL-USUL GAIB?"). text ≤4 kata, x,y, color: green | red | yellow | dark | white | blue | accent. Isi emoji agar jadi pil berikon ("TEMAN SANTAI" + "🍌").
+- badges: deretan 2–4 ikon bulat keunggulan di bawah layar. items = {icon (emoji), label ≤3 kata}.
+- particles: hiasan bergerak. kind: confetti | sparkle | stars | hearts | bokeh | snow. Pakai di momen positif/senang/promo. behind=true agar di belakang orang.
+- backdrop: ganti latar belakang di belakang pembicara dengan latar desain (orang tetap di depan). kind: mesh | grid | dots | rays | bokeh | stars | stripes | rings | paper | plain. 2–5 dtk, cocok saat pindah topik atau menyebut produk.`;
 const RULES = `Aturan umum:
 1. Semua isi grafis berasal dari ucapan atau data yang diberikan. Jangan mengarang fakta, angka, nama, atau janji.
 2. Elemen mulai tepat saat hal terkait diucapkan (lihat timestamp) dan bertahan sampai idenya selesai.
-3. Elemen jalur teks (title, card, stat, list, chips, quote, lower, callout, notif, media pip) tidak saling tumpang tindih. Adegan layar penuh (media non-pip, chapter, diagram, cta) juga tidak saling tumpang tindih. zoom, fx, dan sticker boleh bersamaan.
-4. Isi WAJIB: setiap elemen selain zoom, fx, dan sticker harus punya text yang tidak kosong. diagram WAJIB punya text dan 2–5 items berisi label. cta WAJIB punya text (ajakan) dan sub (aksi atau alamat). stat WAJIB punya value. Pakai nama field persis seperti katalog (text, sub, value, items.label/value/icon).
+3. Elemen jalur teks (hook, title, card, stat, list, chips, quote, lower, callout, notif, media pip) tidak saling tumpang tindih. Adegan layar penuh (media non-pip, chapter, diagram, cta) juga tidak saling tumpang tindih. Ornamen (zoom, fx, sticker, doodle, bubble, burst, tag, badges, particles, backdrop) BOLEH dan SEBAIKNYA bertumpuk dengan teks agar video terasa hidup.
+4. Isi WAJIB: setiap elemen selain zoom, fx, sticker, doodle, particles, backdrop, dan badges harus punya text yang tidak kosong. badges WAJIB punya 2–4 items berisi icon dan label. diagram WAJIB punya text dan 2–5 items berisi label. cta WAJIB punya text (ajakan) dan sub (aksi atau alamat). stat WAJIB punya value. Pakai nama field persis seperti katalog (text, sub, value, items.label/value/icon).
 4b. Pada setiap text, beri bintang pada satu kata terpenting, contoh "Belajar *AI* dari nol". Jangan beri bintang pada value.
 5. trans (transisi masuk adegan layar penuh): auto | fade | slide | up | zoom | wipe | circle | blinds | flash | blur | cut. sfx: auto, kecuali ada alasan khusus.
 6. keywords: indeks kata (angka dalam kurung di transkrip) yang ditonjolkan di caption, kira-kira 1 dari 8 kata. Prioritaskan angka, nama, dan kata benda penting.
@@ -1572,10 +1843,12 @@ const SYS_TALK = `Kamu sutradara motion graphics untuk video pendek. Kamu meneri
 ${CATALOG}
 ${RULES}
 Khusus video berbicara:
-- Wajib tepat satu title di 0–0,4 dtk (durasi 2,5–3,5 dtk) sebagai hook, dan tepat satu cta di 3–4 dtk terakhir.
+- Pembuka 0–3 dtk WAJIB berlapis: satu hook (behind=true) di 0 dtk, zoom punch di 0 dtk, plus 1–2 ornamen (doodle/tag/bubble) yang sesuai isi kalimat pertama. Tepat satu cta di 3–4 dtk terakhir.
+- Gaya yang dituju: video Reels/TikTok yang hidup. Setiap kalimat dapat sentuhan visual berbeda, jangan hanya teks. Campurkan: zoom (bergantian punch dan smooth, 1–2 dtk, boleh tiap 3–4 dtk), doodle, tag, bubble, burst, sticker, particles, backdrop, fx whip/zoomblur di pergantian bagian, dan elemen teks.
+- Variasi: jangan memakai jenis elemen yang sama berturut-turut lebih dari 2 kali. Dalam video ≥15 dtk usahakan memakai minimal 8 jenis elemen berbeda.
 - Adegan layar penuh total maksimal ±35% durasi supaya wajah tetap jadi pusat. Diagram 4–7 dtk, media 2–4 dtk.
-- Zoom berjarak minimal 4 dtk. fx maksimal satu per 15 dtk.
-- Kepadatan mengikuti arahan: jarang ≈ 1 elemen per 10 dtk, sedang ≈ 1 per 6 dtk, padat ≈ 1 per 4 dtk (zoom ikut dihitung).
+- Kepadatan mengikuti arahan: tenang ≈ 1 elemen per 4 dtk, seimbang ≈ 1 per 2,5 dtk, ramai ≈ 1 per 1,5 dtk (ornamen dan zoom ikut dihitung).
+- Ornamen tidak boleh menutupi wajah: letakkan di sisi kiri/kanan atau di atas kepala (lihat posisi wajah).
 - pos kartu: "top" bila wajah ada di tengah atau bawah frame, "bottom" bila wajah di atas. stat "center".`;
 const SYS_PRODUCT = `Kamu sutradara video iklan produk pendek tanpa orang. Videonya berupa adegan layar penuh yang berurutan, ditemani narasi (transkrip bertimestamp) dan caption. Balas JSON sesuai skema saja.
 ${CATALOG}
@@ -1583,7 +1856,8 @@ ${RULES}
 Khusus video produk:
 - Jalur adegan (media non-pip, chapter, diagram, cta) harus menutup seluruh durasi dari 0 tanpa celah dan tanpa tumpang tindih. Ganti adegan tiap 2–4 dtk mengikuti kalimat narasi.
 - Pakai setiap aset produk minimal sekali bila ada. spotlight cocok untuk foto produk berlatar polos, phone untuk screenshot aplikasi/katalog, full untuk foto suasana, float untuk foto apa pun.
-- Overlay di atas adegan: title untuk hook di 0–2,5 dtk, stat untuk harga/promo/angka, chips untuk keunggulan singkat, sticker seperlunya. Jangan pakai lower, zoom, atau behind.
+- Overlay di atas adegan: hook untuk pembuka di 0–2,5 dtk, stat untuk harga/promo/angka, chips atau badges untuk keunggulan singkat, burst untuk kata seru, tag untuk sifat produk, doodle (arrow/circle/sparkle) untuk menunjuk produk, particles di momen promo. Jangan pakai lower, zoom, backdrop, atau behind.
+- Kepadatan mengikuti arahan: tenang ≈ 1 overlay per 4 dtk, seimbang ≈ 1 per 2,5 dtk, ramai ≈ 1 per 1,5 dtk.
 - cta di 3–4 dtk terakhir, end = durasi.`;
 const TONE_EN = { santai: 'casually and warmly', semangat: 'energetically and persuasively', profesional: 'calmly and clearly', hangat: 'warmly, like telling a story' };
 const TONE = { santai: 'santai dan akrab, seperti teman merekomendasikan', semangat: 'bersemangat dan meyakinkan, tempo agak cepat', profesional: 'profesional, tenang, dan jelas', hangat: 'hangat dan bercerita, tempo sedang' };
@@ -1621,7 +1895,7 @@ function transcriptText(from = 0, to = Infinity) {
   if (cur.length) lines.push(`[${st.toFixed(1)}] ${cur.join(' ')}`); return lines.join('\n');
 }
 function assetsText() { return P.assets.length ? P.assets.map(a => `- ${a.id}: ${a.kind}${a.kind === 'video' ? ` ${(a.dur || 0).toFixed(1)} dtk` : ''}, ${a.w}x${a.h}, isi: ${a.desc || a.name}`).join('\n') : '(tidak ada aset)'; }
-function nicheText() { const n = NICHES[P.niche]; return n && n.note ? `Bidang konten: ${n.name}. ${n.note} Kepadatan: ${n.density}.` : 'Bidang konten: nilai sendiri dari isi transkrip. Kepadatan: sedang.'; }
+function nicheText() { const n = NICHES[P.niche], dn = `Kepadatan: ${P.density || 'ramai'}.`; return n && n.note ? `Bidang konten: ${n.name}. ${n.note} ${dn}` : `Bidang konten: nilai sendiri dari isi transkrip. ${dn}`; }
 async function aiDirect(rev = null) {
   const talk = P.mode === 'talk';
   const head = `Durasi video: ${P.duration.toFixed(1)} dtk. Rasio: ${P.aspect}. ${nicheText()}
@@ -1645,7 +1919,7 @@ function realismText() {
   const vid = P.realism.kind === 'video';
   return `Visual realistis AI: NYALA, maksimal ${n} ${vid ? 'klip video realistis 4–8 dtk' : 'foto realistis'}. Untuk media yang tidak punya aset cocok, kosongkan asset dan isi imagePrompt dalam bahasa Inggris: ${vid ? 'subjek, aksi yang sedang terjadi, lokasi, pencahayaan, dan gerak kamera (mis. slow dolly-in, handheld, aerial)' : 'subjek, aksi, lokasi, pencahayaan, sudut dan lensa kamera'}. Pakai konteks Indonesia bila relevan (orang, tempat, suasana). Tanpa teks, logo, merek, atau wajah tokoh nyata. Taruh di momen yang paling butuh visual nyata; layout full, float, pip${P.mode === 'talk' ? ', atau split' : ''}; durasi ${vid ? '3–6' : '2–4'} dtk.${P.mode === 'product' ? ' Jangan minta visual produk itu sendiri karena hasil AI bisa berbeda dari produk asli; minta suasana, cara pakai, bahan, atau calon pembeli.' : ''}`;
 }
-function stripEl(e) { const o = { type: e.type, start: +e.start.toFixed(2), end: +e.end.toFixed(2) }; for (const k of ['text', 'sub', 'value', 'asset', 'layout', 'kind', 'pos', 'trans', 'sfx', 'emoji', 'imagePrompt']) if (e[k]) o[k] = e[k]; if (e.items?.length) o.items = e.items; if (e.behind) o.behind = true; if (e.x != null) { o.x = e.x; o.y = e.y; } if (e.amount) o.amount = e.amount; return o; }
+function stripEl(e) { const o = { type: e.type, start: +e.start.toFixed(2), end: +e.end.toFixed(2) }; for (const k of ['text', 'sub', 'value', 'asset', 'layout', 'kind', 'pos', 'trans', 'sfx', 'emoji', 'imagePrompt', 'color', 'size', 'rot']) if (e[k]) o[k] = e[k]; if (e.items?.length) o.items = e.items; if (e.behind) o.behind = true; if (e.x != null) { o.x = e.x; o.y = e.y; } if (e.amount) o.amount = e.amount; return o; }
 async function aiScript() {
   const p = P.product, words = Math.round(p.dur * 2.3);
   const res = await gemini([{ text: `Tulis naskah voice-over iklan berbahasa Indonesia untuk video ±${p.dur} detik (sekitar ${words} kata, jangan lebih).
@@ -1745,7 +2019,7 @@ async function aiStyle(images, note) {
 }
 
 // ================= PENERAPAN RENCANA =================
-const VALID = { layout: OPT.layout.map(o => o[0]), pos: OPT.pos.map(o => o[0]), trans: ['auto', ...OPT.trans.map(o => o[0])], sfx: OPT.sfx.map(o => o[0]), diagram: OPT.diagram.map(o => o[0]), fx: OPT.fx.map(o => o[0]), zoom: OPT.zoom.map(o => o[0]) };
+const VALID = { layout: OPT.layout.map(o => o[0]), pos: OPT.pos.map(o => o[0]), trans: ['auto', ...OPT.trans.map(o => o[0])], sfx: OPT.sfx.map(o => o[0]), diagram: OPT.diagram.map(o => o[0]), fx: OPT.fx.map(o => o[0]), zoom: OPT.zoom.map(o => o[0]), doodle: OPT.doodle.map(o => o[0]), particles: OPT.particles.map(o => o[0]), tcolor: OPT.tcolor.map(o => o[0]), dcolor: OPT.dcolor.map(o => o[0]), bg: OPT.sceneBg.map(o => o[0]) };
 function normEl(x, dur) {
   const type = TYPES[x.type] ? x.type : null; if (!type) return null;
   const el = { id: x.id || uid(), type, start: clamp(+x.start || 0, 0, dur), end: clamp(+x.end || 0, 0, dur) };
@@ -1765,20 +2039,33 @@ function normEl(x, dur) {
   if (type === 'zoom') { el.kind = VALID.zoom.includes(x.kind) ? x.kind : 'auto'; el.amount = clamp(+x.amount || 1.15, 1.03, 1.5); }
   if (type === 'title' || type === 'chapter') el.behind = !!x.behind && P.mode === 'talk';
   if (type === 'sticker') el.emoji = str(x.emoji, 8) || '✨';
+  if (type === 'hook') { el.behind = x.behind !== false && P.mode === 'talk'; el.pos = VALID.pos.includes(x.pos) ? x.pos : 'center'; }
+  if (type === 'particles') { el.kind = VALID.particles.includes(x.kind) ? x.kind : 'confetti'; el.behind = !!x.behind && P.mode === 'talk'; }
+  if (type === 'doodle') { el.kind = VALID.doodle.includes(x.kind) ? x.kind : 'sparkle'; el.color = VALID.dcolor.includes(x.color) ? x.color : 'white'; }
+  if (type === 'backdrop') el.kind = VALID.bg.includes(x.kind) ? x.kind : '';
+  if (type === 'tag' || type === 'burst') el.color = VALID.tcolor.includes(x.color) ? x.color : (type === 'burst' ? 'yellow' : 'green');
+  if (type === 'tag') { el.emoji = str(x.emoji, 8); }
+  if (['doodle', 'tag', 'bubble', 'burst'].includes(type)) {
+    const D0 = { doodle: [.2, .25], tag: [.76, .58], bubble: [.27, .2], burst: [.72, .45] }[type];
+    el.x = clamp(isFinite(+x.x) && x.x !== '' && x.x != null ? +x.x : D0[0], .05, .95); el.y = clamp(isFinite(+x.y) && x.y !== '' && x.y != null ? +x.y : D0[1], .05, .95);
+    el.size = clamp(+x.size || 1, .5, 1.8); if (isFinite(+x.rot) && x.rot !== '' && x.rot != null) el.rot = clamp(+x.rot, -180, 180);
+  }
+  if (type === 'badges') { el.items = el.items.map(i => ({ label: i.label || i.value, icon: i.icon || '✓' })).slice(0, 4); el.pos = VALID.pos.includes(x.pos) ? x.pos : 'bottom'; }
   if (type === 'sticker' || type === 'callout') { el.x = clamp(+x.x || (type === 'sticker' ? .78 : .62), .05, .95); el.y = clamp(+x.y || (type === 'sticker' ? .3 : .4), .05, .95); }
   if (type === 'stat' && !el.value) { el.value = el.text; el.text = ''; }
-  if (['title', 'card', 'quote', 'lower', 'notif', 'callout'].includes(type) && !plain(el.text).trim()) return null;
+  if (['title', 'card', 'quote', 'lower', 'notif', 'callout', 'hook', 'bubble', 'burst', 'tag'].includes(type) && !plain(el.text).trim()) return null;
+  if (type === 'badges' && el.items.length < 1) return null;
   if (type === 'stat' && !plain(el.value).trim()) return null;
   repairEl(el);
   if (type === 'cta') el.end = dur;
-  const minD = type === 'fx' ? .2 : type === 'zoom' ? .6 : 1;
+  const minD = type === 'fx' ? .2 : type === 'zoom' ? .6 : type === 'burst' || type === 'doodle' ? .6 : 1;
   if (el.end - el.start < minD) el.end = Math.min(dur, el.start + Math.max(minD, type === 'diagram' ? 5 : 2.5));
   if (el.end <= el.start) return null;
   if ((type === 'list' || type === 'chips') && !el.items.length) return null;
   return el;
 }
 // elemen yang berebut tempat yang sama di layar; lower, callout, sticker boleh bersamaan
-const EXCL = new Set(['title', 'card', 'stat', 'list', 'chips', 'quote', 'notif', 'media']);
+const EXCL = new Set(['hook', 'title', 'card', 'stat', 'list', 'chips', 'quote', 'notif', 'media']);
 function resolveOverlap(list, gap) {
   const keep = [];
   for (const c of list) {
@@ -1810,6 +2097,76 @@ function tidyEls(els, dur) {
   }
   return els.filter(e => e.end - e.start > .15).sort((a, b) => a.start - b.start);
 }
+// ================= PENGAMAN VARIASI =================
+// Bila AI terlalu hemat, isi bagian yang hanya berisi teks dengan ornamen yang sesuai isi kalimat.
+const RX = {
+  positive: /^(enak|nikmat|mantap|renyah|gratis|promo|diskon|hemat|senang|bahagia|seru|keren|sukses|berhasil|untung|spesial|favorit|terbaik|juara|lezat|segar|cantik|asyik|asik|keluarga|hadiah|bonus|puas|cocok)/i,
+  negative: /^(kurang|bingung|ribet|pusing|capek|susah|masalah|gaib|bosan|mahal|lambat|gagal|salah|kesal|males|malas|takut|ragu|sepi|rugi)/i,
+  steam: /^(aroma|wangi|panas|hangat|teh|kopi|ngeteh|ngopi|uap|masak|seduh)/i,
+  burst: /^(kriuk|krenyes|wow|boom|duar|mantap|nyam|yummy|gokil|anjay|wih|waw)/i
+};
+const AccentT = new Set(['zoom', 'fx', 'sticker', 'callout', 'doodle', 'bubble', 'burst', 'tag', 'badges', 'particles', 'backdrop']);
+function sentencesOf(words) {
+  const out = []; let cur = [];
+  words.forEach((w, i) => { cur.push(w); const nx = words[i + 1]; if (/[.!?]$/.test(w.w) || !nx || nx.s - w.e > .6 || cur.length >= 12) { out.push({ s: cur[0].s, e: cur[cur.length - 1].e, words: cur, q: /\?$/.test(w.w) }); cur = []; } });
+  return out;
+}
+const STOPW = new Set('yang dan di ke dari ini itu aja saja juga untuk dengan karena kalau jadi tapi atau pada ada bisa akan sudah lagi kita kami saya aku kamu anda mereka dia nya sih dong kan ya pun deh nah gitu gini begitu begini satu dua tiga empat lima enam tujuh delapan sembilan sepuluh puluh ratus ribu juta persen banyak lebih sangat paling hari semua mau ingin bikin buat sama kayak seperti udah belum masih cuma hanya biar supaya'.split(' '));
+const goodW = w => { const c = cleanW(w).replace(/[?!.]+$/, '').toLowerCase(); return c.length >= 4 && !STOPW.has(c) && !/^\d/.test(c); };
+const cleanW = w => plain(w).replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}?!.-]+$/gu, '');
+function enrichEls(els, dur) {
+  const lvl = P.density || 'ramai'; if (!P.words.length || dur < 4) return els;
+  const talk = P.mode === 'talk', face = P.face || { x: .5, y: .35 }, W0 = P.words;
+  const add = o => { const e = normEl({ sfx: 'auto', ...o }, dur); if (e) els.push(e); return e; };
+  const sents = sentencesOf(W0), cta = els.find(e => e.type === 'cta'), endBody = cta ? cta.start : dur, kw = new Set(P.keywords || []);
+  // 1) hook di awal
+  let hook = els.find(e => e.type === 'hook' && e.start < .8);
+  if (!hook) { const t0 = els.find(e => e.type === 'title' && e.start < .8); if (t0) { t0.type = 'hook'; t0.behind = talk; t0.pos = 'center'; hook = t0; } }
+  if (!hook && sents[0]) hook = add({ type: 'hook', start: 0, end: Math.min(endBody, Math.max(2.4, Math.min(3.6, sents[0].e + .3))), text: sents[0].words.slice(0, 5).map(w => cleanW(w.w)).join(' '), behind: talk });
+  // 2) zoom punch di awal
+  if (talk && !els.some(e => e.type === 'zoom' && e.start < 1)) add({ type: 'zoom', kind: 'punch', amount: 1.18, start: 0, end: 1.15 });
+  if (lvl === 'tenang') return els;
+  const side = i => { const far = face.x > .5 ? .22 : .78, near = face.x > .5 ? .8 : .2; return i % 2 ? near : far; };
+  const wordsIn = (a, b) => W0.filter(w => w.s >= a && w.s < b);
+  // 3) kata seru jadi ledakan komik (maks 2)
+  let nb = els.filter(e => e.type === 'burst').length;
+  for (const w of W0) { if (nb >= 2) break; if (w.s < (hook?.end ?? 0) || w.s > endBody - .8) continue; if (RX.burst.test(cleanW(w.w)) && !els.some(e => e.type === 'burst' && Math.abs(e.start - w.s) < 3)) { add({ type: 'burst', text: cleanW(w.w).replace(/[.?]+$/, '').toUpperCase() + '!', start: w.s, end: w.s + 1.3, x: side(nb + 1), y: talk ? .5 : .45, color: 'yellow' }); nb++; } }
+  // 4) isi jendela yang hanya berisi teks
+  const win = lvl === 'ramai' ? 2.2 : 3.4, cycle = talk ? ['zoom', 'doodle', 'tag', 'zoom', 'doodle', 'bubble'] : ['doodle', 'tag', 'doodle', 'burst'];
+  let ci = 0, zi = 0;
+  for (let t = (hook?.end ?? 2) - .2; t < endBody - 1; t += win) {
+    const a = t, b = Math.min(endBody - .3, t + win);
+    if (els.some(e => AccentT.has(e.type) && e.start >= a - .2 && e.start < b)) continue;
+    const ws = wordsIn(a, b); if (!ws.length) continue;
+    const sent = sents.find(s => s.s >= a - .3 && s.s < b) || sents.find(s => s.e > a && s.s < b), st = ws[0].s;
+    const negW = ws.find(w => RX.negative.test(cleanW(w.w))), k = negW || ws.find(w => kw.has(W0.indexOf(w)) && goodW(w.w)) || ws.filter(w => goodW(w.w)).sort((x, y) => cleanW(y.w).length - cleanW(x.w).length)[0] || ws[0];
+    const ki = W0.indexOf(k), nx = W0[ki + 1], pair = nx && nx.s < b + .6 && goodW(nx.w) && !/[.!?,]$/.test(k.w) ? ' ' + cleanW(nx.w) : '';
+    const pv = W0[ki - 1], pre = !pair && pv && pv.s >= a - .3 && goodW(pv.w) && !/[.!?,]$/.test(pv.w) ? cleanW(pv.w) + ' ' : '';
+    const kt = (pre + cleanW(k.w) + pair).replace(/[?!.,]+$/, ''), neg = !!negW, steam = ws.some(w => RX.steam.test(cleanW(w.w)));
+    let kind = cycle[ci++ % cycle.length];
+    if (sent?.q && talk && sent.words.length <= 8 && !els.some(e => e.type === 'bubble' && Math.abs(e.start - sent.s) < 4)) kind = 'bubble';
+    if (kind === 'zoom' && !talk) kind = 'doodle';
+    if (kind === 'tag' && (!goodW(k.w) || kt.length < 4)) kind = 'doodle';
+    if (kind === 'zoom') { const punch = zi++ % 2 === 0; add({ type: 'zoom', kind: punch ? 'punch' : 'smooth', amount: punch ? 1.2 : 1.12, start: st, end: st + (punch ? 1 : 1.8) }); }
+    else if (kind === 'bubble') add({ type: 'bubble', text: sent.words.map(w => cleanW(w.w)).join(' '), start: sent.s, end: Math.min(endBody, sent.e + .6), x: face.x > .5 ? .27 : .73, y: .17 });
+    else if (kind === 'tag') add({ type: 'tag', text: kt.toUpperCase() + (neg ? '?' : '.'), color: neg ? 'red' : 'green', start: k.s, end: Math.min(endBody, k.s + 2.4), x: side(ci), y: talk ? .58 : .66 });
+    else {
+      const dk = sent?.q ? 'question' : steam ? 'swirl' : neg ? 'scribble' : ['sparkle', 'shock', 'arrow', 'star'][ci % 4];
+      const above = dk === 'scribble' || dk === 'question';
+      add({ type: 'doodle', kind: dk, start: st, end: Math.min(endBody, st + 2.2), x: above && talk ? clamp(face.x + (ci % 2 ? .14 : -.14), .15, .85) : side(ci), y: talk ? clamp(face.y - (above ? .2 : .05), .08, .6) : .3, size: dk === 'scribble' ? 1.2 : 1, rot: dk === 'arrow' ? (side(ci) < .5 ? 0 : 180) : 0 });
+    }
+  }
+  // 5) partikel di momen positif
+  if (!els.some(e => e.type === 'particles')) { const w = W0.find(w => w.s > dur * .3 && w.s < endBody - 1 && RX.positive.test(cleanW(w.w))); if (w) add({ type: 'particles', kind: 'confetti', start: w.s, end: Math.min(endBody, w.s + 2.6), behind: talk }); }
+  // 6) whip di pergantian ke adegan layar penuh
+  if (talk) for (const e of els.filter(x => isFull(x) && x.start > .5)) if (!els.some(f => f.type === 'fx' && Math.abs(f.start - e.start) < .45)) add({ type: 'fx', kind: e.type === 'cta' ? 'zoomblur' : 'whip', start: Math.max(0, e.start - .12), end: e.start + .3 });
+  // 7) latar desain sekali di bagian tengah (hanya bila pemisah orang tersedia)
+  if (talk && lvl === 'ramai' && !els.some(e => e.type === 'backdrop') && SEG.state !== 'fail' && !R.light && dur > 10) {
+    const mid = sents.find(s => s.s > dur * .35 && s.s < dur * .6 && !els.some(e => isFull(e) && e.start < s.e && e.end > s.s));
+    if (mid) add({ type: 'backdrop', kind: P.look.sceneBg || 'mesh', start: mid.s, end: Math.min(mid.s + 3, endBody) });
+  }
+  return els;
+}
 // adegan pengisi bila AI tidak memberi adegan (mis. b-roll AI gugur)
 function fillerScenes(a, b) {
   const out = [], span = b - a, lays = ['spotlight', 'float', 'full'], imgs = P.assets.filter(x => !elHiddenAsset(x));
@@ -1831,7 +2188,7 @@ function repairEl(el) {
   return el;
 }
 // pengaman: CTA hanya satu, di akhir, durasinya wajar; elemen tidak memanjang tak wajar
-const MAXDUR = { chapter: 5, diagram: 9, media: 8, title: 6, card: 8, list: 10, chips: 8, quote: 8, lower: 6, callout: 5, notif: 5, sticker: 4, stat: 6 };
+const MAXDUR = { chapter: 5, diagram: 9, media: 8, title: 6, card: 8, list: 10, chips: 8, quote: 8, lower: 6, callout: 5, notif: 5, sticker: 4, stat: 6, hook: 4.5, doodle: 4, bubble: 4.5, burst: 2.2, tag: 4.5, badges: 7, particles: 5, backdrop: 6 };
 function guardEls(els, dur, caps = true) {
   const ctas = els.filter(e => e.type === 'cta').sort((x, y) => y.start - x.start);
   const drop = new Set(ctas.slice(1));
@@ -1845,7 +2202,7 @@ function applyPlan(plan, rev = null) {
   if (rev && !rev.all) {
     const inR = fresh.map(e => { if (e.type === 'cta') return e; const st = clamp(e.start, rev.from, Math.max(rev.from, rev.to - .3)), d = Math.max(.5, e.end - e.start); return { ...e, start: st, end: e.type === 'cta' ? dur : clamp(Math.max(e.end, st + .5), st + .5, Math.min(dur, st + Math.max(d, .5) + 6)) }; }).filter(e => e.end - e.start > .2);
     P.els = tidyEls([...P.els.filter(e => !inRange(e, rev)), ...inR], dur);
-  } else P.els = tidyEls(fresh, dur);
+  } else P.els = tidyEls(rev ? fresh : enrichEls(fresh, dur), dur);
   if (Array.isArray(plan.keywords) && (!rev || rev.all)) P.keywords = plan.keywords.map(n => n | 0).filter(n => n >= 0 && n < P.words.length);
   if (!rev) {
     if (P.auto.look && PRESETS[plan.preset]) { const keep = { brand: P.extras.brand }; applyLook(presetLook(plan.preset)); Object.assign(P.extras, keep); }
@@ -1974,7 +2331,7 @@ const cleanKey = v => String(v || '').trim().replace(/^key\s*=\s*/i, '').replace
 async function verifyKey() { if (!R.apiKey) return keyUI(); keyUI(null); const st = await checkKey(); R.keyState = st; keyUI(st); return st; }
 function setKey(v) { R.apiKey = cleanKey(v); store.set('apiKey', R.apiKey); MODELS_P = null; keyUI(); if (R.apiKey) { discoverModels(true); verifyKey(); } }
 function homeSettings(p) {
-  p.aspect = $('#hAspect').value; p.niche = $('#hNiche').value; p.brief = $('#hBrief').value.trim(); p.realism = { on: $('#hReal').checked, kind: CANVAS ? 'image' : $('#hRealKind').value, count: +$('#hRealCount').value }; p.cam.mode = $('#hCamera').value;
+  p.aspect = $('#hAspect').value; p.niche = $('#hNiche').value; p.brief = $('#hBrief').value.trim(); p.realism = { on: $('#hReal').checked, kind: CANVAS ? 'image' : $('#hRealKind').value, count: +$('#hRealCount').value }; p.cam.mode = $('#hCamera').value; p.density = $('#hDensity').value;
   const n = NICHES[p.niche], pre = $('#hPreset').value, mus = $('#hMusic').value;
   p.auto.look = pre === 'auto'; p.auto.music = mus === 'auto';
   const lookKey = pre !== 'auto' ? pre : (n?.preset || 'cendekia'); p.look = presetLook(lookKey); p.cap.mode = p.look.capMode; p.cap.upper = !!p.look.upper;
@@ -2109,7 +2466,7 @@ async function runTalk() {
     stepSet('direct', 'active'); busy(true, 'AI menyusun motion…');
     applyPlan(await aiDirect()); stepSet('direct', 'done', `${P.els.length} elemen`);
     await genImages();
-    if (P.els.some(e => e.behind) && !R.light) segInit();
+    if (segWanted() && !R.light) segInit();
     toast('Rencana motion selesai. Putar preview, lalu sunting seperlunya.', 4500);
   } catch (e) { console.error(e); failSteps(e); }
   finally { R.busy = false; busy(false); commit(true); refreshAll(); }
@@ -2382,7 +2739,7 @@ function panelAI() {
       <div><label class="f">Gaya bicara</label>${sel('product.tone', [['santai', 'Santai'], ['semangat', 'Semangat'], ['profesional', 'Profesional'], ['hangat', 'Hangat']])}</div><div><label class="f">Suara</label>${sel('audio.voice', VOICES)}</div>
     </div>`}
     <label class="f" style="margin-top:10px">Arahan untuk AI</label><textarea data-k="brief" placeholder="Audiens, pesan utama, ajakan di akhir"></textarea>
-    <div style="margin-top:8px"><label class="f">Bidang konten</label>${sel('niche', Object.entries(NICHES).map(([a, b]) => [a, b.name]))}</div>
+    <div class="g2" style="margin-top:8px"><div><label class="f">Bidang konten</label>${sel('niche', Object.entries(NICHES).map(([a, b]) => [a, b.name]))}</div><div><label class="f">Kepadatan motion</label>${sel('density', OPT.density)}</div></div>
     ${realBlock()}
     <button class="btn main wide" style="margin-top:10px" id="aRun" ${R.busy ? 'disabled' : ''}>${talk ? 'Jalankan AI lengkap' : 'Tulis naskah, suara & adegan baru'}</button>
     <button class="btn wide" style="margin-top:6px" id="aRe" ${R.busy || (talk && !P.words.length) ? 'disabled' : ''}>Susun ulang motion (teks & suara tetap)</button>
@@ -2441,12 +2798,12 @@ function wireAI(b) {
 }
 // ---------- Elemen ----------
 const elLabel = el => TYPES[el.type]?.label || el.type;
-const elDesc = el => plain(el.text || el.value || el.sub || (el.items || []).map(i => i.label).join(', ') || (el.type === 'zoom' ? `${Math.round(((el.amount || 1.15) - 1) * 100)}%` : el.type === 'fx' ? optLabel('fx', el.kind) : el.type === 'sticker' ? el.emoji : el.type === 'media' ? (assetById(el.asset)?.name || 'menunggu visual AI') : ''));
+const elDesc = el => plain(el.text || el.value || el.sub || (el.items || []).map(i => i.label).join(', ') || (el.type === 'zoom' ? `${Math.round(((el.amount || 1.15) - 1) * 100)}%` : el.type === 'fx' ? optLabel('fx', el.kind) : el.type === 'sticker' ? el.emoji : el.type === 'doodle' ? optLabel('doodle', el.kind) : el.type === 'particles' ? optLabel('particles', el.kind) : el.type === 'backdrop' ? (el.kind ? optLabel('sceneBg', el.kind) : 'ikut gaya') : el.type === 'media' ? (assetById(el.asset)?.name || 'menunggu visual AI') : ''));
 function panelEl() {
   const cur = P.els.find(e => e.id === R.sel), list = [...P.els].sort((a, b) => a.start - b.start);
   return `${cur ? inspector(cur) : ''}
   <div class="blk"><h3>Tambah di posisi playhead (${fmtT(now())})</h3>
-    <div class="addgrid">${Object.entries(TYPES).filter(([k]) => !(P.mode === 'product' && (k === 'lower' || k === 'zoom'))).map(([k, v]) => `<button type="button" data-add="${k}"><i>${v.icon}</i>${v.label}</button>`).join('')}</div>
+    <div class="addgrid">${Object.entries(TYPES).filter(([k]) => !(P.mode === 'product' && (k === 'lower' || k === 'zoom' || k === 'backdrop'))).map(([k, v]) => `<button type="button" data-add="${k}"><i>${v.icon}</i>${v.label}</button>`).join('')}</div>
   </div>
   <div class="blk"><h3>${list.length} elemen</h3>
     ${list.map(e => `<div class="el ${e.id === R.sel ? 'on' : ''}" data-id="${e.id}" tabindex="0"><span class="sw" style="background:${TYPES[e.type].color}"></span><div class="tx"><b>${esc(elLabel(e))}${e.type === 'media' ? ' · ' + esc(optLabel('layout', e.layout)) : ''}</b><span>${fmtT(e.start)}–${fmtT(e.end)} · ${elHidden(e) ? 'disembunyikan · ' : ''}${esc(elDesc(e)).slice(0, 48)}</span></div></div>`).join('') || '<p class="hint">Belum ada elemen. Jalankan AI atau tambah manual.</p>'}
@@ -2470,6 +2827,14 @@ function inspector(el) {
     if (k === 'layout') row.push(`<div class="fld"><label class="f">Tata letak</label><select data-f="layout">${opts(OPT.layout.filter(o => P.mode === 'talk' || o[0] !== 'split'), el.layout)}</select></div>`);
     if (k === 'kind') row.push(`<div class="fld"><label class="f">Jenis animasi</label><select data-f="kind">${opts(OPT.diagram, el.kind)}</select></div>`);
     if (k === 'zkind') row.push(`<div class="g2 fld"><div><label class="f">Gerak zoom</label><select data-f="kind">${opts(OPT.zoom, el.kind || 'auto')}</select></div><div><label class="f">Besar zoom</label><input type="range" data-f="amount" min="1.03" max="1.5" step=".01" value="${el.amount || 1.15}"></div></div>`);
+    if (k === 'dkind') row.push(`<div class="fld"><label class="f">Bentuk doodle</label><select data-f="kind">${opts(OPT.doodle, el.kind || 'sparkle')}</select></div>`);
+    if (k === 'pkind') row.push(`<div class="fld"><label class="f">Jenis partikel</label><select data-f="kind">${opts(OPT.particles, el.kind || 'confetti')}</select></div>`);
+    if (k === 'bgkind') row.push(`<div class="fld"><label class="f">Motif latar</label><select data-f="kind">${opts([['', 'Ikut gaya'], ...OPT.sceneBg], el.kind || '')}</select><p class="hint">Latar belakang video diganti motif ini, orang tetap di depan. Butuh pemisah orang (tidak tersedia di mode ringan).</p></div>`);
+    if (k === 'tcolor') row.push(`<div class="fld"><label class="f">Warna</label><select data-f="color">${opts(OPT.tcolor, el.color || 'green')}</select></div>`);
+    if (k === 'dcolor') row.push(`<div class="fld"><label class="f">Warna garis</label><select data-f="color">${opts(OPT.dcolor, el.color || 'white')}</select></div>`);
+    if (k === 'size') row.push(`<div class="fld"><label class="f">Ukuran</label><input type="range" data-f="size" min=".5" max="1.8" step=".05" value="${el.size || 1}"></div>`);
+    if (k === 'rot') row.push(`<div class="fld"><label class="f">Putaran${el.type === 'doodle' ? ' / arah panah' : ''}</label><input type="range" data-f="rot" min="-180" max="180" step="5" value="${el.rot || 0}"></div>`);
+    if (k === 'bitems') row.push(`<div class="fld"><label class="f">Ikon | label (satu per baris, maks. 4)</label><textarea data-f="bitems" rows="4">${esc((el.items || []).map(i => [i.icon, i.label].join(' | ')).join('\n'))}</textarea><p class="hint">Contoh: 🍌 | Pisang pilihan</p></div>`);
     if (k === 'fxkind') row.push(`<div class="fld"><label class="f">Efek</label><select data-f="kind">${opts(OPT.fx, el.kind)}</select></div>`);
     if (k === 'trans') row.push(`<div class="fld"><label class="f">Transisi masuk</label><select data-f="trans">${opts([['auto', 'Ikut setelan'], ...OPT.trans], el.trans || 'auto')}</select></div>`);
   }
@@ -2488,9 +2853,10 @@ function wireEl(b) {
     const f = inp.dataset.f, ev = inp.tagName === 'SELECT' || inp.type === 'checkbox' ? 'change' : 'input';
     inp.addEventListener(ev, () => {
       let v = inp.type === 'checkbox' ? inp.checked : inp.value;
-      if (['start', 'end', 'x', 'y', 'amount'].includes(f)) v = parseFloat(v) || 0;
+      if (['start', 'end', 'x', 'y', 'amount', 'size', 'rot'].includes(f)) v = parseFloat(v) || 0;
       if (f === 'start' || f === 'end') v = clamp(v, 0, P.duration);
       if (f === 'items') { el.items = v.split('\n').map(s => s.trim()).filter(Boolean).map(label => ({ label })); }
+      else if (f === 'bitems') { el.items = v.split('\n').map(s => s.trim()).filter(Boolean).slice(0, 4).map(l => { const [icon, label] = l.includes('|') ? l.split('|').map(x => x.trim()) : ['✓', l]; return { icon: icon || '✓', label: label || '' }; }); }
       else if (f === 'ditems') { el.items = v.split('\n').map(s => s.trim()).filter(Boolean).map(l => { const [label, value, icon] = l.split('|').map(x => (x || '').trim()); return { label, value: value || '', icon: icon || '' }; }); }
       else el[f] = v;
       if (el.end <= el.start + .2) el.end = Math.min(P.duration, el.start + 1);
@@ -2520,7 +2886,7 @@ function selectEl(id) { R.sel = id; const el = P.els.find(e => e.id === id); if 
 function deleteSel() { if (!R.sel) return; P.els = P.els.filter(e => e.id !== R.sel); R.sel = null; changed(true); toast('Elemen dihapus. Ctrl+Z untuk membatalkan.', 2200); }
 function addEl(type) {
   const t = clamp(now(), 0, Math.max(0, P.duration - .5)), d = P.duration;
-  const def = { title: { text: 'Judul *besar*', pos: 'top', dur: 3 }, card: { text: 'Poin *penting*', sub: 'Penjelasan singkat', dur: 3.5 }, stat: { value: '70%', text: 'keterangan angka', pos: 'center', dur: 2.5 }, list: { text: 'Tiga *hal*', items: [{ label: 'Butir pertama' }, { label: 'Butir kedua' }, { label: 'Butir ketiga' }], dur: 4 }, chips: { items: [{ label: 'Kata kunci' }, { label: 'Kedua' }, { label: 'Ketiga' }], pos: 'center', dur: 3 }, quote: { text: 'Kalimat yang layak *dikutip*', sub: 'Nama', dur: 4 }, lower: { text: 'Nama Anda', sub: 'Jabatan', dur: 4 }, callout: { text: 'Lihat ini', x: .65, y: .45, dur: 2.5 }, notif: { sub: 'WhatsApp', text: 'Pesanan baru masuk!', dur: 3 }, sticker: { emoji: '🔥', x: .78, y: .28, dur: 1.8 }, media: { asset: P.assets[0]?.id || '', layout: P.mode === 'talk' ? 'pip' : 'float', dur: 3 }, chapter: { text: 'Bagian *baru*', dur: 2.5 }, diagram: { kind: 'steps', text: 'Cara *kerjanya*', items: [{ label: 'Langkah satu', icon: '1️⃣' }, { label: 'Langkah dua', icon: '2️⃣' }, { label: 'Langkah tiga', icon: '3️⃣' }], dur: 5 }, cta: { text: 'Ikuti untuk *tips* berikutnya', sub: 'cendekiadigital.com', dur: 3.5 }, zoom: { kind: 'auto', amount: 1.15, dur: 1.6 }, fx: { kind: 'flash', dur: .4 } }[type] || { dur: 3 };
+  const def = { title: { text: 'Judul *besar*', pos: 'top', dur: 3 }, card: { text: 'Poin *penting*', sub: 'Penjelasan singkat', dur: 3.5 }, stat: { value: '70%', text: 'keterangan angka', pos: 'center', dur: 2.5 }, list: { text: 'Tiga *hal*', items: [{ label: 'Butir pertama' }, { label: 'Butir kedua' }, { label: 'Butir ketiga' }], dur: 4 }, chips: { items: [{ label: 'Kata kunci' }, { label: 'Kedua' }, { label: 'Ketiga' }], pos: 'center', dur: 3 }, quote: { text: 'Kalimat yang layak *dikutip*', sub: 'Nama', dur: 4 }, lower: { text: 'Nama Anda', sub: 'Jabatan', dur: 4 }, callout: { text: 'Lihat ini', x: .65, y: .45, dur: 2.5 }, notif: { sub: 'WhatsApp', text: 'Pesanan baru masuk!', dur: 3 }, sticker: { emoji: '🔥', x: .78, y: .28, dur: 1.8 }, media: { asset: P.assets[0]?.id || '', layout: P.mode === 'talk' ? 'pip' : 'float', dur: 3 }, chapter: { text: 'Bagian *baru*', dur: 2.5 }, diagram: { kind: 'steps', text: 'Cara *kerjanya*', items: [{ label: 'Langkah satu', icon: '1️⃣' }, { label: 'Langkah dua', icon: '2️⃣' }, { label: 'Langkah tiga', icon: '3️⃣' }], dur: 5 }, cta: { text: 'Ikuti untuk *tips* berikutnya', sub: 'cendekiadigital.com', dur: 3.5 }, zoom: { kind: 'auto', amount: 1.15, dur: 1.6 }, fx: { kind: 'whip', dur: .4 }, hook: { text: 'Kenapa *begini* terus?', behind: true, dur: 3 }, doodle: { kind: 'question', x: .2, y: .22, dur: 2.2 }, bubble: { text: 'Kok bisa begini ya?', x: .27, y: .18, dur: 2.5 }, burst: { text: 'WOW!', x: .72, y: .45, color: 'yellow', dur: 1.3 }, tag: { text: 'KURANG NIKMAT.', x: .76, y: .58, color: 'green', dur: 2.5 }, badges: { items: [{ icon: '✅', label: 'Berkualitas' }, { icon: '🌿', label: 'Alami' }, { icon: '⚡', label: 'Cepat' }], pos: 'bottom', dur: 4 }, particles: { kind: 'confetti', dur: 2.5 }, backdrop: { kind: '', dur: 3 } }[type] || { dur: 3 };
   if (type === 'media' && !def.asset) { toast('Unggah foto/video dulu di panel Aset.'); openPanel('assets'); return; }
   const { dur, ...rest } = def; const start = type === 'cta' ? Math.max(0, d - dur) : t;
   const el = normEl({ type, start, end: Math.min(d, start + dur), ...rest }, d); if (!el) return;
@@ -2886,6 +3252,13 @@ const tl = $('#tl'), tlS = $('#tlScroll'), LANE_Y = [22, 56, 90, 124, 158], LANE
 function sizeTimeline() { const w = Math.max(200, tlS.clientWidth * R.tlZoom), dpr = devicePixelRatio || 1; tl.style.width = w + 'px'; tl.style.height = '206px'; if (tl.width !== Math.round(w * dpr)) { tl.width = Math.round(w * dpr); tl.height = Math.round(206 * dpr); } }
 const peaksCache = new WeakMap();
 function peaks(buf, n) { const c = peaksCache.get(buf); if (c && c.n === n) return c.p; const d = buf.getChannelData(0), step = Math.max(1, Math.floor(d.length / n)), p = new Float32Array(n); for (let i = 0; i < n; i++) { let m = 0; for (let j = i * step, e = Math.min(d.length, j + step); j < e; j += 4) m = Math.max(m, Math.abs(d[j])); p[i] = m; } peaksCache.set(buf, { n, p }); return p; }
+// jalur Kamera & efek bisa berisi banyak ornamen yang bertumpuk: bagi jadi beberapa baris kecil
+function laneRows() {
+  const L2 = P.els.filter(e => laneOf(e) === 2).sort((a, b) => a.start - b.start), ends = [], row = new Map();
+  for (const e of L2) { let r = ends.findIndex(x => x <= e.start + .02); if (r < 0) { r = ends.length; ends.push(0); } ends[r] = e.end; row.set(e.id, r); }
+  return { row, n: Math.max(1, Math.min(4, ends.length)) };
+}
+function elBox(el, LR) { const lane = laneOf(el), H0 = LANE_H - 10; if (lane !== 2 || LR.n === 1) return { y: LANE_Y[lane] + 5, h: H0 }; const r = Math.min(LR.n - 1, LR.row.get(el.id) || 0), h = H0 / LR.n; return { y: LANE_Y[2] + 5 + r * h, h: h - 1 }; }
 function drawTimeline() {
   if ($('#studio').hidden || !tl.width) return;
   const dpr = devicePixelRatio || 1, w = tl.width / dpr, h = 206, x = tl.getContext('2d'); x.setTransform(dpr, 0, 0, dpr, 0, 0); x.clearRect(0, 0, w, h);
@@ -2895,11 +3268,12 @@ function drawTimeline() {
   x.strokeStyle = col('--line'); x.lineWidth = 1; for (const y of LANE_Y) { x.beginPath(); x.moveTo(0, y + .5); x.lineTo(w, y + .5); x.stroke(); }
   const step = [1, 2, 5, 10, 15, 30, 60].find(s => px(s) > 56) || 60; x.fillStyle = col('--mute'); x.font = '500 10px "JetBrains Mono", monospace';
   for (let s = 0; s <= D; s += step) { x.fillRect(px(s), 14, 1, 8); x.fillText(`${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`, px(s) + 3, 11); }
+  const LR = laneRows();
   for (const el of P.els) {
-    const lane = laneOf(el), y = LANE_Y[lane] + 5, ex = px(el.start), ew = Math.max(4, px(el.end) - ex), on = el.id === R.sel;
-    x.globalAlpha = elHidden(el) ? .25 : on ? 1 : .85; x.fillStyle = TYPES[el.type].color; rrect(x, ex, y, ew, LANE_H - 10, 5); x.fill();
-    if (on) { x.strokeStyle = col('--ink'); x.lineWidth = 2; x.stroke(); x.fillStyle = 'rgba(255,255,255,.85)'; x.fillRect(ex + 2, y + 6, 2, LANE_H - 22); x.fillRect(ex + ew - 4, y + 6, 2, LANE_H - 22); }
-    x.globalAlpha = 1; if (ew > 22) { x.save(); x.beginPath(); x.rect(ex + 6, y, ew - 10, LANE_H - 10); x.clip(); x.fillStyle = '#fff'; x.font = '650 11px "Plus Jakarta Sans", sans-serif'; x.fillText(`${TYPES[el.type].icon} ${elDesc(el) || elLabel(el)}`, ex + 7, y + 16); x.restore(); }
+    const { y, h: bh } = elBox(el, LR), ex = px(el.start), ew = Math.max(4, px(el.end) - ex), on = el.id === R.sel;
+    x.globalAlpha = elHidden(el) ? .25 : on ? 1 : .85; x.fillStyle = TYPES[el.type].color; rrect(x, ex, y, ew, bh, Math.min(5, bh / 2)); x.fill();
+    if (on) { x.strokeStyle = col('--ink'); x.lineWidth = 2; x.stroke(); if (bh > 12) { x.fillStyle = 'rgba(255,255,255,.85)'; x.fillRect(ex + 2, y + bh * .25, 2, bh * .5); x.fillRect(ex + ew - 4, y + bh * .25, 2, bh * .5); } }
+    x.globalAlpha = 1; if (ew > 22 && bh >= 9) { const fs = bh >= 18 ? 11 : 9; x.save(); x.beginPath(); x.rect(ex + 5, y, ew - 8, bh); x.clip(); x.fillStyle = '#fff'; x.font = `650 ${fs}px "Plus Jakarta Sans", sans-serif`; x.fillText(`${TYPES[el.type].icon} ${elDesc(el) || elLabel(el)}`, ex + 6, y + bh / 2 + fs * .36); x.restore(); }
   }
   const wy = LANE_Y[3] + 9; x.fillStyle = col('--line2');
   P.words.forEach((wd, i) => { x.fillStyle = P.keywords.includes(i) ? col('--brand') : col('--line2'); x.fillRect(px(wd.s), wy, Math.max(1, px(wd.e) - px(wd.s) - 1), 16); });
@@ -2920,7 +3294,8 @@ function tlHit(e) {
   if (lane === 3) { const wi = P.words.findIndex(w => t >= w.s - .04 && t <= w.e + .04); return { t, lane, wi }; }
   if (lane === 4) { const m = (P.mutes || []).find(m => t >= m.s && t < m.e); return { t, lane, mute: m }; }
   if (lane < 0 || lane > 2) return { t };
-  const cands = P.els.filter(el => laneOf(el) === lane && xx >= el.start / D * r.width - 6 && xx <= el.end / D * r.width + 6).sort((a, b) => (a.id === R.sel ? -1 : 0) - (b.id === R.sel ? -1 : 0));
+  const LR = laneRows();
+  const cands = P.els.filter(el => { if (laneOf(el) !== lane || xx < el.start / D * r.width - 6 || xx > el.end / D * r.width + 6) return false; if (lane !== 2 || LR.n === 1) return true; const b = elBox(el, LR); return y >= b.y - 1 && y <= b.y + b.h + 1; }).sort((a, b) => (a.id === R.sel ? -1 : 0) - (b.id === R.sel ? -1 : 0));
   const el = cands[0]; if (!el) return { t, lane };
   const exL = el.start / D * r.width, exR = el.end / D * r.width, edge = xx - exL < 7 ? 'l' : exR - xx < 7 ? 'r' : 'm';
   return { t, el, edge, lane };
@@ -3141,5 +3516,5 @@ $('#rClose').addEventListener('click', () => { if (rAbort) return rAbort.abort()
   });
   addEventListener('beforeunload', () => { if (R.id && !$('#studio').hidden) saveDraft(); });
   renderDrafts(); runDemo();
-  window.__cms = { get P() { return P; }, R, tidyEls, guardEls, normEl, drawFrame, renderVideo, startTalk, startProduct, openDraft, now, seek, play, pause, selectEl, addEl, SEG };
+  window.__cms = { get P() { return P; }, R, tidyEls, guardEls, normEl, enrichEls, applyPlan, drawFrame, renderVideo, startTalk, startProduct, openDraft, now, seek, play, pause, selectEl, addEl, SEG };
 })();
