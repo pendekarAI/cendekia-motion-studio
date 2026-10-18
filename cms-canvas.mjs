@@ -1,10 +1,10 @@
 // Cendekia Motion Studio — paket untuk Gemini Canvas. Dimuat oleh pemuat kecil di Canvas.
-window.CMS_VERSION = "1.2.0"; console.info("Cendekia Motion Studio " + window.CMS_VERSION);
+window.CMS_VERSION = "1.3.0"; console.info("Cendekia Motion Studio " + window.CMS_VERSION);
 window.__CMS_CANVAS = window.__CMS_CANVAS ?? true;
 { const l = document.createElement("link"); l.rel = "stylesheet"; l.href = "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Anton&family=Bebas+Neue&family=Poppins:wght@500;600;700;800&family=Montserrat:wght@600;700;800;900&family=Playfair+Display:wght@700;800&family=DM+Serif+Display&family=Space+Grotesk:wght@500;600;700&family=Caveat:wght@600;700&family=Righteous&family=JetBrains+Mono:wght@500;700&family=Oswald:wght@500;700&family=Archivo+Black&family=Fraunces:wght@600;800&family=Pacifico&family=Unbounded:wght@600;800&family=Cinzel:wght@600;800&family=Press+Start+2P&family=Permanent+Marker&family=Lora:wght@600;700&family=Sora:wght@500;600;700&display=swap"; document.head.appendChild(l);
-  const st = document.createElement("style"); st.textContent = ":root{\n  --desk:#E6ECF1; --paper:#FFFFFF; --paper2:#F5F8FA; --ink:#0E2433; --ink2:#3B5368; --mute:#6B8296;\n  --line:#D3DDE5; --line2:#B9C8D4; --brand:#1E81B0; --deep:#105E82; --sky:#56B4E9; --signal:#F2A900;\n  --monitor:#0B1D29; --monitor2:#11283A; --danger:#C2412D; --ok:#1F9D6B; --focus:#1E81B0;\n  --r-panel:14px; --r-ctl:8px;\n  color-scheme:light;\n}\n:root[data-theme=\"dark\"]{\n  --desk:#0C171F; --paper:#122230; --paper2:#0F1D29; --ink:#E5EDF3; --ink2:#B4C5D3; --mute:#7F98AC;\n  --line:#21374A; --line2:#2E4A61; --brand:#3A9ED0; --deep:#56B4E9; --sky:#7CC6EE; --monitor:#050D13; --monitor2:#0B1A25;\n  color-scheme:dark;\n}\n*{box-sizing:border-box}\nhtml,body{margin:0;min-height:100%;background:var(--desk);color:var(--ink);font:14px/1.5 \"Plus Jakarta Sans\",system-ui,sans-serif;-webkit-font-smoothing:antialiased}\nbutton,input,select,textarea{font:inherit;color:inherit}\nbutton{cursor:pointer}\n[hidden]{display:none!important}\na{color:var(--brand)}\n:focus-visible{outline:2px solid var(--focus);outline-offset:2px}\n.mono{font-family:\"JetBrains Mono\",ui-monospace,monospace}\n.muted{color:var(--mute)}\n.small{font-size:12.5px}\n.grow{flex:1}\n.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}\n.stack{display:grid;gap:8px}\n.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}\n.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}\n.span{grid-column:1/-1}\n\n/* controls */\n.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--line2);background:var(--paper);color:var(--ink);border-radius:var(--r-ctl);padding:8px 14px;font-weight:650;font-size:13.5px;text-decoration:none;transition:background .12s,border-color .12s}\n.btn:hover{border-color:var(--brand)}\n.btn.main{background:var(--deep);border-color:var(--deep);color:#fff}\n.btn.main:hover{background:var(--brand);border-color:var(--brand)}\n.btn.ghost{background:transparent;border-color:transparent}\n.btn.ghost:hover{background:var(--paper2);border-color:var(--line)}\n.btn.sm{padding:5px 10px;font-size:12.5px}\n.btn.xs{padding:3px 8px;font-size:12px;border-radius:6px}\n.btn.wide{width:100%}\n.btn.warn{color:var(--danger)}\n.btn:disabled{opacity:.45;cursor:not-allowed}\nlabel.f{display:block;font-size:12.5px;font-weight:650;color:var(--ink2);margin:0 0 4px}\ninput[type=text],input[type=password],input[type=number],input[type=url],select,textarea{width:100%;background:var(--paper);border:1px solid var(--line2);border-radius:var(--r-ctl);padding:7px 10px;outline:none;font-size:13.5px}\ninput:focus,select:focus,textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(30,129,176,.15)}\ntextarea{resize:vertical;min-height:62px;line-height:1.45}\ninput[type=range]{width:100%;accent-color:var(--brand)}\ninput[type=color]{width:34px;height:30px;border:1px solid var(--line2);border-radius:6px;padding:1px;background:var(--paper)}\n.check{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--ink2);cursor:pointer}\n.check input{accent-color:var(--brand);width:16px;height:16px;margin-top:2px;flex:none}\n.hint{font-size:12px;color:var(--mute);margin:4px 0 0}\n.err{color:var(--danger)}\n.seg{display:inline-flex;border:1px solid var(--line2);border-radius:var(--r-ctl);overflow:hidden;background:var(--paper)}\n.seg button{border:0;background:none;padding:6px 11px;font-size:12.5px;font-weight:650;color:var(--ink2)}\n.seg button+button{border-left:1px solid var(--line)}\n.seg button.on{background:var(--ink);color:var(--paper)}\n\n/* top bar */\n.bar{height:54px;display:flex;align-items:center;gap:12px;padding:0 14px;background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}\n.mark{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.01em;white-space:nowrap}\n.mark svg{width:38px;height:22px}\n.bar .proj{min-width:0;flex:1;display:flex;align-items:center;gap:8px}\n.bar .proj input{max-width:280px;border-color:transparent;background:transparent;font-weight:650}\n.bar .proj input:hover{border-color:var(--line)}\n.pill{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:650;background:var(--paper2);border:1px solid var(--line);color:var(--ink2);white-space:nowrap}\n\n/* landing */\n#home{max-width:1180px;margin:0 auto;padding:36px 22px 56px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:42px;align-items:start}\n.home-l h1{font-size:clamp(34px,4.4vw,54px);line-height:1.02;letter-spacing:-.035em;font-weight:800;margin:6px 0 14px;max-width:14ch}\n.home-l .lede{font-size:16.5px;color:var(--ink2);max-width:56ch;margin:0 0 26px}\n.setup{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-panel)}\n.setup section{padding:18px 20px;border-top:1px solid var(--line)}\n.setup section:first-child{border-top:0}\n.setup h2{display:flex;align-items:baseline;gap:10px;font-size:15px;margin:0 0 12px;font-weight:750}\n.setup h2 .n{font:700 12px \"JetBrains Mono\",monospace;color:var(--paper);background:var(--ink);border-radius:6px;padding:1px 7px}\n.choose{display:grid;grid-template-columns:1fr 1fr;gap:10px}\n.choice{text-align:left;border:1.5px solid var(--line2);background:var(--paper);border-radius:12px;padding:12px 14px;display:grid;gap:2px}\n.choice b{font-size:14.5px}\n.choice span{font-size:12.5px;color:var(--mute)}\n.choice.on{border-color:var(--deep);box-shadow:inset 0 0 0 1px var(--deep);background:var(--paper2)}\n.drop{border:1.5px dashed var(--line2);border-radius:12px;padding:26px 16px;text-align:center;cursor:pointer;background:var(--paper2);transition:border-color .12s,background .12s}\n.drop:hover,.drop.over{border-color:var(--brand);background:var(--paper)}\n.drop b{display:block;font-size:16px;margin-bottom:2px}\n.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}\n.thumbs .t{position:relative;width:64px;height:64px;border-radius:8px;overflow:hidden;border:1px solid var(--line);background:var(--paper2)}\n.thumbs .t img,.thumbs .t video{width:100%;height:100%;object-fit:cover;display:block}\n.thumbs .t button{position:absolute;top:2px;right:2px;width:20px;height:20px;border-radius:50%;border:0;background:rgba(14,36,51,.8);color:#fff;font-size:11px;line-height:1;padding:0}\n.home-r{position:sticky;top:76px;display:grid;gap:16px}\n.demo{background:var(--monitor);border-radius:var(--r-panel);padding:18px;display:grid;place-items:center}\n.demo canvas{width:min(100%,300px);aspect-ratio:9/16;border-radius:10px;display:block}\n.demo-cap{font-size:12.5px;color:var(--mute);margin:-6px 4px 0}\n.drafts{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-panel);padding:14px 16px}\n.drafts h3{margin:0 0 8px;font-size:14px}\n.draft{display:flex;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}\n.draft:first-of-type{border-top:0}\n.draft img{width:36px;height:52px;object-fit:cover;border-radius:6px;background:var(--monitor)}\n.draft .meta{flex:1;min-width:0}\n.draft .meta b{display:block;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\n.keyline{display:flex;gap:8px;align-items:center;flex-wrap:wrap}\n.keyline input{flex:1;min-width:200px}\n.dot{width:8px;height:8px;border-radius:50%;background:var(--signal);flex:none}\n.dot.ok{background:var(--ok)}\n\n/* studio */\n#studio{display:grid;grid-template-columns:76px 352px minmax(0,1fr);height:calc(100vh - 54px)}\n.rail{background:var(--paper);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:8px 6px;gap:2px}\n.rail button{border:0;background:none;border-radius:10px;padding:8px 2px;display:grid;justify-items:center;gap:3px;font-size:11px;font-weight:650;color:var(--mute)}\n.rail button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}\n.rail button:hover{background:var(--paper2);color:var(--ink)}\n.rail button.on{background:var(--ink);color:var(--paper)}\n.drawer{background:var(--paper);border-right:1px solid var(--line);overflow:auto;min-height:0}\n.drawer .hd{position:sticky;top:0;z-index:2;background:var(--paper);padding:14px 16px 10px;border-bottom:1px solid var(--line)}\n.drawer .hd h2{margin:0;font-size:16px;font-weight:800;letter-spacing:-.01em}\n.drawer .hd p{margin:2px 0 0;font-size:12.5px;color:var(--mute)}\n.drawer .bd{padding:14px 16px 28px}\n.blk{padding:12px 0;border-top:1px solid var(--line)}\n.blk:first-child{border-top:0;padding-top:0}\n.blk h3{font-size:13px;font-weight:750;margin:0 0 8px}\n.work{display:flex;flex-direction:column;min-width:0;min-height:0}\n.monitor{flex:1;min-height:0;background:var(--monitor);position:relative;display:grid;place-items:center;overflow:hidden}\n#pv{display:block;border-radius:4px;box-shadow:0 18px 50px rgba(0,0,0,.45);background:#000}\n.busy{position:absolute;left:14px;top:14px;display:flex;align-items:center;gap:8px;background:rgba(5,13,19,.82);color:#E5EDF3;border:1px solid #23394B;border-radius:99px;padding:5px 12px;font-size:12.5px}\n.spin{width:12px;height:12px;border-radius:50%;border:2px solid #2E4A61;border-top-color:var(--signal);animation:sp .8s linear infinite;flex:none}\n@keyframes sp{to{transform:rotate(360deg)}}\n.transport{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--monitor2);color:#E5EDF3;border-top:1px solid #1C3346}\n.transport .play{width:36px;height:36px;border-radius:50%;border:0;background:#E5EDF3;color:var(--monitor);display:grid;place-items:center;font-weight:900}\n.transport .tc{font:500 13px \"JetBrains Mono\",monospace;color:#9DB4C6}\n.transport .tc b{color:#fff;font-weight:700}\n.transport .btn{background:transparent;color:#C9D8E4;border-color:#2B4459}\n.transport .btn:hover{border-color:var(--sky);color:#fff}\n.tlbox{height:206px;flex:none;background:var(--paper);border-top:1px solid var(--line);display:grid;grid-template-columns:96px minmax(0,1fr)}\n.lanes{border-right:1px solid var(--line);font-size:11.5px;font-weight:650;color:var(--mute);padding-top:22px}\n.lanes div{height:34px;display:flex;align-items:center;padding-left:12px;border-top:1px solid var(--line)}\n.lanes .lrow{height:28px;white-space:nowrap}\n.lanes .lrow.top{background:color-mix(in srgb, var(--brand) 5%, transparent);color:var(--ink2)}\n.tlscroll{overflow-x:auto;overflow-y:hidden;position:relative}\n#tl{display:block;height:230px;touch-action:none;cursor:default}\n\n/* element list & inspector */\n.addgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}\n.addgrid button{border:1px solid var(--line);background:var(--paper2);border-radius:8px;padding:7px 4px;font-size:11.5px;font-weight:650;color:var(--ink2);display:grid;gap:2px;justify-items:center}\n.addgrid button i{font-style:normal;font-size:16px}\n.addgrid button:hover{border-color:var(--brand);color:var(--ink)}\n.el{display:flex;gap:8px;align-items:center;padding:7px 8px;border-radius:8px;cursor:pointer;border:1px solid transparent}\n.el:hover{background:var(--paper2)}\n.el.on{border-color:var(--brand);background:var(--paper2)}\n.el .sw{width:6px;align-self:stretch;border-radius:3px;flex:none}\n.el .tx{flex:1;min-width:0}\n.el .tx b{display:block;font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\n.el .tx span{font-size:11.5px;color:var(--mute)}\n.insp{border:1px solid var(--brand);border-radius:12px;padding:12px;margin:0 0 12px;background:var(--paper)}\n.insp .hdr{display:flex;align-items:center;gap:8px;margin-bottom:10px}\n.insp .hdr b{flex:1}\n.insp .fld{margin-bottom:8px}\n.steps{display:grid;gap:4px;margin-top:10px}\n.step{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--mute);padding:5px 2px}\n.step i{width:16px;height:16px;border-radius:50%;flex:none;border:2px solid var(--line2);font-style:normal;font-size:10px;font-weight:800;display:grid;place-items:center}\n.step.active{color:var(--ink)} .step.active i{border-color:var(--line2);border-top-color:var(--signal);animation:sp .8s linear infinite}\n.step.done{color:var(--ink2)} .step.done i{background:var(--ok);border-color:var(--ok);color:#fff}\n.step.skip i{background:var(--line);border-color:var(--line)}\n.step.err{color:var(--danger)} .step.err i{background:var(--danger);border-color:var(--danger);color:#fff}\n.step small{margin-left:auto;color:var(--mute)}\n.presets{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}\n.preset{border:1px solid var(--line);border-radius:10px;background:var(--paper);padding:0;overflow:hidden;text-align:left}\n.preset canvas{display:block;width:100%;aspect-ratio:16/10;background:var(--monitor)}\n.preset span{display:block;padding:6px 8px;font-size:12px;font-weight:650}\n.preset.on{border-color:var(--deep);box-shadow:inset 0 0 0 1.5px var(--deep)}\n.chips{display:flex;flex-wrap:wrap;gap:6px}\n.chip{border:1px solid var(--line2);background:var(--paper);border-radius:99px;padding:4px 11px;font-size:12.5px;font-weight:600;color:var(--ink2)}\n.chip.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}\n.asset{display:flex;gap:10px;padding:8px 0;border-top:1px solid var(--line);align-items:flex-start}\n.asset:first-child{border-top:0}\n.asset .th{width:54px;height:54px;border-radius:8px;overflow:hidden;background:var(--paper2);flex:none;border:1px solid var(--line)}\n.asset .th img,.asset .th video{width:100%;height:100%;object-fit:cover;display:block}\n.asset .tx{flex:1;min-width:0;font-size:12.5px}\n.asset .tx b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\n.asset.sel{background:var(--paper2);border-radius:8px}\n.realbox{border:1px solid var(--line);background:var(--paper2);border-radius:12px;padding:12px 14px}\n.realbox.off .g2,.realbox.off .hint{opacity:.45}\n.kv{display:grid;grid-template-columns:118px 1fr;gap:8px 10px;align-items:center}\n.kv>label{font-size:12.5px;color:var(--ink2);font-weight:600}\n\n/* modal & toast */\n.modal{position:fixed;inset:0;background:rgba(8,18,26,.55);display:grid;place-items:center;z-index:60;padding:16px}\n.dlg{width:min(560px,100%);max-height:calc(100vh - 32px);overflow:auto;background:var(--paper);border-radius:16px;padding:22px;box-shadow:0 30px 80px rgba(0,0,0,.35)}\n.dlg h3{margin:0 0 12px;font-size:18px;font-weight:800}\n.dlg ol{margin:0;padding-left:20px;line-height:1.7;color:var(--ink2)}\n.dlg .acts{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:16px}\n.meter{height:8px;border-radius:99px;background:var(--line);overflow:hidden}\n.meter i{display:block;height:100%;width:0;background:var(--signal);transition:width .2s}\n#toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,16px);opacity:0;background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:10px;font-size:13.5px;max-width:calc(100vw - 32px);z-index:70;pointer-events:none;transition:opacity .2s,transform .2s}\n#toast.show{opacity:1;transform:translate(-50%,0)}\n@media (prefers-reduced-motion:reduce){*{transition:none!important;animation-duration:.01ms!important}}\n@media (max-width:1020px){\n  #home{grid-template-columns:1fr}\n  .home-r{position:static;order:-1}\n  .demo canvas{width:min(100%,220px)}\n  #studio{grid-template-columns:1fr;height:auto}\n  .rail{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);order:2}\n  .rail button{min-width:68px}\n  .work{order:1}\n  .monitor{height:58vh;flex:none}\n  .drawer{order:3;border-right:0;max-height:none}\n  .tlbox{grid-template-columns:70px minmax(0,1fr)}\n}\n@media (max-width:560px){\n  .choose,.g2{grid-template-columns:1fr}\n  .bar{gap:4px;padding:0 10px}\n  .bar .proj,.mark span,#bHelp{display:none}\n  .bar .btn.sm{padding:5px 8px}\n  .home-l h1{font-size:34px}\n  .transport{flex-wrap:wrap;gap:8px}\n  .transport label{display:none!important}\n  .lanes div{font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-left:6px}\n  .kv{grid-template-columns:96px 1fr}\n}\nbody{overflow-x:hidden}\n:root[data-theme=\"dark\"] .btn.main{color:#06121C}\n:root[data-theme=\"dark\"] .btn.main:hover{color:#06121C}\n\n.cuttools{position:absolute;z-index:5;display:flex;align-items:center;gap:4px;background:var(--ink);color:var(--paper);border-radius:10px;padding:4px 4px 4px 10px;box-shadow:0 8px 24px rgba(0,0,0,.25);font-size:12px;font-weight:650;white-space:nowrap}\n.cuttools button{display:inline-flex;align-items:center;gap:5px;border:0;border-radius:7px;padding:5px 9px;background:rgba(255,255,255,.12);color:inherit;font-size:12px;font-weight:700}\n.cuttools button:hover{background:rgba(255,255,255,.22)}\n.cuttools button.cut{background:#C2412D;color:#fff}\n.cuttools button.cut:hover{background:#d4503b}\n.cuttools span{margin-right:4px;opacity:.85}\n.wchip{display:inline-flex;align-items:stretch;border:1px solid var(--line2);border-radius:99px;overflow:hidden;background:var(--paper)}\n.wchip button{border:0;background:none;padding:4px 4px 4px 10px;font-size:12.5px;font-weight:600;color:var(--ink2)}\n.wchip .sc{padding:4px 9px 4px 5px;color:#C2412D;display:inline-flex;align-items:center;border-left:1px solid var(--line)}\n.wchip .sc:hover{background:#C2412D;color:#fff}\n.wchip.on{background:var(--ink);border-color:var(--ink)}\n.wchip.on button{color:var(--paper)}\n#studio:not([hidden]) ~ #toast{bottom:auto;top:66px;left:calc(50% + 214px);transform:translate(-50%,-10px)}\n#studio:not([hidden]) ~ #toast.show{transform:translate(-50%,0)}\n@media (max-width:1020px){#studio:not([hidden]) ~ #toast{top:auto;bottom:20px;left:50%}}\n\n.transport .cutbtn{border-color:#C2412D;color:#FFB4A8;font-weight:750}\n.transport .cutbtn:hover{border-color:#ff7a66;color:#fff}\n.transport .cutbtn.armed{background:#C2412D;border-color:#C2412D;color:#fff}\n.lanes .lcut{gap:6px;color:var(--ink2)}\n.lanes .lcut svg{color:#C2412D;flex:none}\n/* galeri gaya visual */\n.stylepick{margin-top:14px}\n.sphead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:8px}\n.sphead .f{margin:0}\n.stylegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px}\n.stylegrid[data-shape=square]{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}\n.stylegrid[data-shape=wide]{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}\n.stile{position:relative;display:flex;flex-direction:column;gap:6px;padding:5px 5px 7px;border:1px solid var(--line);border-radius:12px;background:var(--paper2);cursor:pointer;text-align:center;transition:transform .15s,border-color .15s,box-shadow .15s}\n.stile:hover{transform:translateY(-2px);border-color:var(--line2)}\n.stile:focus-visible{outline:2px solid var(--focus);outline-offset:2px}\n.stile.on{border-color:var(--brand);box-shadow:0 0 0 2px var(--brand)}\n.stile .frame{display:block;aspect-ratio:var(--ar,9/16);border-radius:8px;overflow:hidden;background:var(--monitor)}\n.stile canvas{display:block;width:100%;height:100%}\n.stile .nm{font-size:12px;font-weight:650;line-height:1.2;color:var(--ink)}\n.stile.on .nm{color:var(--brand)}\n.stile .badge{position:absolute;top:10px;left:10px;z-index:1;font-style:normal;font-size:9.5px;font-weight:800;letter-spacing:.04em;padding:2px 6px;border-radius:6px;color:#fff;background:var(--deep);box-shadow:0 1px 3px rgba(0,0,0,.3)}\n.stile .badge.fit{background:var(--ok)}\n.autoart{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;height:100%;color:#fff;text-align:center;padding:8px;background:radial-gradient(120% 80% at 20% 10%,#7c5cff 0,transparent 60%),radial-gradient(120% 90% at 90% 90%,#00b4d8 0,transparent 60%),linear-gradient(160deg,#d946ef,#3b82f6)}\n.autoart b{font-size:13px}.autoart small{font-size:10px;opacity:.85;line-height:1.2}\n.styleinfo{margin:10px 0 0;font-size:13px;line-height:1.5;color:var(--ink)}\n.styleinfo .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}\n.styleinfo .tags span{font-size:11.5px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);background:var(--paper)}\n.styleinfo .tags .fit{border-color:var(--ok);color:var(--ok);font-weight:650}\n@media (max-width:560px){.stylegrid{grid-template-columns:repeat(3,1fr);gap:8px}.stylegrid[data-shape=wide]{grid-template-columns:repeat(2,1fr)}}\n.stile .badge.new{background:var(--signal);color:#1a1200}\n.dot.bad{background:var(--danger)}\n.okmsg{color:var(--ok);font-weight:650}\n.badmsg{color:var(--danger);font-weight:600}\n.badmsg a{color:inherit}\n.appver{margin-left:8px;font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;background:var(--paper2);border:1px solid var(--line);color:var(--ink2);white-space:nowrap}\n"; document.head.appendChild(st);
+  const st = document.createElement("style"); st.textContent = ":root{\n  --desk:#E6ECF1; --paper:#FFFFFF; --paper2:#F5F8FA; --ink:#0E2433; --ink2:#3B5368; --mute:#6B8296;\n  --line:#D3DDE5; --line2:#B9C8D4; --brand:#1E81B0; --deep:#105E82; --sky:#56B4E9; --signal:#F2A900;\n  --monitor:#0B1D29; --monitor2:#11283A; --danger:#C2412D; --ok:#1F9D6B; --focus:#1E81B0;\n  --r-panel:14px; --r-ctl:8px;\n  color-scheme:light;\n}\n:root[data-theme=\"dark\"]{\n  --desk:#0C171F; --paper:#122230; --paper2:#0F1D29; --ink:#E5EDF3; --ink2:#B4C5D3; --mute:#7F98AC;\n  --line:#21374A; --line2:#2E4A61; --brand:#3A9ED0; --deep:#56B4E9; --sky:#7CC6EE; --monitor:#050D13; --monitor2:#0B1A25;\n  color-scheme:dark;\n}\n*{box-sizing:border-box}\nhtml,body{margin:0;min-height:100%;background:var(--desk);color:var(--ink);font:14px/1.5 \"Plus Jakarta Sans\",system-ui,sans-serif;-webkit-font-smoothing:antialiased}\nbutton,input,select,textarea{font:inherit;color:inherit}\nbutton{cursor:pointer}\n[hidden]{display:none!important}\na{color:var(--brand)}\n:focus-visible{outline:2px solid var(--focus);outline-offset:2px}\n.mono{font-family:\"JetBrains Mono\",ui-monospace,monospace}\n.muted{color:var(--mute)}\n.small{font-size:12.5px}\n.grow{flex:1}\n.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}\n.stack{display:grid;gap:8px}\n.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}\n.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}\n.span{grid-column:1/-1}\n\n/* controls */\n.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--line2);background:var(--paper);color:var(--ink);border-radius:var(--r-ctl);padding:8px 14px;font-weight:650;font-size:13.5px;text-decoration:none;transition:background .12s,border-color .12s}\n.btn:hover{border-color:var(--brand)}\n.btn.main{background:var(--deep);border-color:var(--deep);color:#fff}\n.btn.main:hover{background:var(--brand);border-color:var(--brand)}\n.btn.ghost{background:transparent;border-color:transparent}\n.btn.ghost:hover{background:var(--paper2);border-color:var(--line)}\n.btn.sm{padding:5px 10px;font-size:12.5px}\n.btn.xs{padding:3px 8px;font-size:12px;border-radius:6px}\n.btn.wide{width:100%}\n.btn.warn{color:var(--danger)}\n.btn:disabled{opacity:.45;cursor:not-allowed}\nlabel.f{display:block;font-size:12.5px;font-weight:650;color:var(--ink2);margin:0 0 4px}\ninput[type=text],input[type=password],input[type=number],input[type=url],select,textarea{width:100%;background:var(--paper);border:1px solid var(--line2);border-radius:var(--r-ctl);padding:7px 10px;outline:none;font-size:13.5px}\ninput:focus,select:focus,textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(30,129,176,.15)}\ntextarea{resize:vertical;min-height:62px;line-height:1.45}\ninput[type=range]{width:100%;accent-color:var(--brand)}\ninput[type=color]{width:34px;height:30px;border:1px solid var(--line2);border-radius:6px;padding:1px;background:var(--paper)}\n.check{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--ink2);cursor:pointer}\n.check input{accent-color:var(--brand);width:16px;height:16px;margin-top:2px;flex:none}\n.hint{font-size:12px;color:var(--mute);margin:4px 0 0}\n.err{color:var(--danger)}\n.seg{display:inline-flex;border:1px solid var(--line2);border-radius:var(--r-ctl);overflow:hidden;background:var(--paper)}\n.seg button{border:0;background:none;padding:6px 11px;font-size:12.5px;font-weight:650;color:var(--ink2)}\n.seg button+button{border-left:1px solid var(--line)}\n.seg button.on{background:var(--ink);color:var(--paper)}\n\n/* top bar */\n.bar{height:54px;display:flex;align-items:center;gap:12px;padding:0 14px;background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}\n.mark{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.01em;white-space:nowrap}\n.mark svg{width:38px;height:22px}\n.bar .proj{min-width:0;flex:1;display:flex;align-items:center;gap:8px}\n.bar .proj input{max-width:280px;border-color:transparent;background:transparent;font-weight:650}\n.bar .proj input:hover{border-color:var(--line)}\n.pill{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:650;background:var(--paper2);border:1px solid var(--line);color:var(--ink2);white-space:nowrap}\n\n/* landing */\n#home{max-width:1180px;margin:0 auto;padding:36px 22px 56px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:42px;align-items:start}\n.home-l h1{font-size:clamp(34px,4.4vw,54px);line-height:1.02;letter-spacing:-.035em;font-weight:800;margin:6px 0 14px;max-width:14ch}\n.home-l .lede{font-size:16.5px;color:var(--ink2);max-width:56ch;margin:0 0 26px}\n.setup{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-panel)}\n.setup section{padding:18px 20px;border-top:1px solid var(--line)}\n.setup section:first-child{border-top:0}\n.setup h2{display:flex;align-items:baseline;gap:10px;font-size:15px;margin:0 0 12px;font-weight:750}\n.setup h2 .n{font:700 12px \"JetBrains Mono\",monospace;color:var(--paper);background:var(--ink);border-radius:6px;padding:1px 7px}\n.choose{display:grid;grid-template-columns:1fr 1fr;gap:10px}\n.choice{text-align:left;border:1.5px solid var(--line2);background:var(--paper);border-radius:12px;padding:12px 14px;display:grid;gap:2px}\n.choice b{font-size:14.5px}\n.choice span{font-size:12.5px;color:var(--mute)}\n.choice.on{border-color:var(--deep);box-shadow:inset 0 0 0 1px var(--deep);background:var(--paper2)}\n.drop{border:1.5px dashed var(--line2);border-radius:12px;padding:26px 16px;text-align:center;cursor:pointer;background:var(--paper2);transition:border-color .12s,background .12s}\n.drop:hover,.drop.over{border-color:var(--brand);background:var(--paper)}\n.drop b{display:block;font-size:16px;margin-bottom:2px}\n.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}\n.thumbs .t{position:relative;width:64px;height:64px;border-radius:8px;overflow:hidden;border:1px solid var(--line);background:var(--paper2)}\n.thumbs .t img,.thumbs .t video{width:100%;height:100%;object-fit:cover;display:block}\n.thumbs .t button{position:absolute;top:2px;right:2px;width:20px;height:20px;border-radius:50%;border:0;background:rgba(14,36,51,.8);color:#fff;font-size:11px;line-height:1;padding:0}\n.home-r{position:sticky;top:76px;display:grid;gap:16px}\n.demo{background:var(--monitor);border-radius:var(--r-panel);padding:18px;display:grid;place-items:center}\n.demo canvas{width:min(100%,300px);aspect-ratio:9/16;border-radius:10px;display:block}\n.demo-cap{font-size:12.5px;color:var(--mute);margin:-6px 4px 0}\n.drafts{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-panel);padding:14px 16px}\n.drafts h3{margin:0 0 8px;font-size:14px}\n.draft{display:flex;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}\n.draft:first-of-type{border-top:0}\n.draft img{width:36px;height:52px;object-fit:cover;border-radius:6px;background:var(--monitor)}\n.draft .meta{flex:1;min-width:0}\n.draft .meta b{display:block;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\n.keyline{display:flex;gap:8px;align-items:center;flex-wrap:wrap}\n.keyline input{flex:1;min-width:200px}\n.dot{width:8px;height:8px;border-radius:50%;background:var(--signal);flex:none}\n.dot.ok{background:var(--ok)}\n\n/* studio */\n#studio{display:grid;grid-template-columns:76px 352px minmax(0,1fr);height:calc(100vh - 54px)}\n.rail{background:var(--paper);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:8px 6px;gap:2px}\n.rail button{border:0;background:none;border-radius:10px;padding:8px 2px;display:grid;justify-items:center;gap:3px;font-size:11px;font-weight:650;color:var(--mute)}\n.rail button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}\n.rail button:hover{background:var(--paper2);color:var(--ink)}\n.rail button.on{background:var(--ink);color:var(--paper)}\n.drawer{background:var(--paper);border-right:1px solid var(--line);overflow:auto;min-height:0}\n.drawer .hd{position:sticky;top:0;z-index:2;background:var(--paper);padding:14px 16px 10px;border-bottom:1px solid var(--line)}\n.drawer .hd h2{margin:0;font-size:16px;font-weight:800;letter-spacing:-.01em}\n.drawer .hd p{margin:2px 0 0;font-size:12.5px;color:var(--mute)}\n.drawer .bd{padding:14px 16px 28px}\n.blk{padding:12px 0;border-top:1px solid var(--line)}\n.blk:first-child{border-top:0;padding-top:0}\n.blk h3{font-size:13px;font-weight:750;margin:0 0 8px}\n.work{display:flex;flex-direction:column;min-width:0;min-height:0}\n.monitor{flex:1;min-height:0;background:var(--monitor);position:relative;display:grid;place-items:center;overflow:hidden}\n#pv{display:block;touch-action:none;border-radius:4px;box-shadow:0 18px 50px rgba(0,0,0,.45);background:#000}\n.busy{position:absolute;left:14px;top:14px;display:flex;align-items:center;gap:8px;background:rgba(5,13,19,.82);color:#E5EDF3;border:1px solid #23394B;border-radius:99px;padding:5px 12px;font-size:12.5px}\n.spin{width:12px;height:12px;border-radius:50%;border:2px solid #2E4A61;border-top-color:var(--signal);animation:sp .8s linear infinite;flex:none}\n@keyframes sp{to{transform:rotate(360deg)}}\n.transport{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--monitor2);color:#E5EDF3;border-top:1px solid #1C3346}\n.transport .play{width:36px;height:36px;border-radius:50%;border:0;background:#E5EDF3;color:var(--monitor);display:grid;place-items:center;font-weight:900}\n.transport .tc{font:500 13px \"JetBrains Mono\",monospace;color:#9DB4C6}\n.transport .tc b{color:#fff;font-weight:700}\n.transport .btn{background:transparent;color:#C9D8E4;border-color:#2B4459}\n.transport .btn:hover{border-color:var(--sky);color:#fff}\n.tlbox{height:206px;flex:none;background:var(--paper);border-top:1px solid var(--line);display:grid;grid-template-columns:96px minmax(0,1fr)}\n.lanes{border-right:1px solid var(--line);font-size:11.5px;font-weight:650;color:var(--mute);padding-top:22px}\n.lanes div{height:34px;display:flex;align-items:center;padding-left:12px;border-top:1px solid var(--line)}\n.lanes .lrow{height:28px;white-space:nowrap}\n.lanes .lrow.top{background:color-mix(in srgb, var(--brand) 5%, transparent);color:var(--ink2)}\n.tlscroll{overflow-x:auto;overflow-y:hidden;position:relative}\n#tl{display:block;height:230px;touch-action:none;cursor:default}\n\n/* element list & inspector */\n.addgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}\n.addgrid button{border:1px solid var(--line);background:var(--paper2);border-radius:8px;padding:7px 4px;font-size:11.5px;font-weight:650;color:var(--ink2);display:grid;gap:2px;justify-items:center}\n.addgrid button i{font-style:normal;font-size:16px}\n.addgrid button:hover{border-color:var(--brand);color:var(--ink)}\n.el{display:flex;gap:8px;align-items:center;padding:7px 8px;border-radius:8px;cursor:pointer;border:1px solid transparent}\n.el:hover{background:var(--paper2)}\n.el.on{border-color:var(--brand);background:var(--paper2)}\n.el .sw{width:6px;align-self:stretch;border-radius:3px;flex:none}\n.el .tx{flex:1;min-width:0}\n.el .tx b{display:block;font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\n.el .tx span{font-size:11.5px;color:var(--mute)}\n.insp{border:1px solid var(--brand);border-radius:12px;padding:12px;margin:0 0 12px;background:var(--paper)}\n.insp .hdr{display:flex;align-items:center;gap:8px;margin-bottom:10px}\n.insp .hdr b{flex:1}\n.insp .fld{margin-bottom:8px}\n.steps{display:grid;gap:4px;margin-top:10px}\n.step{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--mute);padding:5px 2px}\n.step i{width:16px;height:16px;border-radius:50%;flex:none;border:2px solid var(--line2);font-style:normal;font-size:10px;font-weight:800;display:grid;place-items:center}\n.step.active{color:var(--ink)} .step.active i{border-color:var(--line2);border-top-color:var(--signal);animation:sp .8s linear infinite}\n.step.done{color:var(--ink2)} .step.done i{background:var(--ok);border-color:var(--ok);color:#fff}\n.step.skip i{background:var(--line);border-color:var(--line)}\n.step.err{color:var(--danger)} .step.err i{background:var(--danger);border-color:var(--danger);color:#fff}\n.step small{margin-left:auto;color:var(--mute)}\n.presets{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}\n.preset{border:1px solid var(--line);border-radius:10px;background:var(--paper);padding:0;overflow:hidden;text-align:left}\n.preset canvas{display:block;width:100%;aspect-ratio:16/10;background:var(--monitor)}\n.preset span{display:block;padding:6px 8px;font-size:12px;font-weight:650}\n.preset.on{border-color:var(--deep);box-shadow:inset 0 0 0 1.5px var(--deep)}\n.chips{display:flex;flex-wrap:wrap;gap:6px}\n.chip{border:1px solid var(--line2);background:var(--paper);border-radius:99px;padding:4px 11px;font-size:12.5px;font-weight:600;color:var(--ink2)}\n.chip.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}\n.asset{display:flex;gap:10px;padding:8px 0;border-top:1px solid var(--line);align-items:flex-start}\n.asset:first-child{border-top:0}\n.asset .th{width:54px;height:54px;border-radius:8px;overflow:hidden;background:var(--paper2);flex:none;border:1px solid var(--line)}\n.asset .th img,.asset .th video{width:100%;height:100%;object-fit:cover;display:block}\n.asset .tx{flex:1;min-width:0;font-size:12.5px}\n.asset .tx b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\n.asset.sel{background:var(--paper2);border-radius:8px}\n.realbox{border:1px solid var(--line);background:var(--paper2);border-radius:12px;padding:12px 14px}\n.realbox.off .g2,.realbox.off .hint{opacity:.45}\n.kv{display:grid;grid-template-columns:118px 1fr;gap:8px 10px;align-items:center}\n.kv>label{font-size:12.5px;color:var(--ink2);font-weight:600}\n\n/* modal & toast */\n.modal{position:fixed;inset:0;background:rgba(8,18,26,.55);display:grid;place-items:center;z-index:60;padding:16px}\n.dlg{width:min(560px,100%);max-height:calc(100vh - 32px);overflow:auto;background:var(--paper);border-radius:16px;padding:22px;box-shadow:0 30px 80px rgba(0,0,0,.35)}\n.dlg h3{margin:0 0 12px;font-size:18px;font-weight:800}\n.dlg ol{margin:0;padding-left:20px;line-height:1.7;color:var(--ink2)}\n.dlg .acts{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:16px}\n.meter{height:8px;border-radius:99px;background:var(--line);overflow:hidden}\n.meter i{display:block;height:100%;width:0;background:var(--signal);transition:width .2s}\n#toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,16px);opacity:0;background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:10px;font-size:13.5px;max-width:calc(100vw - 32px);z-index:70;pointer-events:none;transition:opacity .2s,transform .2s}\n#toast.show{opacity:1;transform:translate(-50%,0)}\n@media (prefers-reduced-motion:reduce){*{transition:none!important;animation-duration:.01ms!important}}\n@media (max-width:1020px){\n  #home{grid-template-columns:1fr}\n  .home-r{position:static;order:-1}\n  .demo canvas{width:min(100%,220px)}\n  #studio{grid-template-columns:1fr;height:auto}\n  .rail{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);order:2}\n  .rail button{min-width:68px}\n  .work{order:1}\n  .monitor{height:58vh;flex:none}\n  .drawer{order:3;border-right:0;max-height:none}\n  .tlbox{grid-template-columns:70px minmax(0,1fr)}\n}\n@media (max-width:560px){\n  .choose,.g2{grid-template-columns:1fr}\n  .bar{gap:4px;padding:0 10px}\n  .bar .proj,.mark span,#bHelp{display:none}\n  .bar .btn.sm{padding:5px 8px}\n  .home-l h1{font-size:34px}\n  .transport{flex-wrap:wrap;gap:8px}\n  .transport label{display:none!important}\n  .lanes div{font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-left:6px}\n  .kv{grid-template-columns:96px 1fr}\n}\nbody{overflow-x:hidden}\n:root[data-theme=\"dark\"] .btn.main{color:#06121C}\n:root[data-theme=\"dark\"] .btn.main:hover{color:#06121C}\n\n.cuttools{position:absolute;z-index:5;display:flex;align-items:center;gap:4px;background:var(--ink);color:var(--paper);border-radius:10px;padding:4px 4px 4px 10px;box-shadow:0 8px 24px rgba(0,0,0,.25);font-size:12px;font-weight:650;white-space:nowrap}\n.cuttools button{display:inline-flex;align-items:center;gap:5px;border:0;border-radius:7px;padding:5px 9px;background:rgba(255,255,255,.12);color:inherit;font-size:12px;font-weight:700}\n.cuttools button:hover{background:rgba(255,255,255,.22)}\n.cuttools button.cut{background:#C2412D;color:#fff}\n.cuttools button.cut:hover{background:#d4503b}\n.cuttools span{margin-right:4px;opacity:.85}\n.wchip{display:inline-flex;align-items:stretch;border:1px solid var(--line2);border-radius:99px;overflow:hidden;background:var(--paper)}\n.wchip button{border:0;background:none;padding:4px 4px 4px 10px;font-size:12.5px;font-weight:600;color:var(--ink2)}\n.wchip .sc{padding:4px 9px 4px 5px;color:#C2412D;display:inline-flex;align-items:center;border-left:1px solid var(--line)}\n.wchip .sc:hover{background:#C2412D;color:#fff}\n.wchip.on{background:var(--ink);border-color:var(--ink)}\n.wchip.on button{color:var(--paper)}\n#studio:not([hidden]) ~ #toast{bottom:auto;top:66px;left:calc(50% + 214px);transform:translate(-50%,-10px)}\n#studio:not([hidden]) ~ #toast.show{transform:translate(-50%,0)}\n@media (max-width:1020px){#studio:not([hidden]) ~ #toast{top:auto;bottom:20px;left:50%}}\n\n.transport .cutbtn{border-color:#C2412D;color:#FFB4A8;font-weight:750}\n.transport .cutbtn:hover{border-color:#ff7a66;color:#fff}\n.transport .cutbtn.armed{background:#C2412D;border-color:#C2412D;color:#fff}\n.lanes .lcut{gap:6px;color:var(--ink2)}\n.lanes .lcut svg{color:#C2412D;flex:none}\n/* galeri gaya visual */\n.stylepick{margin-top:14px}\n.sphead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:8px}\n.sphead .f{margin:0}\n.stylegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px}\n.stylegrid[data-shape=square]{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}\n.stylegrid[data-shape=wide]{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}\n.stile{position:relative;display:flex;flex-direction:column;gap:6px;padding:5px 5px 7px;border:1px solid var(--line);border-radius:12px;background:var(--paper2);cursor:pointer;text-align:center;transition:transform .15s,border-color .15s,box-shadow .15s}\n.stile:hover{transform:translateY(-2px);border-color:var(--line2)}\n.stile:focus-visible{outline:2px solid var(--focus);outline-offset:2px}\n.stile.on{border-color:var(--brand);box-shadow:0 0 0 2px var(--brand)}\n.stile .frame{display:block;aspect-ratio:var(--ar,9/16);border-radius:8px;overflow:hidden;background:var(--monitor)}\n.stile canvas{display:block;width:100%;height:100%}\n.stile .nm{font-size:12px;font-weight:650;line-height:1.2;color:var(--ink)}\n.stile.on .nm{color:var(--brand)}\n.stile .badge{position:absolute;top:10px;left:10px;z-index:1;font-style:normal;font-size:9.5px;font-weight:800;letter-spacing:.04em;padding:2px 6px;border-radius:6px;color:#fff;background:var(--deep);box-shadow:0 1px 3px rgba(0,0,0,.3)}\n.stile .badge.fit{background:var(--ok)}\n.autoart{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;height:100%;color:#fff;text-align:center;padding:8px;background:radial-gradient(120% 80% at 20% 10%,#7c5cff 0,transparent 60%),radial-gradient(120% 90% at 90% 90%,#00b4d8 0,transparent 60%),linear-gradient(160deg,#d946ef,#3b82f6)}\n.autoart b{font-size:13px}.autoart small{font-size:10px;opacity:.85;line-height:1.2}\n.styleinfo{margin:10px 0 0;font-size:13px;line-height:1.5;color:var(--ink)}\n.styleinfo .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}\n.styleinfo .tags span{font-size:11.5px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);background:var(--paper)}\n.styleinfo .tags .fit{border-color:var(--ok);color:var(--ok);font-weight:650}\n@media (max-width:560px){.stylegrid{grid-template-columns:repeat(3,1fr);gap:8px}.stylegrid[data-shape=wide]{grid-template-columns:repeat(2,1fr)}}\n.stile .badge.new{background:var(--signal);color:#1a1200}\n.dot.bad{background:var(--danger)}\n.okmsg{color:var(--ok);font-weight:650}\n.badmsg{color:var(--danger);font-weight:600}\n.badmsg a{color:inherit}\n.appver{margin-left:8px;font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;background:var(--paper2);border:1px solid var(--line);color:var(--ink2);white-space:nowrap}\n.locknote{margin:8px 0 0;padding:8px 10px;border-radius:8px;font-size:12px;line-height:1.5;color:var(--ink2);background:color-mix(in srgb, var(--signal) 12%, transparent);border:1px solid color-mix(in srgb, var(--signal) 35%, transparent)}\n.locknote b{color:var(--ink)}\n.musicbox{border:1px dashed var(--line,rgba(127,127,127,.35));border-radius:10px;padding:10px}\n.musicbox .mico{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:var(--brand);color:#fff;font-weight:800;flex:none}\n.musicbox .ell{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px}\n.posblk{border-top:1px solid var(--line,rgba(127,127,127,.25));padding-top:10px;margin-top:6px}\n.posblk label b{font-weight:700;margin-left:4px}\n#hMusicFile{margin-top:4px}\n"; document.head.appendChild(st);
   document.title = "Cendekia Motion Studio"; document.documentElement.lang = "id";
-  document.body.insertAdjacentHTML("beforeend", "<header class=\"bar\">\n  <div class=\"mark\">\n    <svg viewBox=\"0 0 110 60\" aria-hidden=\"true\"><circle cx=\"22\" cy=\"38\" r=\"16\" fill=\"#105E82\"/><circle cx=\"62\" cy=\"24\" r=\"10\" fill=\"#1E81B0\"/><circle cx=\"92\" cy=\"12\" r=\"6\" fill=\"#56B4E9\"/></svg>\n    <span>Cendekia Motion Studio</span><small id=\"appVer\" class=\"appver\" hidden></small>\n  </div>\n  <div class=\"proj\" id=\"projBar\" hidden>\n    <input type=\"text\" id=\"projName\" aria-label=\"Nama proyek\" maxlength=\"80\">\n    <span class=\"pill\" id=\"modePill\"></span>\n  </div>\n  <span class=\"grow\" id=\"barGrow\"></span>\n  <button class=\"btn ghost sm\" id=\"bUndo\" type=\"button\" title=\"Urungkan (Ctrl+Z)\" hidden>\u21b6</button>\n  <button class=\"btn ghost sm\" id=\"bRedo\" type=\"button\" title=\"Ulangi (Ctrl+Shift+Z)\" hidden>\u21b7</button>\n  <button class=\"btn ghost sm\" id=\"bTheme\" type=\"button\" title=\"Tema terang/gelap\" aria-label=\"Ganti tema\"><svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"8\"/><path d=\"M12 4a8 8 0 000 16z\" fill=\"currentColor\"/></svg></button>\n  <button class=\"btn ghost sm\" id=\"bHelp\" type=\"button\">Panduan</button>\n  <button class=\"btn sm\" id=\"bHome\" type=\"button\" hidden>Proyek baru</button>\n  <button class=\"btn main sm\" id=\"bRender\" type=\"button\" hidden>Render video</button>\n</header>\n\n<!-- ================= LANDING ================= -->\n<main id=\"home\">\n  <div class=\"home-l\">\n    <h1>Dari rekaman mentah ke video motion, di satu meja.</h1>\n    <p class=\"lede\">Unggah video Anda berbicara, atau foto produk saja. AI menyusun caption per kata, kartu penjelasan, angka, b-roll, transisi, musik, dan narator. Semua bisa disunting lalu dirender jadi MP4 di perangkat Anda.</p>\n\n    <div class=\"setup\">\n      <section>\n        <h2><span class=\"n\">1</span>Bahan videonya</h2>\n        <div class=\"choose\" role=\"radiogroup\" aria-label=\"Jenis video\">\n          <button type=\"button\" class=\"choice on\" data-mode=\"talk\" role=\"radio\" aria-checked=\"true\"><b>Video saya berbicara</b><span>Talking head, kelas, review, podcast, tutorial</span></button>\n          <button type=\"button\" class=\"choice\" data-mode=\"product\" role=\"radio\" aria-checked=\"false\"><b>Foto/video produk</b><span>Tanpa orang. AI menulis naskah dan membacakannya</span></button>\n        </div>\n\n        <div id=\"setProd\" hidden style=\"margin-top:14px\">\n          <div class=\"g2\">\n            <div><label class=\"f\" for=\"pBrand\">Merek</label><input type=\"text\" id=\"pBrand\" placeholder=\"mis. Kopi Lereng\"></div>\n            <div><label class=\"f\" for=\"pName\">Produk / judul</label><input type=\"text\" id=\"pName\" placeholder=\"mis. Cold brew literan\"></div>\n            <div class=\"span\"><label class=\"f\" for=\"pBenefits\">Keunggulan & info penting</label><textarea id=\"pBenefits\" placeholder=\"Satu poin per baris. mis.&#10;Tanpa gula tambahan&#10;Tahan 7 hari di kulkas&#10;Biji arabika Gayo\"></textarea></div>\n            <div><label class=\"f\" for=\"pPrice\">Harga / promo</label><input type=\"text\" id=\"pPrice\" placeholder=\"mis. Rp 85.000, beli 2 gratis 1\"></div>\n            <div><label class=\"f\" for=\"pCta\">Ajakan di akhir</label><input type=\"text\" id=\"pCta\" placeholder=\"mis. Pesan lewat WhatsApp\"></div>\n            <div><label class=\"f\" for=\"pLink\">Link / kontak</label><input type=\"text\" id=\"pLink\" placeholder=\"mis. kopilereng.id\"></div>\n            <div><label class=\"f\" for=\"pDur\">Durasi</label><select id=\"pDur\"><option value=\"15\">\u00b115 detik</option><option value=\"30\" selected>\u00b130 detik</option><option value=\"45\">\u00b145 detik</option><option value=\"60\">\u00b160 detik</option></select></div>\n            <div><label class=\"f\" for=\"pTone\">Gaya bicara</label><select id=\"pTone\"><option value=\"santai\">Santai & akrab</option><option value=\"semangat\">Semangat, jualan</option><option value=\"profesional\">Profesional</option><option value=\"hangat\">Hangat, bercerita</option></select></div>\n            <div><label class=\"f\" for=\"pVoice\">Suara narator</label><select id=\"pVoice\"></select></div>\n          </div>\n        </div>\n\n        <div style=\"margin-top:14px\">\n          <label class=\"f\" id=\"assetsLbl\">B-roll (opsional): foto/video pendukung</label>\n          <div class=\"drop\" id=\"assetsDrop\" tabindex=\"0\" role=\"button\"><b>Tambah foto atau video</b><span class=\"small muted\">klik atau tarik ke sini \u00b7 bisa lebih dari satu</span></div>\n          <div class=\"thumbs\" id=\"homeAssets\"></div>\n        </div>\n        <div id=\"briefWrap\" style=\"margin-top:12px\"><label class=\"f\" for=\"hBrief\">Arahan untuk AI (opsional)</label>\n          <textarea id=\"hBrief\" placeholder=\"Audiens, pesan utama, ajakan di akhir. mis. Untuk staf HR. Ajak daftar kelas di cendekiadigital.com\"></textarea></div>\n      </section>\n\n      <section>\n        <h2><span class=\"n\">2</span>Tampilan & suara</h2>\n        <div class=\"g2\">\n          <div><label class=\"f\" for=\"hAspect\">Format</label><select id=\"hAspect\"><option value=\"source\">Ikuti video asli</option><option value=\"9:16\" selected>9:16 Reels, Shorts, TikTok</option><option value=\"4:5\">4:5 Feed Instagram</option><option value=\"1:1\">1:1 Kotak</option><option value=\"16:9\">16:9 YouTube</option></select></div>\n          <div><label class=\"f\" for=\"hNiche\">Bidang konten</label><select id=\"hNiche\"></select></div>\n          <div><label class=\"f\" for=\"hMusic\">Musik latar</label><select id=\"hMusic\"></select></div>\n          <div><label class=\"f\" for=\"hDensity\">Kepadatan motion</label><select id=\"hDensity\"><option value=\"ramai\" selected>Ramai, gaya Reels/TikTok</option><option value=\"seimbang\">Seimbang</option><option value=\"tenang\">Tenang (sedikit elemen)</option></select></div>\n          <div><label class=\"f\" for=\"hCamera\">Gerak kamera</label><select id=\"hCamera\"><option value=\"smooth\">Zoom halus</option><option value=\"punch\">Zoom potong (jump-cut)</option><option value=\"angle\">Ganti angle otomatis</option><option value=\"off\">Diam</option></select></div>\n        </div>\n        <div class=\"stylepick\">\n          <div class=\"sphead\"><span class=\"f\" id=\"styleLbl\">Gaya visual</span><span class=\"small muted\">Arahkan kursor ke kartu untuk melihat animasinya</span></div>\n          <select id=\"hPreset\" hidden aria-hidden=\"true\" tabindex=\"-1\"></select>\n          <div class=\"stylegrid\" id=\"styleGrid\" role=\"radiogroup\" aria-labelledby=\"styleLbl\"></div>\n          <p class=\"styleinfo\" id=\"styleInfo\" aria-live=\"polite\"></p>\n        </div>\n        <div class=\"realbox\" style=\"margin-top:12px\">\n          <label class=\"check\"><input type=\"checkbox\" id=\"hReal\" checked> <span><b>Tambah visual realistis buatan AI</b><br>Gemini membuat foto atau klip video yang terlihat nyata untuk b-roll, di momen yang paling butuh gambar.</span></label>\n          <div class=\"g2\" id=\"hRealOpts\" style=\"margin-top:10px\">\n            <div><label class=\"f\" for=\"hRealKind\">Jenis visual</label><select id=\"hRealKind\"><option value=\"image\">Foto realistis (Imagen)</option><option value=\"video\">Klip video realistis (Veo)</option></select></div>\n            <div><label class=\"f\" for=\"hRealCount\">Jumlah maksimal</label><select id=\"hRealCount\"><option value=\"1\">1</option><option value=\"2\" selected>2</option><option value=\"3\">3</option><option value=\"4\">4</option><option value=\"5\">5</option><option value=\"6\">6</option></select></div>\n          </div>\n          <p class=\"hint\" id=\"hRealNote\"></p>\n        </div>\n      </section>\n\n      <section>\n        <h2><span class=\"n\">3</span>Mulai</h2>\n        <div class=\"keyline\">\n          <span class=\"dot\" id=\"hKeyDot\"></span>\n          <input type=\"password\" id=\"hKey\" placeholder=\"Gemini API key (AIza\u2026)\" autocomplete=\"off\" aria-label=\"Gemini API key\">\n          <button class=\"btn sm\" type=\"button\" id=\"hKeySave\">Simpan key</button>\n        </div>\n        <p class=\"hint\" id=\"hKeyTxt\">Buat key gratis di <a href=\"https://aistudio.google.com/apikey\" target=\"_blank\" rel=\"noopener\">aistudio.google.com/apikey</a>. Key hanya disimpan di browser ini; pemakaian AI tercatat di akun Google Anda.</p>\n        <label class=\"check\" style=\"margin:12px 0\"><input type=\"checkbox\" id=\"hNoAI\"> <span>Tanpa AI: saya susun elemen sendiri (caption bisa dari teks yang saya ketik)</span></label>\n        <div id=\"startTalk\">\n          <div class=\"drop\" id=\"videoDrop\" tabindex=\"0\" role=\"button\"><b>Pilih video Anda berbicara</b><span class=\"small muted\">MP4, MOV, atau WEBM \u00b7 ideal di bawah 3 menit</span></div>\n        </div>\n        <div id=\"startProd\" hidden>\n          <button class=\"btn main wide\" type=\"button\" id=\"hGoProd\">Buat video produk</button>\n          <p class=\"hint\">Minimal 1 foto produk disarankan. Tanpa foto, AI membuat gambar sesuai pengaturan di langkah 2.</p>\n        </div>\n      </section>\n    </div>\n  </div>\n\n  <aside class=\"home-r\">\n    <div class=\"demo\"><canvas id=\"demo\" width=\"360\" height=\"640\" aria-label=\"Contoh animasi hasil aplikasi\"></canvas></div>\n    <p class=\"demo-cap\">Contoh di atas digambar langsung oleh mesin aplikasi ini, sama seperti saat Anda merender.</p>\n    <div class=\"drafts\" id=\"draftBox\" hidden>\n      <h3>Lanjutkan draf</h3>\n      <div id=\"draftList\"></div>\n    </div>\n  </aside>\n</main>\n\n<!-- ================= STUDIO ================= -->\n<div id=\"studio\" hidden>\n  <nav class=\"rail\" id=\"rail\" aria-label=\"Panel\"></nav>\n  <section class=\"drawer\" id=\"drawer\">\n    <div class=\"hd\"><h2 id=\"dTitle\"></h2><p id=\"dSub\"></p></div>\n    <div class=\"bd\" id=\"dBody\"></div>\n  </section>\n  <section class=\"work\">\n    <div class=\"monitor\" id=\"monitor\">\n      <canvas id=\"pv\" width=\"360\" height=\"640\"></canvas>\n      <div class=\"busy\" id=\"busy\" hidden><div class=\"spin\"></div><span id=\"busyTxt\">AI bekerja\u2026</span></div>\n    </div>\n    <div class=\"transport\">\n      <button class=\"play\" id=\"bPlay\" type=\"button\" title=\"Putar/jeda (Spasi)\" aria-label=\"Putar\">\u25b6</button>\n      <span class=\"tc\" id=\"tc\"><b>00:00.0</b> / 00:00.0</span>\n      <span class=\"grow\"></span>\n      <button class=\"btn xs cutbtn\" id=\"bCut\" type=\"button\" title=\"Potong kata/suara (Delete)\"><svg viewBox=\"0 0 24 24\" width=\"15\" height=\"15\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"6\" cy=\"6\" r=\"3\"/><circle cx=\"6\" cy=\"18\" r=\"3\"/><path d=\"M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12\"/></svg><span id=\"bCutTxt\">Potong</span></button>\n      <button class=\"btn xs\" id=\"bBack\" type=\"button\">Ke awal</button>\n      <button class=\"btn xs\" id=\"bAdd\" type=\"button\">Tambah elemen di sini</button>\n      <label class=\"small\" style=\"display:flex;align-items:center;gap:6px;color:#9DB4C6\">Perbesar timeline <input type=\"range\" id=\"tlZoom\" min=\"1\" max=\"8\" step=\"0.5\" value=\"1\" style=\"width:90px\"></label>\n    </div>\n    <div class=\"tlbox\">\n      <div class=\"lanes\"><div class=\"lrow top\" title=\"Ornamen & efek, slot atas: lapisan paling depan. Seret elemen naik/turun untuk pindah slot.\">Ornamen \u25b2</div><div class=\"lrow\" title=\"Ornamen & efek, slot bawah\">Ornamen \u25bc</div><div class=\"lrow top\" title=\"Teks & kartu, slot atas: di depan teks lain\">Teks \u25b2</div><div class=\"lrow\" title=\"Teks & kartu, slot bawah\">Teks \u25bc</div><div class=\"lrow\" title=\"Adegan layar penuh: lapisan paling belakang\">Adegan</div><div class=\"lcut\" title=\"Klik kata di jalur ini, lalu Potong\">Kata <svg viewBox=\"0 0 24 24\" width=\"12\" height=\"12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"6\" cy=\"6\" r=\"3\"/><circle cx=\"6\" cy=\"18\" r=\"3\"/><path d=\"M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12\"/></svg></div><div class=\"lcut\" title=\"Seret di jalur ini untuk memilih suara, lalu Potong\">Suara <svg viewBox=\"0 0 24 24\" width=\"12\" height=\"12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"6\" cy=\"6\" r=\"3\"/><circle cx=\"6\" cy=\"18\" r=\"3\"/><path d=\"M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12\"/></svg></div></div>\n      <div class=\"tlscroll\" id=\"tlScroll\"><canvas id=\"tl\" height=\"206\"></canvas></div>\n    </div>\n  </section>\n</div>\n\n<!-- ================= MODALS ================= -->\n<div class=\"modal\" id=\"helpModal\" hidden role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"helpTitle\">\n  <div class=\"dlg\">\n    <h3 id=\"helpTitle\">Cara pakai</h3>\n    <ol>\n      <li>Pilih bahan: video Anda berbicara, atau foto/video produk (AI menulis naskah dan membacakannya).</li>\n      <li>Atur bidang konten, gaya, musik, dan format. Semuanya bisa diubah lagi di studio.</li>\n      <li>Tempel Gemini API key, lalu mulai. AI bekerja 30\u201390 detik.</li>\n      <li>Di studio: putar preview, geser atau perpanjang elemen langsung di timeline, sunting isinya di panel Elemen.</li>\n      <li>Minta revisi lewat panel Arahan AI, untuk seluruh video atau rentang detik tertentu, boleh dengan screenshot.</li>\n      <li>Klik <b>Render video</b>, tunggu, lalu unduh.</li>\n    </ol>\n    <p class=\"hint\">Pintasan: Spasi putar/jeda \u00b7 Ctrl+Z urungkan \u00b7 Ctrl+Shift+Z ulangi \u00b7 Delete hapus elemen terpilih. Render paling cepat di Chrome atau Edge di laptop.</p>\n    <div class=\"acts\"><button class=\"btn main\" type=\"button\" data-close>Mengerti</button></div>\n  </div>\n</div>\n\n<div class=\"modal\" id=\"renderModal\" hidden role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"renderTitle\">\n  <div class=\"dlg\">\n    <h3 id=\"renderTitle\">Render video</h3>\n    <div id=\"rOpts\">\n      <div class=\"g2\">\n        <div><label class=\"f\" for=\"rRes\">Resolusi</label><select id=\"rRes\"><option value=\"1080\">1080p, tajam</option><option value=\"720\">720p, lebih cepat</option></select></div>\n        <div><label class=\"f\" for=\"rFps\">Frame rate</label><select id=\"rFps\"><option value=\"30\">30 fps</option><option value=\"25\">25 fps</option><option value=\"60\">60 fps</option></select></div>\n      </div>\n      <p class=\"hint\" id=\"rNote\">Render berjalan di perangkat ini. Biarkan tab tetap terbuka sampai selesai.</p>\n      <div id=\"rMobile\" class=\"hint\" hidden>Di HP: jangan pindah aplikasi atau mengunci layar, colokkan charger, dan pilih 720p. Video di atas 60 detik lebih nyaman dirender di laptop.</div>\n    </div>\n    <div id=\"rProg\" hidden><div class=\"meter\"><i id=\"rBar\"></i></div><p class=\"hint\" id=\"rTxt\">Menyiapkan\u2026</p></div>\n    <div id=\"rDone\" hidden><video id=\"rVid\" controls playsinline style=\"width:100%;max-height:52vh;border-radius:10px;background:#000\"></video><p class=\"hint\" id=\"rInfo\"></p></div>\n    <div class=\"acts\">\n      <button class=\"btn\" type=\"button\" id=\"rClose\">Tutup</button>\n      <a class=\"btn main\" id=\"rDl\" hidden download>Unduh video</a>\n      <button class=\"btn main\" type=\"button\" id=\"rStart\">Mulai render</button>\n    </div>\n  </div>\n</div>\n\n<div class=\"modal\" id=\"promptModal\" hidden role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"promptTitle\">\n  <div class=\"dlg\">\n    <h3 id=\"promptTitle\">Prompt editing per adegan</h3>\n    <p class=\"hint\" style=\"margin-top:0\">Untuk aplikasi pembuat video AI yang menerima prompt per klip (maks. 10 detik). Disusun dari rencana motion proyek ini.</p>\n    <textarea id=\"promptTxt\" rows=\"14\" readonly style=\"font-size:12.5px\"></textarea>\n    <div class=\"acts\"><button class=\"btn\" type=\"button\" data-close>Tutup</button><button class=\"btn main\" type=\"button\" id=\"promptCopy\">Salin semua</button></div>\n  </div>\n</div>\n\n<div id=\"toast\" role=\"status\" aria-live=\"polite\"></div>\n<video id=\"vid\" playsinline preload=\"auto\" hidden></video>\n<input type=\"file\" id=\"fVideo\" accept=\"video/*,.mov,.mp4,.webm,.m4v\" hidden>\n<input type=\"file\" id=\"fAssets\" accept=\"image/*,video/*\" multiple hidden>\n<input type=\"file\" id=\"fRef\" accept=\"image/*,video/*\" multiple hidden>\n<input type=\"file\" id=\"fShot\" accept=\"image/*\" multiple hidden>\n<input type=\"file\" id=\"fVO\" accept=\"audio/*,.mp3,.wav,.m4a\" hidden>\n<input type=\"file\" id=\"fJson\" accept=\".json,application/json\" hidden>\n"); }
+  document.body.insertAdjacentHTML("beforeend", "<header class=\"bar\">\n  <div class=\"mark\">\n    <svg viewBox=\"0 0 110 60\" aria-hidden=\"true\"><circle cx=\"22\" cy=\"38\" r=\"16\" fill=\"#105E82\"/><circle cx=\"62\" cy=\"24\" r=\"10\" fill=\"#1E81B0\"/><circle cx=\"92\" cy=\"12\" r=\"6\" fill=\"#56B4E9\"/></svg>\n    <span>Cendekia Motion Studio</span><small id=\"appVer\" class=\"appver\" hidden></small>\n  </div>\n  <div class=\"proj\" id=\"projBar\" hidden>\n    <input type=\"text\" id=\"projName\" aria-label=\"Nama proyek\" maxlength=\"80\">\n    <span class=\"pill\" id=\"modePill\"></span>\n  </div>\n  <span class=\"grow\" id=\"barGrow\"></span>\n  <button class=\"btn ghost sm\" id=\"bUndo\" type=\"button\" title=\"Urungkan (Ctrl+Z)\" hidden>\u21b6</button>\n  <button class=\"btn ghost sm\" id=\"bRedo\" type=\"button\" title=\"Ulangi (Ctrl+Shift+Z)\" hidden>\u21b7</button>\n  <button class=\"btn ghost sm\" id=\"bTheme\" type=\"button\" title=\"Tema terang/gelap\" aria-label=\"Ganti tema\"><svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"8\"/><path d=\"M12 4a8 8 0 000 16z\" fill=\"currentColor\"/></svg></button>\n  <button class=\"btn ghost sm\" id=\"bHelp\" type=\"button\">Panduan</button>\n  <button class=\"btn sm\" id=\"bHome\" type=\"button\" hidden>Proyek baru</button>\n  <button class=\"btn main sm\" id=\"bRender\" type=\"button\" hidden>Render video</button>\n</header>\n\n<!-- ================= LANDING ================= -->\n<main id=\"home\">\n  <div class=\"home-l\">\n    <h1>Dari rekaman mentah ke video motion, di satu meja.</h1>\n    <p class=\"lede\">Unggah video Anda berbicara, atau foto produk saja. AI menyusun caption per kata, kartu penjelasan, angka, b-roll, transisi, musik, dan narator. Semua bisa disunting lalu dirender jadi MP4 di perangkat Anda.</p>\n\n    <div class=\"setup\">\n      <section>\n        <h2><span class=\"n\">1</span>Bahan videonya</h2>\n        <div class=\"choose\" role=\"radiogroup\" aria-label=\"Jenis video\">\n          <button type=\"button\" class=\"choice on\" data-mode=\"talk\" role=\"radio\" aria-checked=\"true\"><b>Video saya berbicara</b><span>Talking head, kelas, review, podcast, tutorial</span></button>\n          <button type=\"button\" class=\"choice\" data-mode=\"product\" role=\"radio\" aria-checked=\"false\"><b>Foto/video produk</b><span>Tanpa orang. AI menulis naskah dan membacakannya</span></button>\n        </div>\n\n        <div id=\"setProd\" hidden style=\"margin-top:14px\">\n          <div class=\"g2\">\n            <div><label class=\"f\" for=\"pBrand\">Merek</label><input type=\"text\" id=\"pBrand\" placeholder=\"mis. Kopi Lereng\"></div>\n            <div><label class=\"f\" for=\"pName\">Produk / judul</label><input type=\"text\" id=\"pName\" placeholder=\"mis. Cold brew literan\"></div>\n            <div class=\"span\"><label class=\"f\" for=\"pBenefits\">Keunggulan & info penting</label><textarea id=\"pBenefits\" placeholder=\"Satu poin per baris. mis.&#10;Tanpa gula tambahan&#10;Tahan 7 hari di kulkas&#10;Biji arabika Gayo\"></textarea></div>\n            <div><label class=\"f\" for=\"pPrice\">Harga / promo</label><input type=\"text\" id=\"pPrice\" placeholder=\"mis. Rp 85.000, beli 2 gratis 1\"></div>\n            <div><label class=\"f\" for=\"pCta\">Ajakan di akhir</label><input type=\"text\" id=\"pCta\" placeholder=\"mis. Pesan lewat WhatsApp\"></div>\n            <div><label class=\"f\" for=\"pLink\">Link / kontak</label><input type=\"text\" id=\"pLink\" placeholder=\"mis. kopilereng.id\"></div>\n            <div><label class=\"f\" for=\"pDur\">Durasi</label><select id=\"pDur\"><option value=\"15\">\u00b115 detik</option><option value=\"30\" selected>\u00b130 detik</option><option value=\"45\">\u00b145 detik</option><option value=\"60\">\u00b160 detik</option></select></div>\n            <div><label class=\"f\" for=\"pTone\">Gaya bicara</label><select id=\"pTone\"><option value=\"santai\">Santai & akrab</option><option value=\"semangat\">Semangat, jualan</option><option value=\"profesional\">Profesional</option><option value=\"hangat\">Hangat, bercerita</option></select></div>\n            <div><label class=\"f\" for=\"pVoice\">Suara narator</label><select id=\"pVoice\"></select></div>\n          </div>\n        </div>\n\n        <div style=\"margin-top:14px\">\n          <label class=\"f\" id=\"assetsLbl\">B-roll (opsional): foto/video pendukung</label>\n          <div class=\"drop\" id=\"assetsDrop\" tabindex=\"0\" role=\"button\"><b>Tambah foto atau video</b><span class=\"small muted\">klik atau tarik ke sini \u00b7 bisa lebih dari satu</span></div>\n          <div class=\"thumbs\" id=\"homeAssets\"></div>\n        </div>\n        <div id=\"briefWrap\" style=\"margin-top:12px\"><label class=\"f\" for=\"hBrief\">Arahan untuk AI (opsional)</label>\n          <textarea id=\"hBrief\" placeholder=\"Audiens, pesan utama, ajakan di akhir. mis. Untuk staf HR. Ajak daftar kelas di cendekiadigital.com\"></textarea></div>\n      </section>\n\n      <section>\n        <h2><span class=\"n\">2</span>Tampilan & suara</h2>\n        <div class=\"g2\">\n          <div><label class=\"f\" for=\"hAspect\">Format</label><select id=\"hAspect\"><option value=\"source\">Ikuti video asli</option><option value=\"9:16\" selected>9:16 Reels, Shorts, TikTok</option><option value=\"4:5\">4:5 Feed Instagram</option><option value=\"1:1\">1:1 Kotak</option><option value=\"16:9\">16:9 YouTube</option></select></div>\n          <div><label class=\"f\" for=\"hNiche\">Bidang konten</label><select id=\"hNiche\"></select></div>\n          <div><label class=\"f\" for=\"hMusic\">Musik latar</label><select id=\"hMusic\"></select><div id=\"hMusicFile\" class=\"small muted\" hidden></div></div>\n          <div><label class=\"f\" for=\"hDensity\">Kepadatan motion</label><select id=\"hDensity\"><option value=\"ramai\" selected>Ramai, gaya Reels/TikTok</option><option value=\"seimbang\">Seimbang</option><option value=\"tenang\">Tenang (sedikit elemen)</option></select></div>\n          <div><label class=\"f\" for=\"hCamera\">Gerak kamera</label><select id=\"hCamera\"><option value=\"smooth\">Zoom halus</option><option value=\"punch\">Zoom potong (jump-cut)</option><option value=\"angle\">Ganti angle otomatis</option><option value=\"off\">Diam</option></select></div>\n        </div>\n        <div class=\"stylepick\">\n          <div class=\"sphead\"><span class=\"f\" id=\"styleLbl\">Gaya visual</span><span class=\"small muted\">Arahkan kursor ke kartu untuk melihat animasinya</span></div>\n          <select id=\"hPreset\" hidden aria-hidden=\"true\" tabindex=\"-1\"></select>\n          <div class=\"stylegrid\" id=\"styleGrid\" role=\"radiogroup\" aria-labelledby=\"styleLbl\"></div>\n          <p class=\"styleinfo\" id=\"styleInfo\" aria-live=\"polite\"></p>\n        </div>\n        <div class=\"realbox\" style=\"margin-top:12px\">\n          <label class=\"check\"><input type=\"checkbox\" id=\"hReal\" checked> <span><b>Tambah visual realistis buatan AI</b><br>Gemini membuat foto atau klip video yang terlihat nyata untuk b-roll, di momen yang paling butuh gambar.</span></label>\n          <div class=\"g2\" id=\"hRealOpts\" style=\"margin-top:10px\">\n            <div><label class=\"f\" for=\"hRealKind\">Jenis visual</label><select id=\"hRealKind\"><option value=\"image\">Foto realistis (Imagen)</option><option value=\"video\">Klip video realistis (Veo)</option></select></div>\n            <div><label class=\"f\" for=\"hRealCount\">Jumlah maksimal</label><select id=\"hRealCount\"><option value=\"1\">1</option><option value=\"2\" selected>2</option><option value=\"3\">3</option><option value=\"4\">4</option><option value=\"5\">5</option><option value=\"6\">6</option></select></div>\n          </div>\n          <p class=\"hint\" id=\"hRealNote\"></p>\n          <p class=\"locknote\" id=\"hRealLock\" hidden></p>\n        </div>\n      </section>\n\n      <section>\n        <h2><span class=\"n\">3</span>Mulai</h2>\n        <div class=\"keyline\">\n          <span class=\"dot\" id=\"hKeyDot\"></span>\n          <input type=\"password\" id=\"hKey\" placeholder=\"Gemini API key (AIza\u2026)\" autocomplete=\"off\" aria-label=\"Gemini API key\">\n          <button class=\"btn sm\" type=\"button\" id=\"hKeySave\">Simpan key</button>\n        </div>\n        <p class=\"hint\" id=\"hKeyTxt\">Buat key gratis di <a href=\"https://aistudio.google.com/apikey\" target=\"_blank\" rel=\"noopener\">aistudio.google.com/apikey</a>. Key hanya disimpan di browser ini; pemakaian AI tercatat di akun Google Anda.</p>\n        <label class=\"check\" style=\"margin:12px 0\"><input type=\"checkbox\" id=\"hNoAI\"> <span>Tanpa AI: saya susun elemen sendiri (caption bisa dari teks yang saya ketik)</span></label>\n        <div id=\"startTalk\">\n          <div class=\"drop\" id=\"videoDrop\" tabindex=\"0\" role=\"button\"><b>Pilih video Anda berbicara</b><span class=\"small muted\">MP4, MOV, atau WEBM \u00b7 ideal di bawah 3 menit</span></div>\n        </div>\n        <div id=\"startProd\" hidden>\n          <button class=\"btn main wide\" type=\"button\" id=\"hGoProd\">Buat video produk</button>\n          <p class=\"hint\">Minimal 1 foto produk disarankan. Tanpa foto, AI membuat gambar sesuai pengaturan di langkah 2.</p>\n        </div>\n      </section>\n    </div>\n  </div>\n\n  <aside class=\"home-r\">\n    <div class=\"demo\"><canvas id=\"demo\" width=\"360\" height=\"640\" aria-label=\"Contoh animasi hasil aplikasi\"></canvas></div>\n    <p class=\"demo-cap\">Contoh di atas digambar langsung oleh mesin aplikasi ini, sama seperti saat Anda merender.</p>\n    <div class=\"drafts\" id=\"draftBox\" hidden>\n      <h3>Lanjutkan draf</h3>\n      <div id=\"draftList\"></div>\n    </div>\n  </aside>\n</main>\n\n<!-- ================= STUDIO ================= -->\n<div id=\"studio\" hidden>\n  <nav class=\"rail\" id=\"rail\" aria-label=\"Panel\"></nav>\n  <section class=\"drawer\" id=\"drawer\">\n    <div class=\"hd\"><h2 id=\"dTitle\"></h2><p id=\"dSub\"></p></div>\n    <div class=\"bd\" id=\"dBody\"></div>\n  </section>\n  <section class=\"work\">\n    <div class=\"monitor\" id=\"monitor\">\n      <canvas id=\"pv\" width=\"360\" height=\"640\"></canvas>\n      <div class=\"busy\" id=\"busy\" hidden><div class=\"spin\"></div><span id=\"busyTxt\">AI bekerja\u2026</span></div>\n    </div>\n    <div class=\"transport\">\n      <button class=\"play\" id=\"bPlay\" type=\"button\" title=\"Putar/jeda (Spasi)\" aria-label=\"Putar\">\u25b6</button>\n      <span class=\"tc\" id=\"tc\"><b>00:00.0</b> / 00:00.0</span>\n      <span class=\"grow\"></span>\n      <button class=\"btn xs cutbtn\" id=\"bCut\" type=\"button\" title=\"Potong kata/suara (Delete)\"><svg viewBox=\"0 0 24 24\" width=\"15\" height=\"15\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"6\" cy=\"6\" r=\"3\"/><circle cx=\"6\" cy=\"18\" r=\"3\"/><path d=\"M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12\"/></svg><span id=\"bCutTxt\">Potong</span></button>\n      <button class=\"btn xs\" id=\"bBack\" type=\"button\">Ke awal</button>\n      <button class=\"btn xs\" id=\"bAdd\" type=\"button\">Tambah elemen di sini</button>\n      <label class=\"small\" style=\"display:flex;align-items:center;gap:6px;color:#9DB4C6\">Perbesar timeline <input type=\"range\" id=\"tlZoom\" min=\"1\" max=\"8\" step=\"0.5\" value=\"1\" style=\"width:90px\"></label>\n    </div>\n    <div class=\"tlbox\">\n      <div class=\"lanes\"><div class=\"lrow top\" title=\"Ornamen & efek, slot atas: lapisan paling depan. Seret elemen naik/turun untuk pindah slot.\">Ornamen \u25b2</div><div class=\"lrow\" title=\"Ornamen & efek, slot bawah\">Ornamen \u25bc</div><div class=\"lrow top\" title=\"Teks & kartu, slot atas: di depan teks lain\">Teks \u25b2</div><div class=\"lrow\" title=\"Teks & kartu, slot bawah\">Teks \u25bc</div><div class=\"lrow\" title=\"Adegan layar penuh: lapisan paling belakang\">Adegan</div><div class=\"lcut\" title=\"Klik kata di jalur ini, lalu Potong\">Kata <svg viewBox=\"0 0 24 24\" width=\"12\" height=\"12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"6\" cy=\"6\" r=\"3\"/><circle cx=\"6\" cy=\"18\" r=\"3\"/><path d=\"M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12\"/></svg></div><div class=\"lcut\" title=\"Seret di jalur ini untuk memilih suara, lalu Potong\">Suara <svg viewBox=\"0 0 24 24\" width=\"12\" height=\"12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"6\" cy=\"6\" r=\"3\"/><circle cx=\"6\" cy=\"18\" r=\"3\"/><path d=\"M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12\"/></svg></div></div>\n      <div class=\"tlscroll\" id=\"tlScroll\"><canvas id=\"tl\" height=\"206\"></canvas></div>\n    </div>\n  </section>\n</div>\n\n<!-- ================= MODALS ================= -->\n<div class=\"modal\" id=\"helpModal\" hidden role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"helpTitle\">\n  <div class=\"dlg\">\n    <h3 id=\"helpTitle\">Cara pakai</h3>\n    <ol>\n      <li>Pilih bahan: video Anda berbicara, atau foto/video produk (AI menulis naskah dan membacakannya).</li>\n      <li>Atur bidang konten, gaya, musik, dan format. Semuanya bisa diubah lagi di studio.</li>\n      <li>Tempel Gemini API key, lalu mulai. AI bekerja 30\u201390 detik.</li>\n      <li>Di studio: putar preview, geser atau perpanjang elemen langsung di timeline, sunting isinya di panel Elemen.</li>\n      <li>Minta revisi lewat panel Arahan AI, untuk seluruh video atau rentang detik tertentu, boleh dengan screenshot.</li>\n      <li>Klik <b>Render video</b>, tunggu, lalu unduh.</li>\n    </ol>\n    <p class=\"hint\">Pintasan: Spasi putar/jeda \u00b7 Ctrl+Z urungkan \u00b7 Ctrl+Shift+Z ulangi \u00b7 Delete hapus elemen terpilih. Render paling cepat di Chrome atau Edge di laptop.</p>\n    <div class=\"acts\"><button class=\"btn main\" type=\"button\" data-close>Mengerti</button></div>\n  </div>\n</div>\n\n<div class=\"modal\" id=\"renderModal\" hidden role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"renderTitle\">\n  <div class=\"dlg\">\n    <h3 id=\"renderTitle\">Render video</h3>\n    <div id=\"rOpts\">\n      <div class=\"g2\">\n        <div><label class=\"f\" for=\"rRes\">Resolusi</label><select id=\"rRes\"><option value=\"1080\">1080p, tajam</option><option value=\"720\">720p, lebih cepat</option></select></div>\n        <div><label class=\"f\" for=\"rFps\">Frame rate</label><select id=\"rFps\"><option value=\"30\">30 fps</option><option value=\"25\">25 fps</option><option value=\"60\">60 fps</option></select></div>\n      </div>\n      <p class=\"hint\" id=\"rNote\">Render berjalan di perangkat ini. Biarkan tab tetap terbuka sampai selesai.</p>\n      <div id=\"rMobile\" class=\"hint\" hidden>Di HP: jangan pindah aplikasi atau mengunci layar, colokkan charger, dan pilih 720p. Video di atas 60 detik lebih nyaman dirender di laptop.</div>\n    </div>\n    <div id=\"rProg\" hidden><div class=\"meter\"><i id=\"rBar\"></i></div><p class=\"hint\" id=\"rTxt\">Menyiapkan\u2026</p></div>\n    <div id=\"rDone\" hidden><video id=\"rVid\" controls playsinline style=\"width:100%;max-height:52vh;border-radius:10px;background:#000\"></video><p class=\"hint\" id=\"rInfo\"></p></div>\n    <div class=\"acts\">\n      <button class=\"btn\" type=\"button\" id=\"rClose\">Tutup</button>\n      <a class=\"btn main\" id=\"rDl\" hidden download>Unduh video</a>\n      <button class=\"btn main\" type=\"button\" id=\"rStart\">Mulai render</button>\n    </div>\n  </div>\n</div>\n\n<div class=\"modal\" id=\"promptModal\" hidden role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"promptTitle\">\n  <div class=\"dlg\">\n    <h3 id=\"promptTitle\">Prompt editing per adegan</h3>\n    <p class=\"hint\" style=\"margin-top:0\">Untuk aplikasi pembuat video AI yang menerima prompt per klip (maks. 10 detik). Disusun dari rencana motion proyek ini.</p>\n    <textarea id=\"promptTxt\" rows=\"14\" readonly style=\"font-size:12.5px\"></textarea>\n    <div class=\"acts\"><button class=\"btn\" type=\"button\" data-close>Tutup</button><button class=\"btn main\" type=\"button\" id=\"promptCopy\">Salin semua</button></div>\n  </div>\n</div>\n\n<div id=\"toast\" role=\"status\" aria-live=\"polite\"></div>\n<video id=\"vid\" playsinline preload=\"auto\" hidden></video>\n<input type=\"file\" id=\"fVideo\" accept=\"video/*,.mov,.mp4,.webm,.m4v\" hidden>\n<input type=\"file\" id=\"fAssets\" accept=\"image/*,video/*\" multiple hidden>\n<input type=\"file\" id=\"fRef\" accept=\"image/*,video/*\" multiple hidden>\n<input type=\"file\" id=\"fShot\" accept=\"image/*\" multiple hidden>\n<input type=\"file\" id=\"fVO\" accept=\"audio/*,.mp3,.wav,.m4a\" hidden>\n<input type=\"file\" id=\"fMusic\" accept=\"audio/*,.mp3,.wav,.m4a,.aac,.ogg,.oga,.flac,.opus\" hidden>\n<input type=\"file\" id=\"fJson\" accept=\".json,application/json\" hidden>\n"); }
 /* Cendekia Motion Studio v2 — © 2026 Cendekia Digital Global.
    Ditulis independen. Pustaka pihak ketiga dimuat dari CDN saat diperlukan:
    Mediabunny (MPL-2.0) untuk baca/tulis video, MediaPipe Tasks Vision (Apache-2.0) untuk pemisah orang. */
@@ -90,6 +90,7 @@ const OPT = {
   density: [['tenang', 'Tenang (sedikit elemen)'], ['seimbang', 'Seimbang'], ['ramai', 'Ramai, gaya Reels/TikTok']],
   zoom: [['auto', 'Ikut setelan'], ['smooth', 'Halus'], ['punch', 'Potong'], ['out', 'Mundur']],
   mood: [['corporate', 'Upbeat profesional'], ['lofi', 'Lo-fi santai'], ['hype', 'Energik'], ['cinematic', 'Sinematik'], ['happy', 'Ceria'], ['tech', 'Teknologi'], ['none', 'Tanpa musik']]
+  , moodSyn: [['corporate', 'Sintetis · Upbeat profesional'], ['lofi', 'Sintetis · Lo-fi santai'], ['hype', 'Sintetis · Energik'], ['cinematic', 'Sintetis · Sinematik'], ['happy', 'Sintetis · Ceria'], ['tech', 'Sintetis · Teknologi']]
 };
 const optLabel = (k, v) => (OPT[k].find(o => o[0] === v) || [, v])[1];
 const VOICES = [['Kore', 'Kore · wanita, tegas'], ['Aoede', 'Aoede · wanita, ringan'], ['Leda', 'Leda · wanita, muda'], ['Zephyr', 'Zephyr · wanita, cerah'], ['Sulafat', 'Sulafat · wanita, hangat'], ['Puck', 'Puck · pria, ceria'], ['Charon', 'Charon · pria, informatif'], ['Orus', 'Orus · pria, mantap'], ['Fenrir', 'Fenrir · pria, bersemangat'], ['Achird', 'Achird · pria, ramah']];
@@ -186,6 +187,10 @@ const TYPES = {
 // ornamen yang boleh bertumpuk dengan elemen lain
 const DECOR = new Set(['doodle', 'bubble', 'burst', 'tag', 'badges', 'particles', 'backdrop', 'sticker']);
 const isFull = el => el.type === 'chapter' || el.type === 'diagram' || el.type === 'cta' || (el.type === 'media' && el.layout !== 'pip');
+// elemen yang posisinya bisa diatur (x, y) dan bisa ditaruh di depan/belakang orang
+const POS_T = new Set(['title', 'card', 'list', 'quote', 'stat', 'chips', 'lower', 'callout', 'notif', 'sticker', 'hook', 'doodle', 'bubble', 'burst', 'tag', 'badges']);
+const canPos = el => POS_T.has(el.type) || (el.type === 'media' && el.layout === 'pip');
+const canBehind = el => el.type === 'chapter' || el.type === 'particles' || canPos(el);
 const trackOf = el => (el.track === 1 ? 1 : 0); // 1 = slot atas (lapisan depan)
 const laneOf = el => (el.type === 'media' && el.layout === 'pip') ? 1 : TYPES[el.type]?.lane ?? 1;
 
@@ -198,7 +203,7 @@ function newProject(mode) {
     cap: { on: true, mode: 'pop', font: '', size: .068, pos: .74, maxWords: 3, upper: false, offset: 0 },
     cam: { mode: 'smooth', fit: 'cover' },
     person: { behind: true, bg: 'none', rim: false, outline: false },
-    audio: { mood: 'corporate', musicVol: .16, duck: true, sfx: true, sfxVol: .5, voiceVol: 1, voice: 'Kore' },
+    audio: { mood: 'none', musicVol: .18, duck: true, sfx: true, sfxVol: .35, voiceVol: 1, voice: 'Kore', musicName: '', musicStart: 0, musicLoop: true, musicDur: 0 },
     extras: { progress: true, brand: '' },
     brief: '', product: { brand: '', name: '', benefits: '', price: '', cta: '', link: '', dur: 30, tone: 'santai' },
     face: { x: .5, y: .33 }, sceneNote: '', realism: { on: true, kind: 'image', count: 2 }, density: 'ramai', script: '', hasVoice: false, auto: { look: false, music: false }
@@ -209,6 +214,7 @@ const REAL_KINDS = [['image', 'Foto realistis'], ['video', 'Video (Veo)']];
 const realCount = (p = P) => p.realism?.on ? clamp(p.realism.count | 0, 0, 6) : 0;
 function isAIVisual(el, p = P) { if (el.type !== 'media') return false; const a = p.assets.find(x => x.id === el.asset); return a ? a.origin === 'ai' : !!el.imagePrompt; }
 const elHidden = (el, p = P) => !p.realism?.on && isAIVisual(el, p);
+const CANVAS_VEO_NOTE = '<b>Kenapa klip video tidak bisa dipilih?</b> Di mode Gemini Canvas, Google hanya membuka model teks, suara, dan gambar. Veo (pembuat video) tidak tersedia di Canvas dan biayanya dihitung per detik video. Butuh klip video realistis? Pakai versi file aplikasi dengan API key dari akun Google yang billing-nya aktif. Di sini, foto realistis tetap diberi gerak kamera pelan sehingga terasa seperti b-roll.';
 function realNote(kind) { if (CANVAS && kind === 'video') return 'Video Veo tidak tersedia di mode Gemini Canvas, jadi diganti foto realistis.'; return kind === 'video' ? 'Klip 4–8 detik dibuat Veo. Hanya untuk akun Gemini API berbayar: biaya dihitung per detik video dan tiap klip butuh 1–5 menit. Bila gagal, otomatis diganti foto realistis.' : 'Foto dibuat Imagen/Gemini Image, lalu diberi gerak kamera pelan. Butuh akun yang mendukung pembuatan gambar.'; }
 let P = newProject('talk');
 const R = {
@@ -553,6 +559,20 @@ function countUp(txt, p) {
   return String(txt);
 }
 
+// ================= POSISI ELEMEN =================
+// Semua elemen overlay diposisikan lewat titik tengah (x, y) dalam satuan 0–1.
+// Bila belum diatur, titik bawaan diambil dari pilihan pos (atas/tengah/bawah).
+const DEF_Y = {
+  title: { top: .17, center: .42, bottom: .62 }, card: { top: .18, center: .42, bottom: .62 }, list: { top: .24, center: .42, bottom: .6 }, quote: { top: .2, center: .42, bottom: .6 },
+  stat: { top: .2, center: .4, bottom: .56 }, chips: { top: .14, center: .42, bottom: .62 }, hook: { top: .27, center: .44, bottom: .6 }, badges: { top: .14, center: .45, bottom: .875 }
+};
+const DEF_XY = { lower: [.38, .64], notif: [.5, .09], media: [.73, .25], sticker: [.78, .3], doodle: [.2, .25], tag: [.76, .58], bubble: [.27, .2], burst: [.72, .45], callout: [.62, .4] };
+function defXY(el) { if (DEF_XY[el.type]) return DEF_XY[el.type]; const t = DEF_Y[el.type]; return [.5, t ? (t[el.pos] ?? t.top) : .3]; }
+function elXY(el) { const d = defXY(el); return [isFinite(el.x) && el.x !== null ? el.x : d[0], isFinite(el.y) && el.y !== null ? el.y : d[1]]; }
+// kotak terakhir tiap elemen (dalam 0–1) untuk seret di preview, cek tumpukan, dan cek keterbacaan
+const RECTS = new Map(); let SCL = null; // skala elemen yang sedang digambar (titik pusat + faktor)
+function markRect(el, x, y, w, h, W, H) { if (SCL) { x = SCL.x + (x - SCL.x) * SCL.k; y = SCL.y + (y - SCL.y) * SCL.k; w *= SCL.k; h *= SCL.k; } RECTS.set(el.id, { x: x / W, y: y / H, w: w / W, h: h / H }); }
+
 // ================= ELEMEN OVERLAY =================
 function vis(el, t, din = .35, dout = .3) { return Math.min(ease((t - el.start) / din), ease((el.end - t) / dout)); }
 function drawOverlay(ctx, W, H, t, el, Lk, env) {
@@ -560,15 +580,19 @@ function drawOverlay(ctx, W, H, t, el, Lk, env) {
   const v = vis(el, t); if (v <= 0) return;
   const pl = cardStyle(Lk);
   ctx.save(); ctx.textBaseline = 'alphabetic';
+  const sk = +el.scale > 0 && +el.scale !== 1 ? clamp(+el.scale, .3, 2.5) : 1;
+  if (sk !== 1) { const [sx0, sy0] = elXY(el); SCL = { x: sx0 * W, y: sy0 * H, k: sk }; ctx.translate(SCL.x, SCL.y); ctx.scale(sk, sk); ctx.translate(-SCL.x, -SCL.y); }
+  try {
   switch (el.type) {
     case 'title': {
       const L = layoutText(ctx, el.text, { fam: Lk.fontD, size: u * (land ? .09 : .115), maxW, lines: 3, upper: Lk.upper });
-      const subH = el.sub ? u * .08 : 0, top = posTop(el.pos, H, u, L.h + subH, land);
+      const [px0, py0] = elXY(el), subH = el.sub ? u * .08 : 0, cx = clamp(px0 * W, L.w / 2 + W * .03, W - L.w / 2 - W * .03), top = clamp(py0 * H - (L.h + subH) / 2, H * .02, H * .98 - L.h - subH);
+      markRect(el, cx - L.w / 2, top, L.w, L.h + subH + u * .02, W, H);
       if (!env.behind) { const g = ctx.createLinearGradient(0, top - u * .12, 0, top + L.h + subH + u * .1); g.addColorStop(0, `rgba(0,0,0,${.55 * v})`); g.addColorStop(1, 'rgba(0,0,0,0)'); ctx.fillStyle = g; ctx.fillRect(0, Math.max(0, top - u * .12), W, L.h + subH + u * .22); }
-      drawText(ctx, L, { x: W / 2, y: top, align: 'center', color: '#fff', emColor: Lk.accent, em2: Lk.accent2, kw: Lk.kw, age, left, anim: an, stroke: env.behind ? null : 'rgba(0,0,0,.35)', strokeW: L.size * .06, shadow: env.behind ? 'rgba(0,0,0,.35)' : null });
+      drawText(ctx, L, { x: cx, y: top, align: 'center', color: '#fff', emColor: Lk.accent, em2: Lk.accent2, kw: Lk.kw, age, left, anim: an, stroke: env.behind ? null : 'rgba(0,0,0,.35)', strokeW: L.size * .06, shadow: env.behind ? 'rgba(0,0,0,.35)' : null });
       const by = top + L.h + u * .012, bw = L.w * .45 * ease((age - .3) / .5);
-      ctx.globalAlpha = ease(left / .3); ctx.fillStyle = Lk.accent; rrect(ctx, (W - bw) / 2, by, bw, u * .011, u * .006); ctx.fill();
-      if (el.sub) { ctx.globalAlpha = ease((age - .45) / .35) * ease(left / .3); textLine(ctx, plain(el.sub), W / 2, by + u * .065, { fam: Lk.fontB, size: u * .04, weight: 700, align: 'center', color: Lk.accent2, maxW, stroke: 'rgba(0,0,0,.6)', strokeW: u * .008 }); }
+      ctx.globalAlpha = ease(left / .3); ctx.fillStyle = Lk.accent; rrect(ctx, cx - bw / 2, by, bw, u * .011, u * .006); ctx.fill();
+      if (el.sub) { ctx.globalAlpha = ease((age - .45) / .35) * ease(left / .3); textLine(ctx, plain(el.sub), cx, by + u * .065, { fam: Lk.fontB, size: u * .04, weight: 700, align: 'center', color: Lk.accent2, maxW, stroke: 'rgba(0,0,0,.6)', strokeW: u * .008 }); }
       break;
     }
     case 'card': case 'list': case 'quote': {
@@ -580,7 +604,8 @@ function drawOverlay(ctx, W, H, t, el, Lk, env) {
       ctx.font = font(Lk.fontB, iS, 650); const iw = Math.max(0, ...items.map(s => ctx.measureText(s).width + iS * 1.5));
       const bw = Math.min(maxW, Math.max(L.w, iw, ...subLines.map(s => (ctx.font = font(Lk.fontB, sS, BODY_W(Lk.fontB)), ctx.measureText(s).width))) + pad * 2 + bar);
       const bh = pad * 2 + qh + L.h + (subLines.length ? u * .016 + subLines.length * sS * 1.35 : 0) + (items.length ? u * .02 + items.length * ilh : 0);
-      const x = (W - bw) / 2, y = posTop(el.pos, H, u, bh, land) + (1 - ease(age / .4)) * u * .05;
+      const [px0, py0] = elXY(el), x = clamp(px0 * W - bw / 2, W * .03, W * .97 - bw), y0 = clamp(py0 * H - bh / 2, H * .02, H * .98 - bh), y = y0 + (1 - ease(age / .4)) * u * .05;
+      markRect(el, x, y0, bw, bh, W, H);
       ctx.globalAlpha = v; drawPanel(ctx, x, y, bw, bh, Lk, u, pl, t);
       if (bar) { ctx.fillStyle = Lk.card === 'block' ? (Lk.ink || '#0B1620') : Lk.accent; rrect(ctx, x, y, bar, bh, [u * .03, 0, 0, u * .03]); ctx.fill(); }
       let cy = y + pad;
@@ -605,15 +630,16 @@ function drawOverlay(ctx, W, H, t, el, Lk, env) {
     case 'stat': {
       const p = EZ.expo((age) / 1.1), txt = countUp(el.value || el.text, p);
       const L = layoutText(ctx, [{ t: txt, em: false }], { fam: Lk.fontD, size: u * .2, maxW, lines: 1 });
-      const cy = el.pos === 'top' ? H * .2 : el.pos === 'bottom' ? H * .55 : H * .4;
-      const glow = ctx.createRadialGradient(W / 2, cy, 0, W / 2, cy, u * .55); glow.addColorStop(0, `rgba(0,0,0,${.55 * v})`); glow.addColorStop(1, 'rgba(0,0,0,0)'); ctx.fillStyle = glow; ctx.fillRect(0, cy - u * .6, W, u * 1.2);
+      const [px0, py0] = elXY(el), cy = clamp(py0 * H, H * .08, H * .9); ctx.font = font(Lk.fontD, L.size); const twm = ctx.measureText(countUp(el.value || el.text, 1)).width; const cx = clamp(px0 * W, twm / 2 + W * .03, W - twm / 2 - W * .03);
+      markRect(el, cx - twm / 2, cy - L.size * .75, twm, L.size * 1.1 + (el.text && el.value ? u * .1 : 0), W, H);
+      const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, u * .55); glow.addColorStop(0, `rgba(0,0,0,${.55 * v})`); glow.addColorStop(1, 'rgba(0,0,0,0)'); ctx.fillStyle = glow; ctx.fillRect(0, cy - u * .6, W, u * 1.2);
       const k = .55 + .45 * EZ.back(age / .45); ctx.globalAlpha = v;
-      ctx.save(); ctx.translate(W / 2, cy); ctx.scale(k, k);
+      ctx.save(); ctx.translate(cx, cy); ctx.scale(k, k);
       ctx.font = font(Lk.fontD, L.size); const tw = ctx.measureText(txt).width;
       const g = ctx.createLinearGradient(-tw / 2, 0, tw / 2, 0); g.addColorStop(0, Lk.accent); g.addColorStop(1, Lk.accent2);
       ctx.lineJoin = 'round'; ctx.lineWidth = L.size * .06; ctx.strokeStyle = 'rgba(0,0,0,.55)'; ctx.strokeText(txt, -tw / 2, L.size * .35); ctx.fillStyle = g; ctx.fillText(txt, -tw / 2, L.size * .35);
       ctx.restore();
-      if (el.text && el.value) { ctx.globalAlpha = v * ease((age - .35) / .35); textLine(ctx, plain(el.text), W / 2, cy + L.size * .35 + u * .075, { fam: Lk.fontB, size: u * .046, weight: 750, align: 'center', color: '#fff', maxW, stroke: 'rgba(0,0,0,.7)', strokeW: u * .009 }); }
+      if (el.text && el.value) { ctx.globalAlpha = v * ease((age - .35) / .35); textLine(ctx, plain(el.text), cx, cy + L.size * .35 + u * .075, { fam: Lk.fontB, size: u * .046, weight: 750, align: 'center', color: '#fff', maxW, stroke: 'rgba(0,0,0,.7)', strokeW: u * .009 }); }
       break;
     }
     case 'chips': {
@@ -622,9 +648,10 @@ function drawOverlay(ctx, W, H, t, el, Lk, env) {
       const ws = items.map(x => ctx.measureText(x).width + s * 1.6); const rows = []; let row = [], rw = 0;
       ws.forEach((w, i) => { if (row.length && rw + gap + w > maxW) { rows.push({ row, rw }); row = []; rw = 0; } row.push(i); rw += (row.length > 1 ? gap : 0) + w; });
       if (row.length) rows.push({ row, rw });
-      const totalH = rows.length * (ph + gap); let y = posTop(el.pos || 'center', H, u, totalH, land);
+      const totalH = rows.length * (ph + gap), [px0, py0] = elXY(el), maxRw = Math.max(0, ...rows.map(r => r.rw)); let y = clamp(py0 * H - totalH / 2, H * .02, H * .98 - totalH); const ccx = clamp(px0 * W, maxRw / 2 + W * .03, W - maxRw / 2 - W * .03);
+      markRect(el, ccx - maxRw / 2, y, maxRw, totalH, W, H);
       const stp = Math.min(.35, Math.max(.12, (el.end - el.start - 1) / Math.max(1, items.length)));
-      rows.forEach(({ row, rw }) => { let x = (W - rw) / 2; row.forEach(i => {
+      rows.forEach(({ row, rw }) => { let x = ccx - rw / 2; row.forEach(i => {
         const r = EZ.back((age - i * stp) / .3); if (r > 0) {
           ctx.save(); ctx.globalAlpha = v * clamp(r, 0, 1); const cx = x + ws[i] / 2, cy = y + ph / 2; ctx.translate(cx, cy); ctx.scale(r, r); ctx.translate(-cx, -cy);
           const alt = i % 2 === 1; ctx.fillStyle = alt ? 'rgba(8,15,24,.75)' : Lk.accent; rrect(ctx, x, y, ws[i], ph, ph / 2); ctx.fill();
@@ -634,9 +661,11 @@ function drawOverlay(ctx, W, H, t, el, Lk, env) {
       break;
     }
     case 'lower': {
-      const nS = u * .055, tS = u * .034, y = H * (land ? .7 : .6), x = W * .07;
+      const nS = u * .055, tS = u * .034;
       ctx.font = font(Lk.fontD, nS); const nw = ctx.measureText(plain(el.text)).width; ctx.font = font(Lk.fontB, tS, 600); const tw = ctx.measureText(plain(el.sub)).width;
-      const bw = Math.min(W * .86, Math.max(nw, tw) + u * .07), grow = ease(age / .45), out = ease(left / .3);
+      const bw = Math.min(W * .86, Math.max(nw, tw) + u * .07), grow = ease(age / .45), out = ease(left / .3), bh2 = (nS + tS) * 1.5, [px0, py0] = elXY(el);
+      const x = clamp(px0 * W - (bw + u * .012) / 2, W * .03, W * .97 - bw - u * .012), y = clamp(py0 * H - bh2 / 2, H * .02, H * .98 - bh2);
+      markRect(el, x, y, bw + u * .012, bh2, W, H);
       ctx.globalAlpha = out; ctx.fillStyle = Lk.accent; ctx.fillRect(x, y, u * .012, (nS + tS) * 1.5 * grow);
       ctx.save(); ctx.beginPath(); ctx.rect(x + u * .012, y - 5, bw * grow, (nS + tS) * 1.8); ctx.clip();
       drawPanel(ctx, x + u * .012, y, bw, nS * 1.4, { ...Lk, card: Lk.card === 'light' || Lk.card === 'paper' ? Lk.card : 'solid' }, u, cardStyle({ ...Lk, card: Lk.card === 'light' || Lk.card === 'paper' ? Lk.card : 'solid' }));
@@ -647,11 +676,12 @@ function drawOverlay(ctx, W, H, t, el, Lk, env) {
       break;
     }
     case 'callout': {
-      const tx = (el.x ?? .62) * W, ty = (el.y ?? .4) * H, toLeft = tx > W / 2;
+      const [cx0, cy0] = elXY(el), tx = cx0 * W, ty = cy0 * H, toLeft = tx > W / 2;
       const s = u * .042; ctx.font = font(Lk.fontB, s, 750); const lines = wrapPlain(ctx, plain(el.text), W * .42, Lk.fontB, s, 750, 2);
       ctx.font = font(Lk.fontB, s, 750); const lw = Math.max(...lines.map(l => ctx.measureText(l).width), 1);
       const bw = lw + s * 1.4, bh = lines.length * s * 1.3 + s * .9;
       const bx = clamp(toLeft ? tx - u * .3 - bw : tx + u * .3, W * .04, W * .96 - bw), by = clamp(ty - u * .22, H * .06, H * .8);
+      markRect(el, Math.min(bx, tx - u * .03), Math.min(by, ty - u * .03), Math.max(bx + bw, tx + u * .03) - Math.min(bx, tx - u * .03), Math.max(by + bh, ty + u * .03) - Math.min(by, ty - u * .03), W, H);
       const p = ease((age - .1) / .45); ctx.globalAlpha = ease(left / .3);
       const sx = toLeft ? bx + bw : bx, sy = by + bh / 2;
       ctx.strokeStyle = Lk.accent; ctx.lineWidth = Math.max(2, u * .005); ctx.lineCap = 'round'; ctx.setLineDash([u * .015, u * .012]);
@@ -663,8 +693,9 @@ function drawOverlay(ctx, W, H, t, el, Lk, env) {
       ctx.restore(); break;
     }
     case 'notif': {
-      const nw = W * .88, s = u * .036, x = (W - nw) / 2, lines = wrapPlain(ctx, plain(el.text), nw - u * .16, Lk.fontB, s, 600, 2), nh = u * .08 + lines.length * s * 1.35;
-      const y = H * .05 - (1 - EZ.back(age / .45)) * (nh + H * .06) - (1 - ease(left / .3)) * (nh + H * .06);
+      const nw = W * .88, s = u * .036, lines = wrapPlain(ctx, plain(el.text), nw - u * .16, Lk.fontB, s, 600, 2), nh = u * .08 + lines.length * s * 1.35, [px0, py0] = elXY(el);
+      const x = clamp(px0 * W - nw / 2, W * .02, W * .98 - nw), y0 = clamp(py0 * H - nh / 2, H * .015, H * .98 - nh), y = y0 - (1 - EZ.back(age / .45)) * (nh + H * .06) - (1 - ease(left / .3)) * (nh + H * .06);
+      markRect(el, x, y0, nw, nh, W, H);
       ctx.shadowColor = 'rgba(0,0,0,.3)'; ctx.shadowBlur = u * .04; ctx.fillStyle = 'rgba(250,251,252,.96)'; rrect(ctx, x, y, nw, nh, u * .035); ctx.fill(); ctx.shadowColor = 'transparent';
       const ic = u * .055; ctx.fillStyle = Lk.accent; rrect(ctx, x + u * .03, y + u * .028, ic, ic, ic * .26); ctx.fill();
       textLine(ctx, (plain(el.sub) || 'A')[0].toUpperCase(), x + u * .03 + ic / 2, y + u * .028 + ic * .7, { fam: Lk.fontB, size: ic * .55, weight: 800, align: 'center', color: onDark(Lk.accent) });
@@ -674,7 +705,8 @@ function drawOverlay(ctx, W, H, t, el, Lk, env) {
       break;
     }
     case 'sticker': {
-      const k = EZ.back(age / .35) * ease(left / .25), x = (el.x ?? .78) * W, y = (el.y ?? .3) * H, s = u * .16;
+      const k = EZ.back(age / .35) * ease(left / .25), [px0, py0] = elXY(el), x = px0 * W, y = py0 * H, s = u * .16;
+      markRect(el, x - s * .55, y - s * .55, s * 1.1, s * 1.1, W, H);
       ctx.translate(x, y); ctx.rotate(Math.sin(age * 3) * .12); ctx.scale(k, k);
       ctx.shadowColor = 'rgba(0,0,0,.35)'; ctx.shadowBlur = u * .03; ctx.font = `${Math.round(s)}px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(el.emoji || '✨', 0, 0);
       break;
@@ -689,13 +721,15 @@ function drawOverlay(ctx, W, H, t, el, Lk, env) {
     case 'media': { // jendela kecil
       const f = env.frame(el.asset, t - el.start); const aw = f ? f.w : 16, ah = f ? f.h : 9;
       let w = W * .44, h = w * ah / aw; if (h > H * .32) { h = H * .32; w = h * aw / ah; }
-      const x = W - w - W * .05, y = H * .1 + (1 - EZ.back(age / .45)) * -H * .2;
+      const [px0, py0] = elXY(el), x = clamp(px0 * W - w / 2, W * .02, W * .98 - w), y0 = clamp(py0 * H - h / 2, H * .02, H * .9 - h), y = y0 + (1 - EZ.back(age / .45)) * -H * .2;
+      markRect(el, x, y0, w, h + (el.text ? u * .07 : 0), W, H);
       ctx.globalAlpha = ease(left / .3); ctx.shadowColor = 'rgba(0,0,0,.4)'; ctx.shadowBlur = u * .04; ctx.fillStyle = '#fff'; rrect(ctx, x - 4, y - 4, w + 8, h + 8, u * .025); ctx.fill(); ctx.shadowColor = 'transparent';
       ctx.save(); rrect(ctx, x, y, w, h, u * .02); ctx.clip(); if (f) drawCover(ctx, f, x, y, w, h, 1 + .05 * (age / Math.max(1, el.end - el.start))); ctx.restore();
       if (el.text) textLine(ctx, plain(el.text), x + w / 2, y + h + u * .05, { fam: Lk.fontB, size: u * .032, weight: 700, align: 'center', color: '#fff', maxW: w, stroke: 'rgba(0,0,0,.7)', strokeW: u * .007 });
       break;
     }
   }
+  } finally { SCL = null; }
   ctx.restore();
 }
 function drawCover(ctx, f, x, y, w, h, zoom = 1, fx = .5, fy = .5) {
@@ -941,14 +975,16 @@ function drawHook(ctx, W, H, t, el, Lk, env) {
   const maxW = W * (land ? .6 : .86); let lines = [];
   const build = () => { lines = []; let cur = [], cw = 0; for (const tk of toks) { const w = ctx.measureText(tk.t).width, add = cur.length ? size * .26 + w : w; if (cur.length && (cw + add > maxW || cur.length >= 2 || tk.t.length > 7)) { lines.push(cur); cur = []; cw = 0; } cur.push({ ...tk, w }); cw += cur.length > 1 ? size * .26 + w : w; } if (cur.length) lines.push(cur); };
   for (let i = 0; i < 6; i++) { build(); if (lines.length <= 5 && lines.every(l => l.reduce((a, x) => a + x.w, 0) + (l.length - 1) * size * .26 <= maxW)) break; size *= .9; ctx.font = font(Lk.fontD, size); }
-  const lh = size * 1.02, blockH = lines.length * lh, cy = el.pos === 'top' ? H * .27 : el.pos === 'bottom' ? H * .6 : H * .44, top = cy - blockH / 2;
+  const lh = size * 1.02, blockH = lines.length * lh, blockW = Math.max(...lines.map(l => l.reduce((a, x) => a + x.w, 0) + (l.length - 1) * size * .26)), subH = el.sub ? u * .13 : 0;
+  const [px0, py0] = elXY(el), hx = clamp(px0 * W, blockW / 2 + W * .03, W - blockW / 2 - W * .03), cy = clamp(py0 * H, blockH / 2 + H * .03, H * .97 - blockH / 2 - subH), top = cy - blockH / 2;
+  markRect(el, hx - blockW / 2, top, blockW, blockH + subH, W, H);
   const out = ease(left / .3), anyEm = toks.some(x => x.em);
   ctx.save(); ctx.globalAlpha = out; ctx.textBaseline = 'alphabetic'; ctx.lineJoin = 'round';
-  if (!env.behind) { const g = ctx.createRadialGradient(W / 2, cy, 0, W / 2, cy, u * .75); g.addColorStop(0, 'rgba(0,0,0,.4)'); g.addColorStop(1, 'rgba(0,0,0,0)'); ctx.fillStyle = g; ctx.fillRect(0, cy - u * .8, W, u * 1.6); }
+  if (!env.behind) { const g = ctx.createRadialGradient(hx, cy, 0, hx, cy, u * .75); g.addColorStop(0, 'rgba(0,0,0,.4)'); g.addColorStop(1, 'rgba(0,0,0,0)'); ctx.fillStyle = g; ctx.fillRect(0, cy - u * .8, W, u * 1.6); }
   lines.forEach((ln, i) => {
     const r = clamp((age - i * .13) / .32, 0, 1); if (r <= 0) return;
     const k = 1 + (1 - EZ.back(r)) * .9, lw = ln.reduce((a, x) => a + x.w, 0) + (ln.length - 1) * size * .26, y = top + i * lh + size * .86;
-    ctx.save(); ctx.translate(W / 2, y - size * .35); ctx.scale(k, k); ctx.globalAlpha = out * clamp(r * 1.6, 0, 1);
+    ctx.save(); ctx.translate(hx, y - size * .35); ctx.scale(k, k); ctx.globalAlpha = out * clamp(r * 1.6, 0, 1);
     let x = -lw / 2;
     for (const tk of ln) {
       const em = tk.em || (!anyEm && i === lines.length - 1 && lines.length > 1);
@@ -964,16 +1000,16 @@ function drawHook(ctx, W, H, t, el, Lk, env) {
   if (!env.behind) {
     const q = /\?/.test(el.text), kind = q ? 'question' : 'sparkle', p = clamp((age - .25) / .5, 0, 1), col = '#FFFFFF';
     if (p > 0) {
-      drawDoodle(ctx, kind, W * .15, top - u * .03, u * .12, -.2, p, t, col, u, hash(el.id));
-      drawDoodle(ctx, q ? 'question' : 'shock', W * .87, top + blockH * .2, u * .085, .25, p, t, col, u, hash(el.id) + 3);
+      drawDoodle(ctx, kind, clamp(hx - blockW / 2 - u * .04, u * .07, W - u * .07), top - u * .03, u * .12, -.2, p, t, col, u, hash(el.id));
+      drawDoodle(ctx, q ? 'question' : 'shock', clamp(hx + blockW / 2 + u * .04, u * .07, W - u * .07), top + blockH * .2, u * .085, .25, p, t, col, u, hash(el.id) + 3);
     }
     if (el.sub) {
       const s = u * .043, r = EZ.back((age - .55) / .35); if (r > 0) {
         const lines2 = wrapPlain(ctx, plain(el.sub).toUpperCase(), W * .7, Lk.fontB, s, 800, 2); ctx.font = font(Lk.fontB, s, 800);
-        const tw = Math.max(...lines2.map(l => ctx.measureText(l).width)), bw = tw + s * 1.4, bh = lines2.length * s * 1.2 + s * .8, bx = W / 2 - bw / 2, by = top + blockH + u * .03;
-        ctx.save(); ctx.translate(W / 2, by + bh / 2); ctx.rotate(-.05); ctx.scale(r, r); ctx.translate(-W / 2, -(by + bh / 2));
+        const tw = Math.max(...lines2.map(l => ctx.measureText(l).width)), bw = tw + s * 1.4, bh = lines2.length * s * 1.2 + s * .8, bx = hx - bw / 2, by = top + blockH + u * .03;
+        ctx.save(); ctx.translate(hx, by + bh / 2); ctx.rotate(-.05); ctx.scale(r, r); ctx.translate(-hx, -(by + bh / 2));
         ctx.shadowColor = 'rgba(0,0,0,.3)'; ctx.shadowBlur = u * .02; ctx.fillStyle = Lk.accent2 || '#FFD23F'; rrect(ctx, bx, by, bw, bh, s * .25); ctx.fill(); ctx.shadowColor = 'transparent';
-        lines2.forEach((l, i) => textLine(ctx, l, W / 2, by + s * .4 + (i + 1) * s * 1.2 - s * .2, { fam: Lk.fontB, size: s, weight: 800, align: 'center', color: onDark(Lk.accent2 || '#FFD23F') }));
+        lines2.forEach((l, i) => textLine(ctx, l, hx, by + s * .4 + (i + 1) * s * 1.2 - s * .2, { fam: Lk.fontB, size: s, weight: 800, align: 'center', color: onDark(Lk.accent2 || '#FFD23F') }));
         ctx.restore();
       }
     }
@@ -986,7 +1022,8 @@ function drawBubble(ctx, W, H, t, el, Lk, env) {
   const u = Math.min(W, H), age = t - el.start, left = el.end - t, k = EZ.back(age / .35) * ease(left / .25); if (k <= 0) return;
   const s = u * .058 * (el.size || 1), fam = 'Caveat', lines = wrapPlain(ctx, plain(el.text), W * .42, fam, s, 700, 3);
   ctx.font = font(fam, s, 700); const tw = Math.max(1, ...lines.map(l => ctx.measureText(l).width));
-  const bw = tw + s * 1.3, bh = lines.length * s * 1.05 + s * .8, cx = clamp((el.x ?? .27) * W, bw / 2 + W * .03, W - bw / 2 - W * .03), cy = clamp((el.y ?? .2) * H, bh / 2 + H * .04, H * .8);
+  const bw = tw + s * 1.3, bh = lines.length * s * 1.05 + s * .8, [px0, py0] = elXY(el), cx = clamp(px0 * W, bw / 2 + W * .03, W - bw / 2 - W * .03), cy = clamp(py0 * H, bh / 2 + H * .03, H * .9);
+  markRect(el, cx - bw / 2, cy - bh / 2, bw, bh, W, H);
   const fx = (env.face?.x ?? .5) * W, fy = (env.face?.y ?? .35) * H, ang = Math.atan2(fy - cy, fx - cx);
   ctx.save(); ctx.translate(cx, cy); ctx.scale(k, k); ctx.rotate(Math.sin(age * 2) * .015); ctx.translate(-cx, -cy);
   const x = cx - bw / 2, y = cy - bh / 2, lw = Math.max(2, u * .006);
@@ -1005,7 +1042,8 @@ function drawBubble(ctx, W, H, t, el, Lk, env) {
 // ---------- ledakan komik ----------
 function drawBurst(ctx, W, H, t, el, Lk) {
   const u = Math.min(W, H), age = t - el.start, left = el.end - t, k = EZ.back(age / .28) * ease(left / .2); if (k <= 0) return;
-  const R = u * .2 * (el.size || 1), cx = (el.x ?? .72) * W, cy = (el.y ?? .45) * H, sh = age < .35 ? Math.sin(age * 90) * u * .006 : 0, fill = tagColor(el.color || 'yellow', Lk);
+  const R = u * .2 * (el.size || 1), [px0, py0] = elXY(el), cx = clamp(px0 * W, R * 1.3, W - R * 1.3), cy = clamp(py0 * H, R * 1.1, H - R * 1.1), sh = age < .35 ? Math.sin(age * 90) * u * .006 : 0, fill = tagColor(el.color || 'yellow', Lk);
+  markRect(el, cx - R * 1.35, cy - R * 1.05, R * 2.7, R * 2.1, W, H);
   ctx.save(); ctx.translate(cx + sh, cy); ctx.rotate(-.12 + Math.sin(age * 4) * .03); ctx.scale(k, k);
   ctx.strokeStyle = '#111'; ctx.lineCap = 'round'; ctx.lineWidth = u * .008;
   for (let i = 0; i < 10; i++) { const a = i / 10 * Math.PI * 2 + .3, r1 = R * 1.12, r2 = R * (1.3 + .1 * Math.sin(i * 2.7)); ctx.beginPath(); ctx.moveTo(Math.cos(a) * r1, Math.sin(a) * r1 * .8); ctx.lineTo(Math.cos(a) * r2, Math.sin(a) * r2 * .8); ctx.stroke(); }
@@ -1023,7 +1061,8 @@ function drawTag(ctx, W, H, t, el, Lk) {
   const pill = !!el.emoji, bg = tagColor(el.color || (pill ? 'dark' : 'green'), Lk), fg = onDark(bg), s = u * (pill ? .04 : .05) * (el.size || 1);
   const txt = plain(el.text).toUpperCase(), lines = wrapPlain(ctx, txt, W * (pill ? .6 : .4), Lk.fontB, s, 900, pill ? 1 : 2);
   ctx.font = font(Lk.fontB, s, 900); const tw = Math.max(1, ...lines.map(l => ctx.measureText(l).width)), ic = pill ? s * 1.5 : 0;
-  const bw = tw + s * 1.2 + (ic ? ic + s * .5 : 0), bh = Math.max(lines.length * s * 1.12 + s * .7, ic + s * .5), cx = clamp((el.x ?? .76) * W, bw / 2 + W * .03, W - bw / 2 - W * .03), cy = (el.y ?? .62) * H;
+  const bw = tw + s * 1.2 + (ic ? ic + s * .5 : 0), bh = Math.max(lines.length * s * 1.12 + s * .7, ic + s * .5), [px0, py0] = elXY(el), cx = clamp(px0 * W, bw / 2 + W * .03, W - bw / 2 - W * .03), cy = clamp(py0 * H, bh / 2 + H * .02, H * .98 - bh / 2);
+  markRect(el, cx - bw / 2 - u * .01, cy - bh / 2 - u * .02, bw + u * .02, bh + u * .04, W, H);
   const rot = el.rot != null ? el.rot * Math.PI / 180 : (pill ? 0 : (cx > W / 2 ? -.1 : .1)), k = 1 + (1 - EZ.back(r)) * .55;
   ctx.save(); ctx.globalAlpha = out; ctx.translate(cx, cy); ctx.rotate(rot); ctx.scale(k, k);
   ctx.shadowColor = 'rgba(0,0,0,.35)'; ctx.shadowBlur = u * .025; ctx.shadowOffsetY = u * .006; ctx.fillStyle = bg;
@@ -1037,8 +1076,9 @@ function drawTag(ctx, W, H, t, el, Lk) {
 // ---------- deretan ikon keunggulan ----------
 function drawBadges(ctx, W, H, t, el, Lk) {
   const u = Math.min(W, H), age = t - el.start, left = el.end - t, out = ease(left / .3), items = (el.items || []).filter(i => i.label || i.icon).slice(0, 4); if (!items.length) return;
-  const n = items.length, d = Math.min(u * .19, W * .8 / n), gap = (W * .92 - n * d) / Math.max(1, n - 1), y = el.pos === 'top' ? H * .14 : el.pos === 'center' ? H * .45 : H * .875;
-  const x0 = n === 1 ? W / 2 - d / 2 : W * .04;
+  const n = items.length, d = Math.min(u * .19, W * .8 / n), gap = (W * .92 - n * d) / Math.max(1, n - 1), [px0, py0] = elXY(el), y = clamp(py0 * H, d / 2 + H * .02, H * .97 - d * .75);
+  const span = n === 1 ? d : W * .92, x0 = clamp(px0 * W - span / 2, W * .02, W * .98 - span);
+  markRect(el, x0, y - d / 2, span, d * 1.25, W, H);
   items.forEach((it, i) => {
     const r = EZ.back((age - i * .14) / .35); if (r <= 0) return;
     const cx = x0 + i * (d + (n === 1 ? 0 : gap)) + d / 2;
@@ -1083,7 +1123,8 @@ function drawDoodleEl(ctx, W, H, t, el, Lk) {
   const u = Math.min(W, H), age = t - el.start, left = el.end - t, out = ease(left / .25); if (out <= 0) return;
   const prog = clamp(age / .5, 0, 1), col = el.color && el.color !== 'white' ? tagColor(el.color, Lk) : '#FFFFFF';
   ctx.save(); ctx.globalAlpha = out;
-  drawDoodle(ctx, el.kind || 'sparkle', (el.x ?? .2) * W, (el.y ?? .25) * H, u * .14 * (el.size || 1), (el.rot || 0) * Math.PI / 180, prog, t, col, u, hash(el.id));
+  const [px0, py0] = elXY(el), ds = u * .14 * (el.size || 1); markRect(el, px0 * W - ds * .6, py0 * H - ds * .6, ds * 1.2, ds * 1.2, W, H);
+  drawDoodle(ctx, el.kind || 'sparkle', px0 * W, py0 * H, ds, (el.rot || 0) * Math.PI / 180, prog, t, col, u, hash(el.id));
   ctx.restore();
 }
 
@@ -1172,6 +1213,32 @@ function maskFace(mask) {
 // ================= KOMPOSISI FRAME =================
 let SC = null;
 function sceneCanvas(W, H) { if (!SC) SC = document.createElement('canvas'); if (SC.width !== W || SC.height !== H) { SC.width = W; SC.height = H; } const x = SC.getContext('2d'); x.setTransform(1, 0, 0, 1, 0, 0); x.globalAlpha = 1; x.globalCompositeOperation = 'source-over'; x.filter = 'none'; x.clearRect(0, 0, W, H); return x; }
+// ---------- keterbacaan teks di belakang orang ----------
+// Hitung berapa bagian kotak elemen yang tertutup siluet orang (dari mask segmentasi).
+const BEH = new Map(); let MASKD = null;
+function maskData(mask) {
+  if (MASKD && MASKD.c === mask && MASKD.v === SEG.ts) return MASKD;
+  try { const w = mask.width, h = mask.height; MASKD = { c: mask, v: SEG.ts, w, h, d: mask.getContext('2d').getImageData(0, 0, w, h).data }; } catch { MASKD = null; }
+  return MASKD;
+}
+function occlusion(r, mask, g, W, H) {
+  const m = maskData(mask); if (!m || !r) return 0;
+  let hit = 0, n = 0; const N = 14;
+  for (let j = 0; j < N; j++) for (let i = 0; i < N; i++) {
+    const X = (r.x + r.w * (i + .5) / N) * W, Y = (r.y + r.h * (j + .5) / N) * H;
+    const mx = Math.floor((X - g.x) / g.w * m.w), my = Math.floor((Y - g.y) / g.h * m.h); n++;
+    if (mx >= 0 && my >= 0 && mx < m.w && my < m.h && m.d[(my * m.w + mx) * 4 + 3] > 120) hit++;
+  }
+  return n ? hit / n : 0;
+}
+function behindBlocked(el, mask, g, W, H, t) {
+  if (el.type === 'particles') return false;
+  const r = RECTS.get(el.id); if (!r) return false;
+  const o = occlusion(r, mask, g, W, H), st = BEH.get(el.id) || { front: false, t: -1 };
+  // ambang ganda supaya tidak berkedip bolak-balik
+  if (!st.front && o > .3) st.front = true; else if (st.front && o < .16) st.front = false;
+  st.t = t; BEH.set(el.id, st); return st.front;
+}
 function drawFrame(ctx, W, H, t, env, p = P) {
   const Lk = p.look, u = Math.min(W, H);
   ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; ctx.filter = 'none';
@@ -1181,8 +1248,9 @@ function drawFrame(ctx, W, H, t, env, p = P) {
   const hasVideo = p.mode === 'talk' && env.src;
   const mask = hasVideo ? env.mask : null;
   let g = null;
-  const BEHIND_T = ['title', 'chapter', 'hook', 'particles'], backdrop = active.find(e => e.type === 'backdrop');
-  const cutNeeded = !!mask && (p.person.bg !== 'none' || p.person.rim || p.person.outline || !!backdrop || active.some(e => e.behind && BEHIND_T.includes(e.type)));
+  const backdrop = active.find(e => e.type === 'backdrop');
+  const wantBehind = mask ? active.filter(e => e.behind && canBehind(e)) : [];
+  let cutNeeded = !!mask && (p.person.bg !== 'none' || p.person.rim || p.person.outline || !!backdrop || wantBehind.length > 0);
   if (hasVideo) {
     const cam = camAt(t, p);
     g = drawVideo(ctx, W, H, env.src, p, cam, { blur: cutNeeded && p.person.bg === 'blur' });
@@ -1194,11 +1262,13 @@ function drawFrame(ctx, W, H, t, env, p = P) {
   } else drawBg(ctx, W, H, t, Lk, Lk.sceneBg, 7);
   const envX = { ...env, behind: false, video: hasVideo ? (c, x, y, w, h) => { c.save(); c.beginPath(); c.rect(x, y, w, h); c.clip(); const s = Math.max(w / env.src.w, h / env.src.h), dw = env.src.w * s, dh = env.src.h * s; c.drawImage(env.src.img, x + (w - dw) * (p.face?.x ?? .5), y + (h - dh) * .3, dw, dh); c.restore(); } : null };
   // teks di belakang orang
-  const behind = cutNeeded ? active.filter(e => e.behind && BEHIND_T.includes(e.type)) : [];
+  // elemen 'di belakang' yang sedang banyak tertutup tubuh orang dipindah ke depan supaya tetap terbaca
+  const behind = cutNeeded && g ? wantBehind.filter(e => !behindBlocked(e, mask, g, W, H, t)) : [];
   for (const el of behind) {
     if (el.type === 'chapter') {
       const v = vis(el, t); ctx.fillStyle = `rgba(0,0,0,${.45 * v})`; ctx.fillRect(0, 0, W, H);
       const L = layoutText(ctx, el.text, { fam: Lk.fontD, size: u * .2, maxW: W * .94, lines: 3, upper: true }); ctx.globalAlpha = v;
+      markRect(el, W / 2 - L.w / 2, H * .3 - L.h / 2, L.w, L.h, W, H);
       drawText(ctx, L, { x: W / 2, y: H * .3 - L.h / 2, align: 'center', color: '#fff', emColor: Lk.accent, em2: Lk.accent2, kw: Lk.kw, age: t - el.start, left: el.end - t, anim: textAnim(Lk) }); ctx.globalAlpha = 1;
     } else drawOverlay(ctx, W, H, t, el, Lk, { ...envX, behind: true });
   }
@@ -1297,8 +1367,9 @@ class VReader {
 // ================= PEMISAH ORANG (MediaPipe) =================
 const MP_VER = '0.10.14', MP_MODEL = 'https://storage.googleapis.com/mediapipe-models/image_segmenter/selfie_segmenter/float16/latest/selfie_segmenter.tflite';
 const SEG = { state: 'idle', seg: null, p: null, ts: 0, inC: null, maskC: null, last: null };
-function segWanted(p = P) { return p.mode === 'talk' && !R.light && (p.person.bg !== 'none' || p.person.rim || p.person.outline || p.els.some(e => (e.behind && ['title', 'chapter', 'hook', 'particles'].includes(e.type)) || e.type === 'backdrop')); }
+function segWanted(p = P) { return p.mode === 'talk' && !R.light && (p.person.bg !== 'none' || p.person.rim || p.person.outline || p.els.some(e => (e.behind && canBehind(e)) || e.type === 'backdrop')); }
 function segInit() {
+  if (window.__cmsSegMock) { SEG.state = 'ready'; return Promise.resolve(true); } // kait pengujian
   if (SEG.state === 'ready') return Promise.resolve(true); if (SEG.state === 'fail') return Promise.resolve(false); if (SEG.p) return SEG.p;
   SEG.state = 'loading';
   SEG.p = (async () => {
@@ -1313,6 +1384,7 @@ function segInit() {
   return SEG.p;
 }
 function segment(src) {
+  if (window.__cmsSegMock && src) { SEG.ts++; return window.__cmsSegMock(src); }
   if (SEG.state !== 'ready' || !src) return null;
   try {
     const k = Math.min(1, 256 / Math.max(src.w, src.h)), w = Math.max(16, Math.round(src.w * k)), h = Math.max(16, Math.round(src.h * k));
@@ -1386,7 +1458,18 @@ function pad(ctx, dest, type, f, t, dur, vol) { for (const d of [-7, 7]) { const
 function kick(ctx, dest, t, v = .9) { const o = ctx.createOscillator(), g = ctx.createGain(); o.frequency.setValueAtTime(150, t); o.frequency.exponentialRampToValueAtTime(45, t + .12); g.gain.setValueAtTime(v, t); g.gain.exponentialRampToValueAtTime(.0001, t + .35); o.connect(g).connect(dest); o.start(t); o.stop(t + .4); return o; }
 function nz(ctx, dest, t, type, f, dur, v, q = .8) { const s = ctx.createBufferSource(), fl = ctx.createBiquadFilter(), g = ctx.createGain(); s.buffer = noiseBuf(); fl.type = type; fl.frequency.value = f; fl.Q.value = q; g.gain.setValueAtTime(v, t); g.gain.exponentialRampToValueAtTime(.0001, t + dur); s.connect(fl).connect(g).connect(dest); s.start(t, Math.random() * .5); s.stop(t + dur + .02); return s; }
 const loopP = {}, loopB = {};
-function ensureLoop(mood) { if (!MOODS[mood]) return Promise.resolve(null); if (!loopP[mood]) loopP[mood] = genLoop(mood).then(b => (loopB[mood] = b)).catch(e => { console.warn('musik', e); return null; }); return loopP[mood]; }
+// ---------- musik milik pengguna (mp3, wav, m4a, ogg, aac, flac) ----------
+async function setCustomMusic(blob, name, save = true) {
+  const ab = await blob.arrayBuffer(); let buf;
+  try { buf = await new OfflineAudioContext(2, 1, 48000).decodeAudioData(ab); } catch { throw new Error('File musik tidak bisa dibaca browser ini. Coba MP3 atau WAV.'); }
+  if (!buf || buf.duration < 1) throw new Error('File musik terlalu pendek.');
+  loopB.custom = buf; loopP.custom = Promise.resolve(buf); R.musicBlob = blob;
+  if (save) { P.audio.musicName = String(name || 'Musik saya').slice(0, 80); P.audio.musicStart = 0; P.audio.musicLoop = true; P.audio.mood = 'custom'; P.auto.music = false; dbPutBlob('music', blob); }
+  P.audio.musicDur = +buf.duration.toFixed(2);
+  return buf;
+}
+function clearCustomMusic() { delete loopB.custom; delete loopP.custom; R.musicBlob = null; dbDel('music'); if (P.audio.mood === 'custom') P.audio.mood = 'none'; P.audio.musicName = ''; P.audio.musicDur = 0; }
+function ensureLoop(mood) { if (mood === 'custom') return Promise.resolve(loopB.custom || null); if (!MOODS[mood]) return Promise.resolve(null); if (!loopP[mood]) loopP[mood] = genLoop(mood).then(b => (loopB[mood] = b)).catch(e => { console.warn('musik', e); return null; }); return loopP[mood]; }
 async function genLoop(mood) {
   const M = MOODS[mood], sr = 44100, spb = 60 / M.bpm, bar = spb * 4, len = bar * 8, r = rng(11);
   const ctx = new OfflineAudioContext(2, Math.ceil(len * sr), sr);
@@ -1426,18 +1509,27 @@ function duckCurve(buf) {
 }
 function scheduleMusic(ctx, dest, at, off, dur, p = P) {
   const buf = loopB[p.audio.mood]; if (!buf || p.audio.mood === 'none') return [];
-  const left = dur - off; if (left <= .05) return [];
+  let left = dur - off; if (left <= .05) return [];
   const s = ctx.createBufferSource(), fade = ctx.createGain(), duck = ctx.createGain(); s.buffer = buf; s.loop = true;
+  // musik unggahan: mulai dari detik pilihan pengguna, boleh diulang atau berhenti saat lagunya habis
+  let pos = off % buf.duration;
+  if (p.audio.mood === 'custom') {
+    const st = clamp(+p.audio.musicStart || 0, 0, Math.max(0, buf.duration - 1)), span = buf.duration - st;
+    if (p.audio.musicLoop !== false) { s.loopStart = st; s.loopEnd = buf.duration; pos = st + off % span; }
+    else { s.loop = false; pos = st + off; if (pos >= buf.duration - .05) return []; left = Math.min(left, buf.duration - pos); dur = off + left; }
+  }
   const fi = 1, fo = 1.5;
   fade.gain.setValueAtTime(off < fi ? off / fi + .001 : 1, at); if (off < fi) fade.gain.linearRampToValueAtTime(1, at + (fi - off));
   const foStart = Math.max(0, dur - fo - off); fade.gain.setValueAtTime(off > dur - fo ? (dur - off) / fo : 1, at + foStart); fade.gain.linearRampToValueAtTime(.0001, at + left);
   const curve = p.audio.duck ? duckCurve(voiceOut()) : null;
   if (curve) { const i0 = Math.floor(off / .05), i1 = Math.min(curve.length, Math.ceil(dur / .05)); if (i1 - i0 > 2) { try { duck.gain.setValueCurveAtTime(curve.slice(i0, i1), at, (i1 - i0) * .05); } catch {} } }
-  s.connect(fade).connect(duck).connect(dest); s.start(at, off % buf.duration); s.stop(at + left);
+  s.connect(fade).connect(duck).connect(dest); s.start(at, pos); s.stop(at + left);
   return [s];
 }
-const SFX_AUTO = { title: 'whoosh', card: 'whoosh', list: 'click', stat: 'ding', chips: 'pop', quote: 'whoosh', lower: 'whoosh', callout: 'pop', notif: 'ding', sticker: 'pop', media: 'whoosh', chapter: 'boom', diagram: 'whoosh', cta: 'riser', fx: 'boom', hook: 'boom', doodle: 'none', bubble: 'pop', burst: 'boom', tag: 'pop', badges: 'pop', particles: 'ding', backdrop: 'whoosh' };
-function sfxKind(el) { if (!el.sfx || el.sfx === 'auto') { if (el.type === 'fx') return el.kind === 'flash' ? 'boom' : el.kind === 'glitch' ? 'click' : el.kind === 'whip' || el.kind === 'zoomblur' ? 'whoosh' : 'none'; if (el.type === 'media' && el.layout === 'pip') return 'pop'; return SFX_AUTO[el.type] || 'none'; } return el.sfx; }
+// efek suara otomatis sengaja dibuat jarang: hanya momen penting, supaya tidak terdengar 'jedag-jedug' terus
+const SFX_AUTO = { title: 'whoosh', card: 'none', list: 'none', stat: 'ding', chips: 'none', quote: 'none', lower: 'whoosh', callout: 'none', notif: 'ding', sticker: 'none', media: 'whoosh', chapter: 'whoosh', diagram: 'none', cta: 'riser', fx: 'none', hook: 'whoosh', doodle: 'none', bubble: 'pop', burst: 'pop', tag: 'none', badges: 'none', particles: 'none', backdrop: 'whoosh' };
+const SFX_GAP = 1.4;
+function sfxKind(el) { if (!el.sfx || el.sfx === 'auto') { if (el.type === 'fx') return el.kind === 'whip' ? 'whoosh' : 'none'; if (el.type === 'media' && el.layout === 'pip') return 'pop'; return SFX_AUTO[el.type] || 'none'; } return el.sfx; }
 function sfx(ctx, dest, w, kind) {
   const N = [];
   if (kind === 'pop') { const o = ctx.createOscillator(), g = ctx.createGain(); o.frequency.setValueAtTime(900, w); o.frequency.exponentialRampToValueAtTime(380, w + .12); g.gain.setValueAtTime(.0001, w); g.gain.exponentialRampToValueAtTime(.6, w + .01); g.gain.exponentialRampToValueAtTime(.0001, w + .2); o.connect(g).connect(dest); o.start(w); o.stop(w + .22); N.push(o); }
@@ -1449,10 +1541,13 @@ function sfx(ctx, dest, w, kind) {
   return N;
 }
 function scheduleSfx(ctx, dest, at, off, p = P) {
-  if (!p.audio.sfx) return []; const N = [];
-  for (const el of p.els) {
+  if (!p.audio.sfx) return []; const N = []; let last = -9;
+  for (const el of [...p.els].sort((a, b) => a.start - b.start)) {
     const k = sfxKind(el); if (k === 'none' || elHidden(el, p)) continue;
-    const times = el.type === 'list' ? (el.items || []).slice(0, 5).map((_, i) => el.start + .35 + i * Math.min(.6, Math.max(.8, el.end - el.start - 1.2) / Math.max(1, (el.items || []).length))) : el.type === 'chips' ? (el.items || []).slice(0, 6).map((_, i) => el.start + i * Math.min(.35, Math.max(.12, (el.end - el.start - 1) / Math.max(1, (el.items || []).length)))) : [Math.max(0, el.start - .06)];
+    const auto = !el.sfx || el.sfx === 'auto';
+    if (auto && el.start - last < SFX_GAP) continue; // jeda minimum antar efek otomatis
+    last = el.start;
+    const times = !auto && el.type === 'list' ? (el.items || []).slice(0, 5).map((_, i) => el.start + .35 + i * Math.min(.6, Math.max(.8, el.end - el.start - 1.2) / Math.max(1, (el.items || []).length))) : !auto && el.type === 'chips' ? (el.items || []).slice(0, 6).map((_, i) => el.start + i * Math.min(.35, Math.max(.12, (el.end - el.start - 1) / Math.max(1, (el.items || []).length)))) : [Math.max(0, el.start - .06)];
     for (const tt of times) { if (tt < off - .01) continue; N.push(...sfx(ctx, dest, at + tt - off, k)); }
   }
   return N;
@@ -1788,7 +1883,7 @@ const img64 = b64 => ({ inlineData: { mimeType: 'image/jpeg', data: b64 } });
 
 // ================= SKEMA =================
 const S_WORDS = { type: 'OBJECT', properties: { language: { type: 'STRING' }, words: { type: 'ARRAY', items: { type: 'OBJECT', properties: { w: { type: 'STRING' }, s: { type: 'NUMBER' }, e: { type: 'NUMBER' } }, required: ['w', 's', 'e'] } } }, required: ['words'] };
-const S_VISION = { type: 'OBJECT', properties: { faceX: { type: 'NUMBER' }, faceY: { type: 'NUMBER' }, shot: { type: 'STRING' }, setting: { type: 'STRING' }, tone: { type: 'STRING' }, colors: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ['faceX', 'faceY'] };
+const S_VISION = { type: 'OBJECT', properties: { faceX: { type: 'NUMBER' }, faceY: { type: 'NUMBER' }, faceW: { type: 'NUMBER' }, faceH: { type: 'NUMBER' }, shot: { type: 'STRING' }, setting: { type: 'STRING' }, tone: { type: 'STRING' }, colors: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ['faceX', 'faceY'] };
 const S_ASSETS = { type: 'OBJECT', properties: { assets: { type: 'ARRAY', items: { type: 'OBJECT', properties: { id: { type: 'STRING' }, desc: { type: 'STRING' } }, required: ['id', 'desc'] } } }, required: ['assets'] };
 const S_ITEM = { type: 'OBJECT', properties: { label: { type: 'STRING' }, value: { type: 'STRING' }, icon: { type: 'STRING' } } };
 const S_EL = { type: 'OBJECT', properties: {
@@ -1852,6 +1947,8 @@ Khusus video berbicara:
 - Adegan layar penuh total maksimal ±35% durasi supaya wajah tetap jadi pusat. Diagram 4–7 dtk, media 2–4 dtk.
 - Kepadatan mengikuti arahan: tenang ≈ 1 elemen per 4 dtk, seimbang ≈ 1 per 2,5 dtk, ramai ≈ 1 per 1,5 dtk (ornamen dan zoom ikut dihitung).
 - Ornamen tidak boleh menutupi wajah: letakkan di sisi kiri/kanan atau di atas kepala (lihat posisi wajah).
+- Jangan menaruh dua teks/ornamen di tempat yang sama pada waktu bersamaan. Aplikasi akan merapikan posisi akhir secara otomatis (menghindari wajah, caption, dan tumpukan), jadi x,y cukup sebagai arah kasar. Ornamen yang tidak kebagian tempat akan dibuang, jadi lebih baik sedikit tetapi pas.
+- Teks di belakang orang (behind=true) hanya efektif bila ada ruang kosong di atas kepala atau di samping tubuh; untuk shot close-up pilih behind=false.
 - pos kartu: "top" bila wajah ada di tengah atau bawah frame, "bottom" bila wajah di atas. stat "center".`;
 const SYS_PRODUCT = `Kamu sutradara video iklan produk pendek tanpa orang. Videonya berupa adegan layar penuh yang berurutan, ditemani narasi (transkrip bertimestamp) dan caption. Balas JSON sesuai skema saja.
 ${CATALOG}
@@ -1883,7 +1980,7 @@ function cleanWords(arr, dur) {
 }
 async function aiVision() {
   const d = P.duration, frames = await grabVideoFrames(R.url, [d * .15, d * .45, d * .75], 448);
-  const res = await gemini([...frames.map(f => img64(f.b64)), { text: 'Ini beberapa frame dari video orang berbicara. Tentukan titik tengah wajah utama (faceX, faceY, 0–1 dari kiri-atas, rata-rata dari semua frame), shot (close | medium | wide), setting (suasana tempat dan pencahayaan, satu kalimat), tone video (santai | serius | energik | hangat), dan colors: dua warna hex yang menonjol dari pakaian atau latar dan cocok dijadikan warna aksen.' }], { schema: S_VISION, temp: .2 });
+  const res = await gemini([...frames.map(f => img64(f.b64)), { text: 'Ini beberapa frame dari video orang berbicara. Tentukan titik tengah wajah utama (faceX, faceY, 0–1 dari kiri-atas, rata-rata dari semua frame), lebar dan tinggi kepala termasuk rambut (faceW, faceH, 0–1 terhadap lebar/tinggi frame), shot (close | medium | wide), setting (suasana tempat dan pencahayaan, satu kalimat), tone video (santai | serius | energik | hangat), dan colors: dua warna hex yang menonjol dari pakaian atau latar dan cocok dijadikan warna aksen.' }], { schema: S_VISION, temp: .2 });
   return res;
 }
 async function aiDescribeAssets(list) {
@@ -1903,7 +2000,7 @@ async function aiDirect(rev = null) {
   const talk = P.mode === 'talk';
   const head = `Durasi video: ${P.duration.toFixed(1)} dtk. Rasio: ${P.aspect}. ${nicheText()}
 Arahan pengguna: ${P.brief || '-'}
-${talk ? `Posisi wajah (0–1): x=${(P.face.x).toFixed(2)}, y=${(P.face.y).toFixed(2)}. Suasana: ${P.sceneNote || '-'}.` : `Data produk: merek ${P.product.brand || '-'}; produk ${P.product.name || '-'}; harga/promo ${P.product.price || '-'}; ajakan ${P.product.cta || '-'}; link ${P.product.link || '-'}.`}
+${talk ? `Posisi wajah (0–1): x=${(P.face.x).toFixed(2)}, y=${(P.face.y).toFixed(2)}${P.faceW ? `, lebar kepala ${P.faceW.toFixed(2)}, tinggi ${(P.faceH || 0).toFixed(2)}` : ''}. Suasana: ${P.sceneNote || '-'}.` : `Data produk: merek ${P.product.brand || '-'}; produk ${P.product.name || '-'}; harga/promo ${P.product.price || '-'}; ajakan ${P.product.cta || '-'}; link ${P.product.link || '-'}.`}
 Aset tersedia:\n${assetsText()}
 ${realismText()}`;
   let user;
@@ -2088,7 +2185,7 @@ function tidyEls(els, dur) {
   resolveOverlap(els.filter(isFull), 0);
   assignTracks(els);
   for (const tr of [0, 1]) resolveOverlap(els.filter(e => !isFull(e) && laneOf(e) === 1 && EXCL.has(e.type) && trackOf(e) === tr), .1);
-  els = els.filter(e => { const d = e._drop; delete e._drop; return !d; });
+  els = layoutEls(els).filter(e => { const d = e._drop; delete e._drop; return !d; });
   if (P.mode === 'product') {
     // isi celah jalur adegan, tapi CTA tidak pernah ditarik ke depan
     const cta = els.find(e => e.type === 'cta'), endBody = cta ? cta.start : dur;
@@ -2238,6 +2335,7 @@ function applyPlan(plan, rev = null) {
     if (P.auto.music && MOODS[plan.mood]) P.audio.mood = plan.mood;
     if (plan.title && (P.name === 'Video baru' || P.name === 'Video produk')) P.name = String(plan.title).slice(0, 60);
   }
+  layoutAll(); // tata letak ulang dengan gaya visual final
   ensureLoop(P.audio.mood);
 }
 function applyLook(lk) { P.look = { ...BASE_LOOK, ...lk }; P.cap.mode = lk.capMode || P.cap.mode; P.cap.upper = !!lk.upper; P.cap.font = ''; }
@@ -2283,6 +2381,188 @@ function exportPrompts() {
     out.push(`KLIP ${fmtT(a)}–${fmtT(b)}\nGaya: aksen ${Lk.accent} dan ${Lk.accent2}, huruf ${Lk.fontD}, kartu ${optLabel('card', Lk.card).toLowerCase()}, animasi teks ${optLabel('textIn', Lk.textIn).toLowerCase()}, caption ${optLabel('capMode', P.cap.mode).toLowerCase()}.\n${said ? `Ucapan: "${said}"\n` : ''}${lines.length ? 'Tambahkan:\n- ' + lines.join('\n- ') : 'Biarkan video apa adanya, hanya caption.'}`);
   }
   return out.join('\n\n');
+}
+
+// ================= TATA LETAK OTOMATIS =================
+// Menaruh setiap elemen supaya: tidak menutupi wajah, tidak menimpa caption, tidak bertumpuk dengan
+// elemen lain yang tampil bersamaan, dan elemen "di belakang orang" tidak tertutup tubuh.
+// Ukuran elemen diukur dengan menggambarnya sekali di kanvas kecil, jadi hasilnya sesuai tampilan asli.
+let LAYC = null;
+function layCanvas(W, H) { if (!LAYC) LAYC = document.createElement('canvas'); if (LAYC.width !== W || LAYC.height !== H) { LAYC.width = W; LAYC.height = H; } const x = LAYC.getContext('2d'); x.setTransform(1, 0, 0, 1, 0, 0); x.clearRect(0, 0, W, H); return x; }
+function layDims() { try { return outDims(240); } catch { return { W: 240, H: 426 }; } }
+const rArea = r => Math.max(0, r.w) * Math.max(0, r.h);
+function rInter(a, b) { const w = Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x), h = Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y); return w > 0 && h > 0 ? w * h : 0; }
+const tOver = (a, b) => Math.min(a.end, b.end) - Math.max(a.start, b.start) > .05;
+// ukur kotak elemen dan selisih titik tengah kotak terhadap titik (x, y) elemen
+function measureEl(el, p, W, H) {
+  const ctx = layCanvas(W, H), t = el.start + Math.min(1.2, (el.end - el.start) / 2), k0 = el.scale;
+  RECTS.delete(el.id); delete el.scale; // ukur pada skala 1
+  try { drawOverlay(ctx, W, H, t, el, p.look, { behind: false, face: p.face, video: null, frame: () => null }); } catch (e) { console.warn('ukur', el.type, e); }
+  if (k0 !== undefined) el.scale = k0;
+  const r = RECTS.get(el.id); RECTS.delete(el.id); if (!r) return null;
+  const [px, py] = elXY(el);
+  return { w: r.w, h: r.h, ox: r.x + r.w / 2 - px, oy: r.y + r.h / 2 - py };
+}
+// kotak sebenarnya pada posisi & skala elemen saat ini (setelah semua batas layar diterapkan)
+function measureNow(el, p, W, H) {
+  const ctx = layCanvas(W, H), t = el.start + Math.min(1.2, (el.end - el.start) / 2);
+  RECTS.delete(el.id);
+  try { drawOverlay(ctx, W, H, t, el, p.look, { behind: false, face: p.face, video: null, frame: () => null }); } catch {}
+  const r = RECTS.get(el.id); RECTS.delete(el.id); return r || null;
+}
+function rectAt(m, x, y, k = 1) {
+  const w = Math.min(m.w * k, .98), h = Math.min(m.h * k, .98);
+  return { x: clamp(x + m.ox * k - w / 2, .01, .99 - w), y: clamp(y + m.oy * k - h / 2, .01, .99 - h), w, h };
+}
+// zona wajah & tubuh dalam koordinat layar hasil (0–1)
+function faceZones(p) {
+  if (p.mode !== 'talk') return null;
+  // utamakan kotak kepala hasil pemisah orang (paling akurat); bila tidak ada, pakai perkiraan AI
+  const S = p.faceS, f = S ? { x: S.x, y: S.y } : (p.face || { x: .5, y: .35 }), shot = (p.sceneNote || '').split(',')[0].trim().toLowerCase();
+  let fw = S ? S.w / 1.25 * 1.12 : p.faceW, fh = S ? S.h / 1.4 * 1.12 : p.faceH;
+  if (!(fw > .03 && fw < .95)) fw = shot === 'close' ? .42 : shot === 'wide' ? .14 : .24;
+  if (!(fh > .03 && fh < .95)) fh = fw * .75;
+  // ubah ke koordinat layar: video di-crop mengikuti wajah (lihat drawVideo)
+  const { W, H } = layDims(), sw = R.srcW || W, sh = R.srcH || H;
+  let fx = f.x, fy = f.y, kw = 1, kh = 1;
+  if ((p.cam?.fit || 'cover') === 'cover' || Math.abs(sw / sh - W / H) < .02) {
+    const s = Math.max(W / sw, H / sh), dw = sw * s, dh = sh * s;
+    const gx = clamp(W / 2 - f.x * dw, W - dw, 0), gy = clamp(H * .42 - f.y * dh, H - dh, 0);
+    fx = (gx + f.x * dw) / W; fy = (gy + f.y * dh) / H; kw = dw / W; kh = dh / H;
+  } else { const s = Math.min(W / sw, H / sh), dw = sw * s, dh = sh * s; fx = ((W - dw) / 2 + f.x * dw) / W; fy = ((H - dh) / 2 + f.y * dh) / H; kw = dw / W; kh = dh / H; }
+  // kotak wajah diberi ruang ekstra (rambut, dagu, gerakan kepala, zoom kamera)
+  const w = Math.min(.95, fw * kw * 1.25), h = Math.min(.9, fh * kh * 1.4);
+  const face = { x: fx - w / 2, y: fy - h * .55, w, h };
+  const bw = Math.min(1, w * 2.4), body = { x: fx - bw / 2, y: face.y + h * .55, w: bw, h: 1.2 - face.y };
+  return { face, body, fx, fy };
+}
+function capZone(p) {
+  if (!p.cap?.on || !p.words?.length) return null;
+  const { W, H } = layDims(), u = Math.min(W, H), m = p.cap.mode, half = (p.cap.size || .07) * u * (m === 'tiered' ? 2.4 : m === 'single' ? 1.3 : 1.65) / H + .012;
+  return { x: .04, y: p.cap.pos - half, w: .92, h: half * 2 };
+}
+// kandidat titik (x, y) per jenis elemen; titik pertama = pilihan awal (AI / bawaan)
+const YS = [.08, .12, .16, .2, .24, .28, .32, .36, .4, .44, .48, .52, .56, .6, .64, .68, .72, .76, .8, .84, .88, .92];
+function layCands(el, land) {
+  const [x0, y0] = elXY(el), out = [[x0, y0]];
+  const wide = ['title', 'card', 'list', 'quote', 'chips', 'notif', 'hook', 'badges', 'stat'].includes(el.type);
+  const xs = wide ? (land ? [.5, .3, .7] : [.5]) : el.type === 'lower' ? [.38, .5, .62] : [.1, .17, .25, .35, .5, .65, .75, .83, .9];
+  for (const y of YS) for (const x of xs) out.push([x, y]);
+  return out;
+}
+const LAY_PRIO = { hook: 0, title: 1, stat: 1, card: 2, list: 2, quote: 2, chips: 2, media: 2, notif: 3, lower: 3, callout: 4, badges: 4, tag: 5, bubble: 5, burst: 5, sticker: 6, doodle: 7 };
+const isDecorEl = el => ['doodle', 'tag', 'bubble', 'burst', 'sticker', 'callout', 'badges'].includes(el.type);
+// only: hanya atur elemen tertentu (mis. yang baru ditambah); force: atur ulang juga yang sudah dipindah pengguna
+function layoutEls(els, p = P, opt = {}) {
+  if (typeof document === 'undefined' || !els?.length) return els;
+  const { W, H } = layDims(), land = W > H * 1.1, Z = faceZones(p), cap = capZone(p);
+  const list = els.filter(e => canPos(e) && !e._drop).sort((a, b) => (LAY_PRIO[a.type] ?? 5) - (LAY_PRIO[b.type] ?? 5) || a.start - b.start);
+  const placed = [];
+  const fixed = e => (e.manual && !opt.force) || (opt.only && !opt.only.includes(e));
+  // elemen yang tidak diatur ulang tetap dihitung sebagai penghalang
+  for (const el of list) if (fixed(el)) { const m = measureEl(el, p, W, H); if (m) { const [x, y] = elXY(el); placed.push({ el, r: rectAt(m, x, y, el.scale || 1) }); } }
+  for (const el of list) {
+    if (fixed(el)) continue;
+    const m = measureEl(el, p, W, H); if (!m) continue;
+    const behind = el.behind && p.mode === 'talk', userK = el.scaleUser ? el.scale : null;
+    const cands = layCands(el, land), [px, py] = cands[0];
+    const score = (x, y, i, k) => {
+      const r = rectAt(m, x, y, k), A = rArea(r) || 1e-4; let c = 0, hard = 0;
+      if (Z) { const f = rInter(r, Z.face) / A; c += f * 1000; hard += f; if (behind) c += rInter(r, Z.body) / A * 60; }
+      if (cap) { const q = rInter(r, cap) / A; c += q * 400; hard += q; }
+      for (const o of placed) if (tOver(o.el, el)) { const q = rInter(r, o.r) / Math.min(A, rArea(o.r) || 1e-4); c += q * 600; hard += q; }
+      c += Math.hypot(x - px, (y - py) * 1.3) * 25 + (i ? 2 : 0) + (1 - k) * 60;
+      return { c, hard, r, k };
+    };
+    // coba ukuran asli dulu; bila tidak ada tempat bersih, perkecil bertahap
+    // nilai sebuah kotak (dipakai ulang untuk kotak hasil ukur sebenarnya)
+    const judge = (r, x, y, i, k) => {
+      const A = rArea(r) || 1e-4; let c = 0, hard = 0;
+      if (Z) { const f = rInter(r, Z.face) / A; c += f * 1000; hard += f; if (behind) c += rInter(r, Z.body) / A * 60; }
+      if (cap) { const q = rInter(r, cap) / A; c += q * 400; hard += q; }
+      for (const o of placed) if (tOver(o.el, el)) { const q = rInter(r, o.r) / Math.min(A, rArea(o.r) || 1e-4); c += q * 600; hard += q; }
+      c += Math.hypot(x - px, (y - py) * 1.3) * 25 + (i ? 2 : 0) + (1 - k) * 60;
+      return { c, hard, r, k, x, y };
+    };
+    const apply = (x, y, k) => { el.x = +x.toFixed(3); el.y = +y.toFixed(3); if (!userK) { if (k < 1) el.scale = k; else delete el.scale; } };
+    const pick = () => {
+      // perkiraan cepat untuk semua kandidat, lalu cek ulang beberapa terbaik dengan ukuran sebenarnya
+      const all = [];
+      for (const k of userK ? [userK] : isDecorEl(el) ? [1, .85, .7, .55] : [1, .86, .74, .62]) cands.forEach(([x, y], i) => all.push({ ...score(x, y, i, k), x, y, i }));
+      all.sort((a, b) => a.c - b.c);
+      let best = null;
+      for (const c of all.slice(0, 10)) {
+        apply(c.x, c.y, c.k); const r = measureNow(el, p, W, H); if (!r) continue;
+        const real = judge(r, c.x, c.y, c.i, c.k);
+        if (!best || real.c < best.c) best = real;
+        if (real.hard <= .03) break;
+      }
+      return best || { ...all[0], r: all[0].r };
+    };
+    let best = pick();
+    if (best.hard > .06 && !opt.keep) {
+      // tidak ada tempat kosong: ornamen dibuang; teks digeser waktunya setelah elemen yang bentrok
+      if (isDecorEl(el) && !el.manual) { el._drop = true; continue; }
+      const clash = placed.filter(o => tOver(o.el, el) && rInter(best.r, o.r) > 0).sort((a, b) => b.el.end - a.el.end)[0];
+      if (clash && clash.el.end + .1 < el.end - 1.2) { el.start = +(clash.el.end + .1).toFixed(2); best = pick(); }
+      else if (clash && !el.manual && !opt.only) { el._drop = true; continue; }
+    }
+    apply(best.x, best.y, best.k);
+    // di belakang orang tapi tetap kena badan: taruh di depan saja (asal tidak di wajah)
+    if (behind && Z && rInter(best.r, Z.body) / (rArea(best.r) || 1) > .18) el.behind = false;
+    placed.push({ el, r: best.r });
+  }
+  return els;
+}
+// dipakai setelah rencana AI disusun / proyek dibuka
+function layoutAll(force = false, keep = false) { P.els = layoutEls(P.els, P, { force, keep }).filter(e => { const d = e._drop; delete e._drop; return !d; }); P.layoutV = 2; }
+
+// ---------- kalibrasi wajah dari pemisah orang ----------
+// Cari kotak kepala dari siluet: mulai dari puncak kepala, berhenti saat siluet melebar (bahu).
+function maskHead(mask) {
+  try {
+    const w = mask.width, h = mask.height, d = mask.getContext('2d').getImageData(0, 0, w, h).data, min = Math.max(2, w * .02);
+    let top = -1, maxW = 0, L = w, Rr = 0, sx = 0, n = 0, end = -1;
+    for (let y = 0; y < h; y++) {
+      let l = -1, r = -1, c = 0, s = 0;
+      for (let x = 0; x < w; x++) if (d[(y * w + x) * 4 + 3] > 140) { if (l < 0) l = x; r = x; c++; s += x; }
+      if (c < min) { if (top >= 0 && y - top > 4) { end = y; break; } continue; }
+      if (top < 0) top = y;
+      const wd = r - l + 1, hh = y - top;
+      if (hh > maxW * .7 && wd > maxW * 1.35 && maxW > 0) { end = y; break; } // bahu
+      if (hh > maxW * 1.6 && maxW > 0) { end = y; break; }
+      maxW = Math.max(maxW, wd); L = Math.min(L, l); Rr = Math.max(Rr, r); sx += s; n += c;
+    }
+    if (top < 0 || !n) return null; if (end < 0) end = h;
+    const hw = (Rr - L + 1) / w, hh = (end - top) / h;
+    if (hw < .03 || hh < .03) return null;
+    return { x: sx / n / w, y: (top + end) / 2 / h, w: hw, h: hh };
+  } catch { return null; }
+}
+async function calibrateFace() {
+  if (P.mode !== 'talk' || !R.url || R.light) return false;
+  if (!(await segInit())) return false;
+  const v = document.createElement('video'); v.muted = true; v.playsInline = true; v.preload = 'auto'; v.src = R.url;
+  const evt = (n, ms = 4000) => new Promise(r => { const t = setTimeout(r, ms); v.addEventListener(n, () => { clearTimeout(t); r(); }, { once: true }); });
+  try {
+    await evt('loadeddata'); const boxes = [];
+    for (const f of [.1, .28, .46, .64, .82]) {
+      v.currentTime = Math.max(.05, f * (v.duration || P.duration)); await evt('seeked');
+      const src = { img: v, w: v.videoWidth, h: v.videoHeight }; segment(src); const m = segment(src); // dua kali: hasil pertama masih terpengaruh frame sebelumnya
+      const b = m && maskHead(m); if (b) boxes.push(b);
+    }
+    if (boxes.length < 2) return false;
+    const med = k => { const a = boxes.map(b => b[k]).sort((x, y) => x - y); return a[Math.floor(a.length / 2)]; }, hi = k => { const a = boxes.map(b => b[k]).sort((x, y) => x - y); return a[Math.min(a.length - 1, Math.ceil(a.length * .75))]; };
+    P.faceS = { x: +med('x').toFixed(3), y: +med('y').toFixed(3), w: +hi('w').toFixed(3), h: +hi('h').toFixed(3) };
+    P.face = { x: clamp(P.faceS.x, .1, .9), y: clamp(P.faceS.y, .1, .9) };
+    return true;
+  } catch (e) { console.warn('kalibrasi wajah', e); return false; }
+  finally { v.removeAttribute('src'); v.load(); }
+}
+// jalankan di latar: kalibrasi lalu rapikan ulang posisi elemen (yang belum digeser pengguna)
+async function refineLayout() {
+  if (R.calibrating) return; R.calibrating = true;
+  try { if (await calibrateFace()) { layoutAll(); commit(true); requestDraw(); drawTimeline(); if (R.panel === 'el') renderPanel(); } } finally { R.calibrating = false; }
 }
 
 // ================= DRAF (IndexedDB) =================
@@ -2331,8 +2611,8 @@ function useTemplate(tp) { P.look = { ...BASE_LOOK, ...tp.look }; Object.assign(
 
 // ================= HALAMAN AWAL =================
 const HOME = { mode: 'talk', files: [] };
-const STEP_LABEL = { audio: 'Membaca audio video', tr: 'AI mentranskrip per kata', vision: 'AI melihat wajah & suasana', assets: 'AI mengenali foto/video', seg: 'Menyiapkan pemisah orang', script: 'AI menulis naskah iklan', voice: 'AI membacakan naskah', direct: 'AI menyusun motion graphics', images: 'AI membuat visual realistis' };
-const STEP_ORDER = { talk: ['audio', 'tr', 'vision', 'assets', 'seg', 'direct', 'images'], product: ['assets', 'script', 'voice', 'tr', 'direct', 'images'] };
+const STEP_LABEL = { audio: 'Membaca audio video', tr: 'AI mentranskrip per kata', vision: 'AI melihat wajah & suasana', assets: 'AI mengenali foto/video', seg: 'Mengunci posisi wajah & merapikan tata letak', script: 'AI menulis naskah iklan', voice: 'AI membacakan naskah', direct: 'AI menyusun motion graphics', images: 'AI membuat visual realistis' };
+const STEP_ORDER = { talk: ['audio', 'tr', 'vision', 'assets', 'direct', 'images', 'seg'], product: ['assets', 'script', 'voice', 'tr', 'direct', 'images'] };
 function setHomeMode(m) {
   HOME.mode = m;
   $$('.choice').forEach(b => { const on = b.dataset.mode === m; b.classList.toggle('on', on); b.setAttribute('aria-checked', on); });
@@ -2362,12 +2642,14 @@ function homeSettings(p) {
   p.aspect = $('#hAspect').value; p.niche = $('#hNiche').value; p.brief = $('#hBrief').value.trim(); p.realism = { on: $('#hReal').checked, kind: CANVAS ? 'image' : $('#hRealKind').value, count: +$('#hRealCount').value }; p.cam.mode = $('#hCamera').value; p.density = $('#hDensity').value;
   const n = NICHES[p.niche], pre = $('#hPreset').value, mus = $('#hMusic').value;
   p.auto.look = pre === 'auto'; p.auto.music = mus === 'auto';
+  // 'upload': musik dipasang setelah proyek dibuat (lihat attachHomeMusic)
   const lookKey = pre !== 'auto' ? pre : (n?.preset || 'cendekia'); p.look = presetLook(lookKey); p.cap.mode = p.look.capMode; p.cap.upper = !!p.look.upper;
-  p.audio.mood = mus !== 'auto' ? mus : (n?.mood || 'corporate');
+  p.audio.mood = mus === 'auto' ? (n?.mood || 'corporate') : mus === 'upload' ? 'none' : mus;
   if (p.mode === 'product') { p.cam.mode = 'off'; p.look.tone = p.look.tone === 'dark' ? 'dark' : p.look.tone; }
 }
+async function attachHomeMusic() { if ($('#hMusic').value !== 'upload' || !HOME.music) return; try { await setCustomMusic(HOME.music, HOME.music.name.replace(/\.[^.]+$/, '')); } catch (e) { toast(e.message, 5000); } }
 function resetRuntime() {
-  pause(); stopAudio(); clearTimeout(saveT); clearTimeout(histT);
+  pause(); stopAudio(); delete loopB.custom; delete loopP.custom; R.musicBlob = null; clearTimeout(saveT); clearTimeout(histT);
   for (const [, m] of R.media) { m.video?.pause(); URL.revokeObjectURL(m.url); }
   if (R.url) URL.revokeObjectURL(R.url);
   Object.assign(R, { id: 'd' + Date.now().toString(36), file: null, url: '', srcW: 0, srcH: 0, voice: null, voiceP: null, voiceBlob: null, voUpload: null, media: new Map(), sel: null, steps: {}, lastErr: '', hist: [], redo: [], attach: [] });
@@ -2387,7 +2669,7 @@ async function startTalk(file) {
   if (!(file.type.startsWith('video/') || /\.(mp4|mov|webm|m4v|mkv)$/i.test(file.name))) return toast('File harus berupa video.');
   resetRuntime(); P = newProject('talk'); homeSettings(P); P.name = file.name.replace(/\.[^.]+$/, '').slice(0, 60) || 'Video baru';
   try { P.duration = await loadMainVideo(file); } catch (e) { return toast(e.message, 6000); }
-  dbPutBlob('video', file);
+  dbPutBlob('video', file); await attachHomeMusic();
   for (const f of HOME.files) { try { await addAsset(f, f.name); } catch (e) { console.warn(e); } }
   clearHomeFiles();
   enterStudio(); ensureLoop(P.audio.mood);
@@ -2400,7 +2682,7 @@ async function startProduct() {
   p.audio.voice = $('#pVoice').value;
   if (!p.product.name && !p.product.brand) { $('#pName').focus(); return toast('Isi nama produk atau merek dulu.'); }
   if (!$('#hNoAI').checked && !hasAI()) { $('#hKey').focus(); return toast('Tempel Gemini API key dulu, atau centang "Tanpa AI".'); }
-  resetRuntime(); P = p; P.name = [p.product.brand, p.product.name].filter(Boolean).join(' · ').slice(0, 60); P.duration = p.product.dur;
+  resetRuntime(); P = p; P.name = [p.product.brand, p.product.name].filter(Boolean).join(' · ').slice(0, 60); P.duration = p.product.dur; await attachHomeMusic();
   for (const f of HOME.files) { try { await addAsset(f, f.name); } catch (e) { console.warn(e); } }
   clearHomeFiles();
   enterStudio(); ensureLoop(P.audio.mood);
@@ -2486,15 +2768,15 @@ async function runTalk() {
     stepSet('tr', 'active');
     jobs.push(aiTranscribe(voiceOut(true)).then(r => { P.words = r.words; P.language = r.language; if (!P.words.length) throw new AIError('AI tidak menemukan ucapan di video ini.', 'empty'); stepSet('tr', 'done', `${P.words.length} kata`); }));
     stepSet('vision', 'active');
-    jobs.push(aiVision().then(v => { P.face = { x: clamp(+v.faceX || .5, .1, .9), y: clamp(+v.faceY || .35, .1, .9) }; P.sceneNote = [v.shot, v.setting, v.tone].filter(Boolean).join(', '); R.visionColors = (v.colors || []).filter(c => /^#[0-9a-f]{6}$/i.test(c)); stepSet('vision', 'done', v.shot || ''); }).catch(e => { if (e.code === 'auth') throw e; stepSet('vision', 'skip', 'dilewati'); }));
+    jobs.push(aiVision().then(v => { P.face = { x: clamp(+v.faceX || .5, .1, .9), y: clamp(+v.faceY || .35, .1, .9) }; P.faceW = clamp(+v.faceW || 0, 0, .9); P.faceH = clamp(+v.faceH || 0, 0, .9); P.sceneNote = [v.shot, v.setting, v.tone].filter(Boolean).join(', '); R.visionColors = (v.colors || []).filter(c => /^#[0-9a-f]{6}$/i.test(c)); stepSet('vision', 'done', v.shot || ''); }).catch(e => { if (e.code === 'auth') throw e; stepSet('vision', 'skip', 'dilewati'); }));
     const need = P.assets.filter(a => !a.desc);
     if (need.length) { stepSet('assets', 'active'); jobs.push(aiDescribeAssets(need).then(() => stepSet('assets', 'done', `${need.length} aset`)).catch(e => { if (e.code === 'auth') throw e; stepSet('assets', 'skip', 'dilewati'); })); }
-    if (!R.light) { stepSet('seg', 'active'); segInit().then(ok => stepSet('seg', ok ? 'done' : 'skip', ok ? 'siap' : 'tidak didukung browser ini')); }
+    if (!R.light) segInit(); // disiapkan sejak awal untuk mengunci posisi wajah
     await Promise.all(jobs);
     stepSet('direct', 'active'); busy(true, 'AI menyusun motion…');
     applyPlan(await aiDirect()); stepSet('direct', 'done', `${P.els.length} elemen`);
     await genImages();
-    if (segWanted() && !R.light) segInit();
+    if (!R.light) { stepSet('seg', 'active', 'mencari posisi wajah'); if (await calibrateFace()) layoutAll(); stepSet('seg', SEG.state === 'ready' ? 'done' : 'skip', SEG.state === 'ready' ? 'posisi wajah terkunci' : 'tidak didukung browser ini'); }
     toast('Rencana motion selesai. Putar preview, lalu sunting seperlunya.', 4500);
   } catch (e) { console.error(e); failSteps(e); }
   finally { R.busy = false; busy(false); commit(true); refreshAll(); }
@@ -2542,12 +2824,16 @@ function mergeProject(raw) { const b = newProject(raw.mode || 'talk'); const o =
 async function openDraft(id) {
   const rec = (await listDrafts()).find(d => d.id === id); if (!rec) return toast('Draf tidak ditemukan.');
   resetRuntime(); R.id = id; let raw; try { raw = JSON.parse(rec.project); } catch { return toast('Draf rusak.'); }
-  P = mergeProject(raw); P.els = assignTracks(guardEls(P.els.map(e => repairEl({ items: [], ...e })), P.duration, false)); if (P.mode === 'product') P.els = tidyEls(P.els, P.duration);
+  P = mergeProject(raw); if (CANVAS && P.realism?.kind === 'video') P.realism.kind = 'image';
+  P.els = assignTracks(guardEls(P.els.map(e => repairEl({ items: [], ...e })), P.duration, false)); if (P.mode === 'product') P.els = tidyEls(P.els, P.duration);
   if (P.mode === 'talk') { const blob = await dbGetBlob(id, 'video'); if (!blob) return toast('Video untuk draf ini sudah tidak ada di browser.'); try { await loadMainVideo(blob instanceof File ? blob : new File([blob], P.name + '.mp4', { type: blob.type })); } catch (e) { return toast(e.message, 6000); } }
   else { const vb = await dbGetBlob(id, 'voice'); if (vb) { R.voiceBlob = vb; try { R.voice = await decodeAudio(vb); } catch {} } }
   if (P.mode === 'product' && R.voice && !(P.cuts || []).length && P.words.length && trimNoise(true)) { P.duration = +(R.voice.duration + 1.4).toFixed(2); P.els = tidyEls(P.els, P.duration); }
+  { const mb = await dbGetBlob(id, 'music'); if (mb) { try { await setCustomMusic(mb, P.audio.musicName, false); } catch (e) { console.warn('musik', e); } } }
   const keep = []; for (const a of P.assets) { const b = await dbGetBlob(id, 'asset:' + a.id); if (b) { try { await mountAsset(a, b); keep.push(a); } catch {} } } P.assets = keep;
+  if (P.layoutV !== 2) layoutAll(); // draf lama: rapikan posisi elemen
   enterStudio(); ensureLoop(P.audio.mood); commit(true); if (segWanted()) segInit();
+  if (P.mode === 'talk' && !P.faceS && !R.light) setTimeout(refineLayout, 1200);
   toast('Draf dibuka.');
 }
 async function renderDrafts() {
@@ -2722,6 +3008,8 @@ function refreshAll() { $('#projName').value = P.name; sizePreview(); renderPane
 // ---------- helper form ----------
 const getPath = (o, k) => k.split('.').reduce((a, x) => a?.[x], o);
 function setPath(o, k, v) { const ks = k.split('.'); let a = o; for (let i = 0; i < ks.length - 1; i++) a = a[ks[i]]; a[ks[ks.length - 1]] = v; }
+// pilihan jenis visual; di Canvas, video dikunci karena Veo tidak tersedia
+const realKindOpts = v => CANVAS ? opts(REAL_KINDS, v === 'video' ? 'image' : v).replace('<option value="video"', '<option value="video" disabled').replace('>Video (Veo)<', '>Video (Veo) · tidak tersedia di Canvas<') : opts(REAL_KINDS, v);
 const opts = (list, v) => list.map(([a, b]) => `<option value="${esc(a)}"${String(a) === String(v) ? ' selected' : ''}>${esc(b)}</option>`).join('');
 const sel = (k, list, extra = '') => `<select data-k="${k}" ${extra}>${opts(list, getPath(P, k))}</select>`;
 const rng2 = (k, min, max, step) => `<input type="range" data-k="${k}" min="${min}" max="${max}" step="${step}">`;
@@ -2738,7 +3026,8 @@ function bindK(root) {
 function onKey(k, v) {
   if (k === 'aspect') sizePreview();
   if (k === 'name') $('#projName').value = v;
-  if (k === 'audio.mood') { P.auto.music = false; ensureLoop(v).then(() => { if (R.playing) restartAudio(); }); }
+  if (k === 'audio.mood') { P.auto.music = false; ensureLoop(v).then(() => { if (R.playing) restartAudio(); }); setTimeout(renderPanel, 0); }
+  if (k === 'audio.musicStart' || k === 'audio.musicLoop') { if (R.playing) restartAudio(); if (k === 'audio.musicLoop') setTimeout(renderPanel, 0); }
   if (/^audio\.(musicVol|sfxVol|voiceVol)$/.test(k)) setVolumes();
   if (k === 'audio.sfx' || k === 'audio.duck') { if (R.playing) restartAudio(); }
   if (k.startsWith('person.') && segWanted()) segInit().then(requestDraw);
@@ -2795,7 +3084,8 @@ function realBlock() {
   const r = P.realism, pend = P.els.filter(e => e.type === 'media' && !e.asset && e.imagePrompt).length, made = P.els.filter(e => isAIVisual(e) && e.asset).length;
   return `<div class="realbox ${r.on ? '' : 'off'}" style="margin-top:10px">
     ${chk('realism.on', '<b>Tambah visual realistis AI</b>')}
-    <div class="g2" style="margin-top:8px"><div><label class="f">Jenis</label>${sel('realism.kind', REAL_KINDS, r.on ? '' : 'disabled')}</div><div><label class="f">Maksimal</label>${sel('realism.count', [1, 2, 3, 4, 5, 6].map(n => [n, n + (r.kind === 'video' ? ' klip' : ' foto')]), 'data-num ' + (r.on ? '' : 'disabled'))}</div></div>
+    <div class="g2" style="margin-top:8px"><div><label class="f">Jenis</label>${CANVAS ? sel('realism.kind', REAL_KINDS, r.on ? '' : 'disabled').replace('<option value="video"', '<option value="video" disabled').replace('>Video (Veo)<', '>Video (Veo) · tidak tersedia di Canvas<') : sel('realism.kind', REAL_KINDS, r.on ? '' : 'disabled')}</div><div><label class="f">Maksimal</label>${sel('realism.count', [1, 2, 3, 4, 5, 6].map(n => [n, n + (r.kind === 'video' ? ' klip' : ' foto')]), 'data-num ' + (r.on ? '' : 'disabled'))}</div></div>
+    ${CANVAS ? `<p class="locknote">🔒 ${CANVAS_VEO_NOTE}</p>` : ''}
     <p class="hint">${r.on ? realNote(r.kind) : `Mati: AI tidak membuat visual baru${made ? `, dan ${made} adegan visual AI yang sudah ada disembunyikan dari video (tidak dihapus)` : ''}.`}</p>
     ${r.on ? `<button class="btn sm wide" style="margin-top:6px" id="aVis" ${R.busy ? 'disabled' : ''}>${pend ? `Buat visual untuk ${pend} adegan yang menunggu` : 'Tambah adegan visual realistis dengan AI'}</button>` : ''}
   </div>`;
@@ -2835,7 +3125,18 @@ function panelEl() {
   </div>
   <div class="blk"><h3>${list.length} elemen</h3>
     ${list.map(e => `<div class="el ${e.id === R.sel ? 'on' : ''}" data-id="${e.id}" tabindex="0"><span class="sw" style="background:${TYPES[e.type].color}"></span><div class="tx"><b>${esc(elLabel(e))}${e.type === 'media' ? ' · ' + esc(optLabel('layout', e.layout)) : ''}</b><span>${fmtT(e.start)}–${fmtT(e.end)} · ${elHidden(e) ? 'disembunyikan · ' : ''}${esc(elDesc(e)).slice(0, 48)}</span></div></div>`).join('') || '<p class="hint">Belum ada elemen. Jalankan AI atau tambah manual.</p>'}
-    <p class="hint">Di timeline: seret elemen untuk memindah, tarik ujungnya untuk mengubah durasi. Tombol Delete menghapus elemen terpilih.</p>
+    <div class="row" style="margin:6px 0"><button class="btn xs" type="button" data-act="layall">Rapikan posisi otomatis</button><span class="muted small">hindari wajah, caption, dan tumpukan</span></div>
+    <p class="hint">Di timeline: seret elemen untuk memindah, tarik ujungnya untuk mengubah durasi. Di preview: klik elemen untuk memilih, seret untuk memindah posisinya. Tombol Delete menghapus elemen terpilih.</p>
+  </div>`;
+}
+// blok posisi x/y + depan/belakang orang, berlaku untuk semua elemen overlay
+function posBlock(el) {
+  const [x, y] = elXY(el), pc = v => Math.round(v * 100) + '%';
+  return `<div class="posblk fld"><label class="f">Posisi di layar <span class="muted small">· bisa juga diseret langsung di preview</span></label>
+    <div class="g2"><div><label class="f">X (kiri–kanan) <b data-xyv="x">${pc(x)}</b></label><input type="range" data-f="x" min="0" max="1" step=".005" value="${x}"></div><div><label class="f">Y (atas–bawah) <b data-xyv="y">${pc(y)}</b></label><input type="range" data-f="y" min="0" max="1" step=".005" value="${y}"></div></div>
+    ${TYPES[el.type].f.includes('size') ? '' : `<div class="fld" style="margin-top:6px"><label class="f">Ukuran <b data-xyv="scale">${Math.round((el.scale || 1) * 100)}%</b></label><input type="range" data-f="scale" min=".4" max="1.6" step=".02" value="${el.scale || 1}"></div>`}
+    <div class="row" style="gap:8px;margin-top:6px">${P.mode === 'talk' ? `<select data-f="behind" style="flex:1" aria-label="Kedalaman"><option value="0"${el.behind ? '' : ' selected'}>Di depan orang</option><option value="1"${el.behind ? ' selected' : ''}>Di belakang orang</option></select>` : '<span class="grow"></span>'}<button class="btn xs" type="button" data-act="autopos" title="Cari tempat kosong: tidak menutupi wajah, caption, atau elemen lain">Atur otomatis</button></div>
+    ${P.mode === 'talk' && el.behind ? `<p class="hint">Di belakang orang: bila bagian teks tertutup badan, teks otomatis maju ke depan supaya tetap terbaca.${SEG.state === 'fail' ? ' Pemisah orang tidak tersedia di browser ini.' : R.light ? ' Matikan mode ringan agar efek ini aktif.' : ''}</p>` : ''}
   </div>`;
 }
 function inspector(el) {
@@ -2848,10 +3149,10 @@ function inspector(el) {
     if (k === 'items') row.push(`<div class="fld"><label class="f">Butir (satu per baris)</label><textarea data-f="items" rows="3">${esc((el.items || []).map(i => i.label).join('\n'))}</textarea></div>`);
     if (k === 'ditems') row.push(`<div class="fld"><label class="f">Butir: label | nilai | ikon</label><textarea data-f="ditems" rows="4">${esc((el.items || []).map(i => [i.label, i.value, i.icon].filter((x, j) => x || j < 1).join(' | ')).join('\n'))}</textarea><p class="hint">${el.kind === 'compare' ? 'Baris pertama: judul kolom kiri | judul kolom kanan. Baris berikut: sisi kiri | sisi kanan.' : el.kind === 'bars' ? 'Nilai berupa angka, mis. Penjualan | 120 | 📈' : el.kind === 'ring' ? 'Satu baris: label | persen, mis. Peserta puas | 92%' : 'Ikon boleh emoji.'}</p></div>`);
     if (k === 'pos') row.push(`<div class="fld"><label class="f">Posisi</label><select data-f="pos">${opts(OPT.pos, el.pos)}</select></div>`);
-    if (k === 'behind' && P.mode === 'talk') row.push(`<label class="check fld"><input type="checkbox" data-f="behind" ${el.behind ? 'checked' : ''}> <span>Taruh di belakang tubuh orang ${SEG.state === 'fail' ? '(pemisah orang tidak tersedia di browser ini)' : R.light ? '(matikan mode ringan)' : ''}</span></label>`);
-    if (k === 'xy') row.push(`<div class="g2 fld"><div><label class="f">Posisi kiri-kanan</label><input type="range" data-f="x" min=".05" max=".95" step=".01" value="${el.x ?? .7}"></div><div><label class="f">Posisi atas-bawah</label><input type="range" data-f="y" min=".05" max=".95" step=".01" value="${el.y ?? .35}"></div></div>`);
+    if (k === 'behind' && P.mode === 'talk' && !canPos(el)) row.push(`<label class="check fld"><input type="checkbox" data-f="behind" ${el.behind ? 'checked' : ''}> <span>Taruh di belakang tubuh orang ${SEG.state === 'fail' ? '(pemisah orang tidak tersedia di browser ini)' : R.light ? '(matikan mode ringan)' : ''}</span></label>`);
+    if (k === 'xy' && !canPos(el)) row.push(`<div class="g2 fld"><div><label class="f">Posisi kiri-kanan</label><input type="range" data-f="x" min=".05" max=".95" step=".01" value="${el.x ?? .7}"></div><div><label class="f">Posisi atas-bawah</label><input type="range" data-f="y" min=".05" max=".95" step=".01" value="${el.y ?? .35}"></div></div>`);
     if (k === 'emoji') row.push(`<div class="fld"><label class="f">Emoji</label><input type="text" data-f="emoji" value="${esc(el.emoji)}" maxlength="8"><div class="chips" style="margin-top:6px">${['🔥', '✨', '💡', '🚀', '✅', '❌', '😮', '👏', '💰', '📈', '❤️', '👀'].map(e => `<button type="button" class="chip" data-emo="${e}">${e}</button>`).join('')}</div></div>`);
-    if (k === 'asset') row.push(`<div class="fld"><label class="f">Aset</label><select data-f="asset"><option value="">${el.imagePrompt ? 'Visual AI (belum dibuat)' : '(pilih aset)'}</option>${P.assets.map(a => `<option value="${a.id}"${a.id === el.asset ? ' selected' : ''}>${esc(a.name)}${a.desc ? ' · ' + esc(a.desc.slice(0, 30)) : ''}</option>`).join('')}</select>${!el.asset || assetById(el.asset)?.origin === 'ai' ? `<label class="f" style="margin-top:8px">Deskripsi visual AI (bahasa Inggris)</label><textarea data-f="imagePrompt" rows="3" placeholder="mis. young Indonesian office worker typing on a laptop in a bright cafe, slow dolly-in">${esc(el.imagePrompt || '')}</textarea><div class="row" style="margin-top:6px"><button class="btn xs" data-act="genimg" data-kind="image">${el.asset ? 'Buat ulang sebagai foto' : 'Buat foto realistis'}</button><button class="btn xs" data-act="genimg" data-kind="video">${el.asset ? 'Buat ulang sebagai video' : 'Buat video realistis'}</button></div>${elHidden(el) ? '<p class="hint err">Visual realistis AI sedang dimatikan, jadi adegan ini tidak tampil di video.</p>' : ''}` : ''}</div>`);
+    if (k === 'asset') row.push(`<div class="fld"><label class="f">Aset</label><select data-f="asset"><option value="">${el.imagePrompt ? 'Visual AI (belum dibuat)' : '(pilih aset)'}</option>${P.assets.map(a => `<option value="${a.id}"${a.id === el.asset ? ' selected' : ''}>${esc(a.name)}${a.desc ? ' · ' + esc(a.desc.slice(0, 30)) : ''}</option>`).join('')}</select>${!el.asset || assetById(el.asset)?.origin === 'ai' ? `<label class="f" style="margin-top:8px">Deskripsi visual AI (bahasa Inggris)</label><textarea data-f="imagePrompt" rows="3" placeholder="mis. young Indonesian office worker typing on a laptop in a bright cafe, slow dolly-in">${esc(el.imagePrompt || '')}</textarea><div class="row" style="margin-top:6px"><button class="btn xs" data-act="genimg" data-kind="image">${el.asset ? 'Buat ulang sebagai foto' : 'Buat foto realistis'}</button><button class="btn xs" data-act="genimg" data-kind="video" ${CANVAS ? 'disabled title="Video realistis (Veo) tidak tersedia di mode Gemini Canvas"' : ''}>${el.asset ? 'Buat ulang sebagai video' : 'Buat video realistis'}</button></div>${elHidden(el) ? '<p class="hint err">Visual realistis AI sedang dimatikan, jadi adegan ini tidak tampil di video.</p>' : ''}` : ''}</div>`);
     if (k === 'layout') row.push(`<div class="fld"><label class="f">Tata letak</label><select data-f="layout">${opts(OPT.layout.filter(o => P.mode === 'talk' || o[0] !== 'split'), el.layout)}</select></div>`);
     if (k === 'kind') row.push(`<div class="fld"><label class="f">Jenis animasi</label><select data-f="kind">${opts(OPT.diagram, el.kind)}</select></div>`);
     if (k === 'zkind') row.push(`<div class="g2 fld"><div><label class="f">Gerak zoom</label><select data-f="kind">${opts(OPT.zoom, el.kind || 'auto')}</select></div><div><label class="f">Besar zoom</label><input type="range" data-f="amount" min="1.03" max="1.5" step=".01" value="${el.amount || 1.15}"></div></div>`);
@@ -2871,18 +3172,24 @@ function inspector(el) {
     <div class="g3 fld"><div><label class="f">Mulai</label><input type="number" step="0.1" min="0" data-f="start" value="${el.start.toFixed(1)}"></div><div><label class="f">Selesai</label><input type="number" step="0.1" min="0" data-f="end" value="${el.end.toFixed(1)}"></div><div><label class="f">Suara</label><select data-f="sfx">${opts(OPT.sfx, el.sfx || 'auto')}</select></div></div>
     ${laneOf(el) > 0 ? `<div class="fld"><label class="f">Lapisan</label><select data-f="track">${opts([['1', 'Slot atas (paling depan)'], ['0', 'Slot bawah']], String(trackOf(el)))}</select></div>` : ''}
     ${row.join('')}
+    ${canPos(el) ? posBlock(el) : ''}
     <div class="row" style="margin-top:4px"><button class="btn xs" data-act="play">Putar dari sini</button><button class="btn xs" data-act="dup">Duplikat</button><span class="grow"></span><button class="btn xs warn" data-act="del">Hapus</button></div>
   </div>`;
 }
 function wireEl(b) {
   $$('[data-add]', b).forEach(x => x.onclick = () => addEl(x.dataset.add));
   $$('.el', b).forEach(x => { const go = () => { selectEl(x.dataset.id); }; x.onclick = go; x.onkeydown = e => { if (e.key === 'Enter') go(); }; });
+  const la = $('[data-act=layall]', b); if (la) la.onclick = () => { layoutAll(false, true); changed(true); toast('Posisi elemen dirapikan. Elemen yang Anda geser sendiri tidak diubah.', 3500); };
   const box = $('.insp', b); if (!box) return; const el = P.els.find(e => e.id === R.sel);
   $$('[data-f]', box).forEach(inp => {
     const f = inp.dataset.f, ev = inp.tagName === 'SELECT' || inp.type === 'checkbox' ? 'change' : 'input';
     inp.addEventListener(ev, () => {
       let v = inp.type === 'checkbox' ? inp.checked : inp.value;
-      if (['start', 'end', 'x', 'y', 'amount', 'size', 'rot', 'track'].includes(f)) v = parseFloat(v) || 0;
+      if (f === 'behind' && inp.tagName === 'SELECT') v = inp.value === '1';
+      if (f === 'x' || f === 'y') { const [cx, cy] = elXY(el); el.x = cx; el.y = cy; el.manual = true; const lb = box.querySelector(`[data-xyv=${f}]`); if (lb) lb.textContent = Math.round(parseFloat(v) * 100) + '%'; }
+      if (f === 'pos') { el.x = el.y = null; el.manual = true; }
+      if (['start', 'end', 'x', 'y', 'amount', 'size', 'rot', 'track', 'scale'].includes(f)) v = parseFloat(v) || 0;
+      if (f === 'scale') { el.scaleUser = true; const lb = box.querySelector('[data-xyv=scale]'); if (lb) lb.textContent = Math.round(v * 100) + '%'; }
       if (f === 'start' || f === 'end') v = clamp(v, 0, P.duration);
       if (f === 'items') { el.items = v.split('\n').map(s => s.trim()).filter(Boolean).map(label => ({ label })); }
       else if (f === 'bitems') { el.items = v.split('\n').map(s => s.trim()).filter(Boolean).slice(0, 4).map(l => { const [icon, label] = l.includes('|') ? l.split('|').map(x => x.trim()) : ['✓', l]; return { icon: icon || '✓', label: label || '' }; }); }
@@ -2891,10 +3198,11 @@ function wireEl(b) {
       if (el.end <= el.start + .2) el.end = Math.min(P.duration, el.start + 1);
       if (f === 'behind' && v) segInit().then(requestDraw);
       if (f === 'start' && !R.playing) seek(el.start + .4);
-      changed(f === 'layout' || f === 'kind' || f === 'track');
+      changed(f === 'layout' || f === 'kind' || f === 'track' || f === 'pos' || f === 'behind');
     });
   });
   $$('[data-emo]', box).forEach(x => x.onclick = () => { el.emoji = x.dataset.emo; changed(true); });
+  const ap = box.querySelector('[data-act=autopos]'); if (ap) ap.onclick = () => { el.manual = false; el.x = el.y = null; delete el.scale; delete el.scaleUser; layoutEls(P.els, P, { only: [el], keep: true }); changed(true); toast('Posisi diatur otomatis.', 2200); };
   box.querySelector('[data-act=close]').onclick = () => { R.sel = null; renderPanel(); drawTimeline(); };
   box.querySelector('[data-act=play]').onclick = () => { seek(el.start); play(); };
   box.querySelector('[data-act=dup]').onclick = () => { const c = { ...JSON.parse(JSON.stringify(el)), id: uid() }; const d = c.end - c.start; c.start = Math.min(P.duration - d, el.end + .1); c.end = c.start + d; P.els.push(c); R.sel = c.id; changed(true); };
@@ -2919,7 +3227,7 @@ function addEl(type) {
   if (type === 'media' && !def.asset) { toast('Unggah foto/video dulu di panel Aset.'); openPanel('assets'); return; }
   const { dur, ...rest } = def; const start = type === 'cta' ? Math.max(0, d - dur) : t;
   const el = normEl({ type, start, end: Math.min(d, start + dur), ...rest }, d); if (!el) return;
-  el.id = uid(); P.els.push(el); assignTracks(P.els); R.sel = el.id; if (R.panel !== 'el') openPanel('el'); changed(true);
+  el.id = uid(); P.els.push(el); assignTracks(P.els); if (canPos(el)) layoutEls(P.els, P, { only: [el], keep: true }); R.sel = el.id; if (R.panel !== 'el') openPanel('el'); changed(true);
 }
 // ---------- Teks & caption ----------
 function panelText() {
@@ -3036,8 +3344,16 @@ async function styleFromAI(files) {
 // ---------- Suara ----------
 function panelAudio() {
   const prod = P.mode === 'product';
-  return `<div class="blk"><h3>Musik latar</h3><div class="kv"><label>Suasana</label>${sel('audio.mood', OPT.mood)}<label>Volume</label>${rng2('audio.musicVol', 0, .6, .01)}</div>
-    <div style="margin-top:8px">${chk('audio.duck', 'Kecilkan musik saat ada suara bicara')}</div><p class="hint">Musik disintesis langsung di browser, jadi orisinal dan bebas lisensi.</p></div>
+  const A = P.audio, mine = !!loopB.custom, cust = A.mood === 'custom' && mine, md = loopB.custom?.duration || A.musicDur || 0;
+  const src = [['none', 'Tanpa musik'], ...(mine ? [['custom', `Musik saya · ${A.musicName || 'unggahan'}`]] : []), ...OPT.moodSyn];
+  return `<div class="blk"><h3>Musik latar</h3>
+    <div class="musicbox">${mine ? `<div class="row" style="gap:8px"><span class="mico">♪</span><div class="grow" style="min-width:0"><b class="ell">${esc(A.musicName || 'Musik saya')}</b><span class="small muted">${fmtT(md)}${cust ? ' · sedang dipakai' : ' · tidak dipakai'}</span></div><button class="btn xs" type="button" id="muRep">Ganti</button><button class="btn xs warn" type="button" id="muDel">Hapus</button></div>`
+      : `<button class="btn wide sm main" type="button" id="muUp">Unggah musik sendiri</button><p class="hint" style="margin:6px 0 0">MP3, WAV, M4A, AAC, OGG, atau FLAC. Pastikan Anda punya hak memakai musiknya.</p>`}</div>
+    <div class="kv" style="margin-top:10px"><label>Sumber</label>${sel('audio.mood', A.mood === 'custom' && !mine ? [['custom', 'Musik saya (file hilang, unggah ulang)'], ...src] : src)}<label>Volume</label>${rng2('audio.musicVol', 0, .8, .01)}
+    ${cust ? `<label>Mulai dari</label><div><input type="range" data-k="audio.musicStart" min="0" max="${Math.max(0, md - 1).toFixed(1)}" step=".5"><span class="small muted" id="muSt">detik ke-${(+A.musicStart || 0).toFixed(1)}</span></div>` : ''}</div>
+    ${cust ? `<div style="margin-top:8px">${chk('audio.musicLoop', md < P.duration ? `Ulangi musik (lagu ${fmtT(md)}, video ${fmtT(P.duration)})` : 'Ulangi musik bila habis')}</div>` : ''}
+    <div style="margin-top:8px">${chk('audio.duck', 'Kecilkan musik saat ada suara bicara')}</div>
+    <p class="hint">${cust ? 'Musik otomatis masuk perlahan di awal dan memudar di akhir video.' : A.mood === 'none' ? 'Video tanpa musik latar. Unggah musik Anda sendiri agar suasananya pas.' : 'Musik sintetis dibuat langsung di browser: orisinal dan bebas lisensi, tetapi polanya sederhana. Untuk hasil terbaik, unggah musik Anda sendiri.'}</p></div>
   <div class="blk"><h3>Efek suara</h3>${chk('audio.sfx', 'Aktifkan whoosh, pop, ding, dan lainnya')}<div class="kv" style="margin-top:8px"><label>Volume efek</label>${rng2('audio.sfxVol', 0, 1, .01)}</div><p class="hint">Atur efek per elemen lewat kolom "Suara" di panel Elemen.</p></div>
   <div class="blk"><h3>Potong & bisukan</h3>
     <p class="hint" style="margin-top:0">Di timeline: klik kata di jalur <b>Kata</b> (Shift+klik untuk beberapa kata) atau seret di jalur <b>Suara</b>, lalu klik ${SCISSORS} <b>Potong</b> untuk membuang bagian itu, atau <b>Bisukan</b> agar gambar tetap jalan tanpa suara.</p>
@@ -3056,6 +3372,19 @@ function wireAudio(b) {
   const tl2 = $('#auTail', b); if (tl2) tl2.onclick = cleanTail;
   const t = $('#auTTS', b); if (t) t.onclick = () => { R.keepScript = true; R.voUpload = null; runProduct(); };
   const v = $('#auVO', b); if (v) v.onclick = () => $('#fVO').click();
+  const up = () => $('#fMusic').click();
+  const u1 = $('#muUp', b); if (u1) u1.onclick = up; const u2 = $('#muRep', b); if (u2) u2.onclick = up;
+  const d = $('#muDel', b); if (d) d.onclick = () => { clearCustomMusic(); if (R.playing) restartAudio(); changed(true); toast('Musik dihapus.', 2200); };
+  const st = $('[data-k="audio.musicStart"]', b); if (st) st.addEventListener('input', () => { const l = $('#muSt', b); if (l) l.textContent = `detik ke-${(+st.value).toFixed(1)}`; });
+}
+// unggah musik dari panel Suara
+async function useMusicFile(f) {
+  if (!f) return;
+  if (!(f.type.startsWith('audio/') || /\.(mp3|wav|m4a|aac|ogg|oga|flac|opus|webm)$/i.test(f.name))) return toast('File harus berupa audio (MP3, WAV, M4A, OGG, AAC, FLAC).');
+  if (f.size > 60 * 1024 * 1024) return toast('File musik terlalu besar (maks. 60 MB).');
+  busy(true, 'Membaca musik…');
+  try { await setCustomMusic(f, f.name.replace(/\.[^.]+$/, '')); setVolumes(); if (R.playing) restartAudio(); changed(true); toast('Musik dipasang. Atur volume dan titik mulainya di panel Suara.', 4000); }
+  catch (e) { toast(e.message, 6000); } finally { busy(false); }
 }
 // ---------- Aset ----------
 function panelAssets() {
@@ -3068,8 +3397,8 @@ function panelAssets() {
   ${P.assets.length ? `<div class="blk"><h3>Tambah aset terpilih sebagai b-roll</h3><p class="hint" style="margin-top:0">Ditaruh di ${fmtT(now())} selama ±3 dtk.</p>
     <div class="chips" style="margin-top:6px">${OPT.layout.filter(o => P.mode === 'talk' || o[0] !== 'split').map(([k, n]) => `<button type="button" class="chip" data-lay="${k}">${n}</button>`).join('')}</div></div>` : ''}
   <div class="blk"><h3>Buat visual realistis dengan AI</h3><textarea id="giPrompt" rows="3" placeholder="mis. iced coffee being poured into a glass on a wooden table, morning light, close-up"></textarea>
-    <div class="row" style="margin-top:6px"><select id="giKind" style="width:auto">${opts(REAL_KINDS, R.giKind || P.realism.kind)}</select><select id="giAsp" style="width:auto">${opts([['9:16', '9:16'], ['1:1', '1:1'], ['3:4', '3:4'], ['4:3', '4:3'], ['16:9', '16:9']], imgAspect(null))}</select><span class="grow"></span><button class="btn sm" id="giGo" ${R.busy ? 'disabled' : ''}>Buat</button></div>
-    <p class="hint" id="giNote">${realNote(R.giKind || P.realism.kind)} Deskripsi dalam bahasa Inggris memberi hasil paling akurat.</p></div>
+    <div class="row" style="margin-top:6px"><select id="giKind" style="width:auto">${realKindOpts(R.giKind || P.realism.kind)}</select><select id="giAsp" style="width:auto">${opts([['9:16', '9:16'], ['1:1', '1:1'], ['3:4', '3:4'], ['4:3', '4:3'], ['16:9', '16:9']], imgAspect(null))}</select><span class="grow"></span><button class="btn sm" id="giGo" ${R.busy ? 'disabled' : ''}>Buat</button></div>
+    <p class="hint" id="giNote">${realNote(CANVAS ? 'image' : (R.giKind || P.realism.kind))} Deskripsi dalam bahasa Inggris memberi hasil paling akurat.</p>${CANVAS ? `<p class="locknote">🔒 ${CANVAS_VEO_NOTE}</p>` : ''}</div>
   <div class="blk"><h3>Tips b-roll</h3><ul class="hint" style="padding-left:18px;margin:0"><li>Pasang tepat saat benda/produknya disebut, 2–4 detik saja.</li><li>Jangan lebih dari ±40% durasi supaya wajah tetap jadi pusat.</li><li>Screenshot vertikal paling cocok untuk Mockup HP.</li><li>Foto produk berlatar polos paling cocok untuk Sorotan produk.</li></ul></div>`;
 }
 function wireAssets(b) {
@@ -3271,10 +3600,50 @@ function draw() {
     if (SEG.state === 'ready') { if (R.playing || R.segT !== t) { mask = segment(src); R.segT = t; R.segMask = mask; } else mask = R.segMask; if (mask && !R.faceSet && !P.sceneNote) { const f = maskFace(mask); if (f) { P.face = f; R.faceSet = true; } } }
   }
   try { drawFrame(pctx, pv.width, pv.height, t, { src, mask, frame: previewFrame }, P); } catch (e) { console.error('draw', e); }
+  drawSelBox(t);
   releaseVids();
   $('#tc').innerHTML = `<b>${fmtT(t)}</b> / ${fmtT(P.duration)}`;
   drawTimeline();
 }
+
+// ---------- pilih & seret elemen langsung di preview ----------
+// kotak putus-putus di elemen terpilih (hanya di preview, tidak ikut ke video hasil)
+function drawSelBox(t) {
+  const el = P.els.find(e => e.id === R.sel); if (!el || !canPos(el) || t < el.start || t >= el.end) return;
+  const r = RECTS.get(el.id); if (!r) return; const W = pv.width, H = pv.height, d = Math.max(1, W / 360);
+  pctx.save(); pctx.setTransform(1, 0, 0, 1, 0, 0); pctx.lineWidth = 1.5 * d; pctx.setLineDash([5 * d, 4 * d]);
+  pctx.strokeStyle = 'rgba(0,0,0,.6)'; pctx.strokeRect(r.x * W - 3 * d + d, r.y * H - 3 * d + d, r.w * W + 6 * d, r.h * H + 6 * d);
+  pctx.strokeStyle = '#7CF0C5'; pctx.strokeRect(r.x * W - 3 * d, r.y * H - 3 * d, r.w * W + 6 * d, r.h * H + 6 * d);
+  if (PD && PD.moved) { pctx.setLineDash([]); pctx.strokeStyle = 'rgba(124,240,197,.55)'; pctx.lineWidth = d; if (PD.snapX) { pctx.beginPath(); pctx.moveTo(W / 2, 0); pctx.lineTo(W / 2, H); pctx.stroke(); } if (PD.snapY) { pctx.beginPath(); pctx.moveTo(0, H / 2); pctx.lineTo(W, H / 2); pctx.stroke(); } }
+  pctx.restore();
+}
+let PD = null;
+function pvPoint(e) { const b = pv.getBoundingClientRect(); return [(e.clientX - b.left) / b.width, (e.clientY - b.top) / b.height]; }
+function pvHit(x, y) {
+  const t = now(), act = P.els.filter(e => canPos(e) && t >= e.start && t < e.end && !elHidden(e) && RECTS.has(e.id));
+  // urutan dari yang paling depan: terpilih, ornamen slot atas, ornamen, teks slot atas, teks
+  const rank = e => (e.id === R.sel ? 100 : 0) + laneOf(e) * 10 + trackOf(e) * 5;
+  act.sort((a, b) => rank(b) - rank(a));
+  const pad = .012;
+  return act.find(e => { const r = RECTS.get(e.id); return x >= r.x - pad && x <= r.x + r.w + pad && y >= r.y - pad && y <= r.y + r.h + pad; });
+}
+pv.addEventListener('pointerdown', e => {
+  if (!P.duration || e.button) return; const [x, y] = pvPoint(e), el = pvHit(x, y);
+  if (!el) { if (R.sel && R.panel === 'el') { R.sel = null; renderPanel(); drawTimeline(); requestDraw(); } return; }
+  if (R.playing) pause();
+  if (R.sel !== el.id) { R.sel = el.id; if (R.panel !== 'el') openPanel('el'); else renderPanel(); drawTimeline(); }
+  const [ex, ey] = elXY(el); PD = { el, x0: x, y0: y, ex, ey, moved: false }; pv.setPointerCapture(e.pointerId); requestDraw();
+});
+pv.addEventListener('pointermove', e => {
+  const [x, y] = pvPoint(e);
+  if (!PD) { pv.style.cursor = pvHit(x, y) ? 'move' : 'default'; return; }
+  const dx = x - PD.x0, dy = y - PD.y0; if (!PD.moved && Math.hypot(dx, dy) < .006) return;
+  PD.moved = true; let nx = clamp(PD.ex + dx, 0, 1), ny = clamp(PD.ey + dy, 0, 1);
+  PD.snapX = Math.abs(nx - .5) < .015; PD.snapY = Math.abs(ny - .5) < .012; if (PD.snapX) nx = .5; if (PD.snapY) ny = .5;
+  PD.el.x = +nx.toFixed(3); PD.el.y = +ny.toFixed(3); PD.el.manual = true; requestDraw();
+});
+const pvUp = () => { if (!PD) return; const moved = PD.moved; PD = null; if (moved) { changed(true); } requestDraw(); };
+pv.addEventListener('pointerup', pvUp); pv.addEventListener('pointercancel', pvUp);
 
 // ================= TIMELINE =================
 // Baris timeline dari atas ke bawah. Makin atas = makin depan lapisannya di video.
@@ -3470,12 +3839,25 @@ $('#rClose').addEventListener('click', () => { if (rAbort) return rAbort.abort()
   // isi pilihan halaman awal
   $('#hNiche').innerHTML = opts(Object.entries(NICHES).map(([k, n]) => [k, n.name]), 'auto');
   $('#hPreset').innerHTML = opts([['auto', 'Otomatis (AI pilih)'], ...Object.entries(PRESETS).map(([k, p]) => [k, p.name])], 'auto');
-  $('#hMusic').innerHTML = opts([['auto', 'Otomatis (AI pilih)'], ...OPT.mood], 'auto');
+  const homeMusicOpts = () => { $('#hMusic').innerHTML = opts([['none', 'Tanpa musik'], ['upload', HOME.music ? `Musik saya · ${HOME.music.name.replace(/\.[^.]+$/, '').slice(0, 28)}` : 'Unggah musik sendiri…'], ['auto', 'Sintetis · dipilih AI'], ...OPT.moodSyn], HOME.music ? 'upload' : 'none'); const box = $('#hMusicFile'); box.hidden = !HOME.music; if (HOME.music) box.innerHTML = `${fmtT(HOME.musicDur || 0)} · <a href="#" id="hMusicChg">ganti</a> · <a href="#" id="hMusicDel">hapus</a>`; const c = $('#hMusicChg'); if (c) c.onclick = e => { e.preventDefault(); R.musicTarget = 'home'; $('#fMusic').click(); }; const d = $('#hMusicDel'); if (d) d.onclick = e => { e.preventDefault(); HOME.music = null; homeMusicOpts(); }; };
+  homeMusicOpts();
+  $('#hMusic').addEventListener('change', () => { if ($('#hMusic').value === 'upload' && !HOME.music) { R.musicTarget = 'home'; $('#fMusic').click(); } });
+  $('#fMusic').onchange = async e => {
+    const f = e.target.files[0]; e.target.value = ''; const target = R.musicTarget; R.musicTarget = null;
+    if (target === 'home') {
+      if (!f) { if (!HOME.music) $('#hMusic').value = 'none'; return; }
+      if (!(f.type.startsWith('audio/') || /\.(mp3|wav|m4a|aac|ogg|oga|flac|opus)$/i.test(f.name))) { toast('File harus berupa audio (MP3, WAV, M4A, OGG, AAC, FLAC).'); if (!HOME.music) $('#hMusic').value = 'none'; return; }
+      try { const b = await new OfflineAudioContext(1, 1, 48000).decodeAudioData(await f.arrayBuffer()); HOME.music = f; HOME.musicDur = b.duration; toast('Musik siap dipakai.', 2200); } catch { toast('File musik tidak bisa dibaca browser ini. Coba MP3 atau WAV.', 5000); }
+      homeMusicOpts(); return;
+    }
+    useMusicFile(f);
+  };
+  window.addEventListener('focus', () => setTimeout(() => { if (R.musicTarget === 'home' && !HOME.music) { R.musicTarget = null; $('#hMusic').value = 'none'; } }, 800));
   $('#pVoice').innerHTML = opts(VOICES, 'Kore');
   $$('.choice').forEach(b => b.onclick = () => setHomeMode(b.dataset.mode));
   setHomeMode('talk'); keyUI(); if (R.apiKey) verifyKey();
   renderGallery(); $('#hAspect').addEventListener('change', renderGallery); $('#hNiche').addEventListener('change', renderGallery);
-  const realUI = () => { const on = $('#hReal').checked; $('.realbox').classList.toggle('off', !on); $('#hRealKind').disabled = $('#hRealCount').disabled = !on; $('#hRealNote').textContent = realNote($('#hRealKind').value); };
+  const realUI = () => { const on = $('#hReal').checked; $('.realbox').classList.toggle('off', !on); $('#hRealKind').disabled = $('#hRealCount').disabled = !on; $('#hRealNote').textContent = realNote($('#hRealKind').value); const ln = $('#hRealLock'); if (ln) { ln.hidden = !CANVAS; ln.innerHTML = CANVAS ? '🔒 ' + CANVAS_VEO_NOTE : ''; } };
   if (CANVAS) { const o = $('#hRealKind [value=video]'); o.disabled = true; o.textContent = 'Klip video realistis (Veo) · tidak tersedia di Canvas'; $('#hRealKind').value = 'image'; }
   $('#hReal').onchange = realUI; $('#hRealKind').onchange = realUI; realUI();
   $('#hKeySave').onclick = async () => { setKey($('#hKey').value); if (!R.apiKey) return toast('API key dikosongkan.'); const st = await verifyKey(); toast(st?.ok ? 'API key disimpan dan aktif.' : 'API key disimpan, tapi ditolak Google. Lihat keterangan di bawah kolom key.', 5000); };
@@ -3544,5 +3926,5 @@ $('#rClose').addEventListener('click', () => { if (rAbort) return rAbort.abort()
   });
   addEventListener('beforeunload', () => { if (R.id && !$('#studio').hidden) saveDraft(); });
   renderDrafts(); runDemo();
-  window.__cms = { get P() { return P; }, R, tidyEls, guardEls, normEl, enrichEls, applyPlan, drawFrame, renderVideo, startTalk, startProduct, openDraft, now, seek, play, pause, selectEl, addEl, SEG };
+  window.__cms = { get P() { return P; }, R, tidyEls, guardEls, normEl, enrichEls, applyPlan, drawFrame, renderVideo, startTalk, startProduct, openDraft, now, seek, play, pause, selectEl, addEl, SEG, RECTS, faceZones, layoutAll, layoutEls, buildMix, loopB, BEH, maskHead, calibrateFace };
 })();
